@@ -4,7 +4,7 @@
 //
 //
 // FUNCTIONALITY:
-//      - Plink to logout:
+//      - link to logout:
 //                      01. Login.jsx
 //
 //
