@@ -1,30 +1,31 @@
 const { User, Project, Info, Timeline, Wireframe } = require("../models");
 
-//---------------------------------------- Refactor the code ----------------------------------------//
-// const resolvers = {
-//   Query: {
-//     tech: async () => {
-//       return Tech.find({});
-//     },
-//     matchups: async (parent, { _id }) => {
-//       const params = _id ? { _id } : {};
-//       return Matchup.find(params);
-//     },
-//   },
-//   Mutation: {
-//     createMatchup: async (parent, args) => {
-//       const matchup = await Matchup.create(args);
-//       return matchup;
-//     },
-//     createVote: async (parent, { _id, techNum }) => {
-//       const vote = await Matchup.findOneAndUpdate(
-//         { _id },
-//         { $inc: { [`tech${techNum}_votes`]: 1 } },
-//         { new: true }
-//       );
-//       return vote;
-//     },
-//   },
-// };
+const resolvers = {
+  Query: {
+    wireframe: async () => {
+      return Wireframe.find({});
+    },
+    wireframeId: async (parent, { _id }) => {
+      return Wireframe.findById({ _id });
+    },
+  },
+
+  Mutation: {
+    createWireframe: async (parent, args) => {
+      const wireframe = await Wireframe.create(args);
+      return wireframe;
+    },
+    updateWireframe: async (parent, { _id, ...args }) => {
+      const wireframe = await Wireframe.findByIdAndUpdate(_id, args, {
+        new: true,
+      });
+      return wireframe;
+    },
+    deleteWireframe: async (parent, { _id }) => {
+      const wireframe = await Wireframe.findByIdAndDelete(_id);
+      return wireframe;
+    },
+  },
+};
 
 module.exports = resolvers;
