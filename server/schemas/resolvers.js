@@ -188,6 +188,66 @@ const resolvers = {
     },
   },
 
+  //----- Add Project -----//
+
+  addProject: async (parent, { title, projectId }) => {
+    try {
+      const updatedProject = await Project.create(
+        { _id: projectId },
+        { $addToSet: { projects: { title } } },
+        { new: true, runValidators: true }
+      );
+
+      if (!updatedProject) {
+        throw new Error("Project not found");
+      }
+
+      return updatedProject;
+    } catch (error) {
+      throw new Error(`Error adding project: ${error.message}`);
+    }
+  },
+
+  //----- Update Project -----//
+
+  updateProject: async (parent, { projectId, project }) => {
+    try {
+      const updatedProject = await Project.findOneAndUpdate(
+        { _id: projectId },
+        { $set: { projects: project } },
+        { new: true, runValidators: true }
+      );
+
+      if (!updatedProject) {
+        throw new Error("Project not found");
+      }
+
+      return updatedProject;
+    } catch (error) {
+      throw new Error(`Error updating project: ${error.message}`);
+    }
+  },
+
+  //----- Remove Project -----//
+
+  removeProject: async (parent, { projectId, project }) => {
+    try {
+      const updatedProject = await Project.findOneAndDelete(
+        { _id: projectId },
+        { $pull: { projects: project } },
+        { new: true }
+      );
+
+      if (!updatedProject) {
+        throw new Error("Project not found");
+      }
+
+      return updatedProject;
+    } catch (error) {
+      throw new Error(`Error removing project: ${error.message}`);
+    }
+  },
+
   //----- Remove Project Info -----//
   removeInfo: async (parent, { projectId, infoId }) => {
     try {

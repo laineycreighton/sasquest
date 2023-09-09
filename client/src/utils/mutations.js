@@ -178,10 +178,9 @@ export const DELETE_INFO = gql`
 //-------------------- PROJECT --------------------//
 
 // Add Project
-//createProject has arguments title and projectId
 export const ADD_PROJECT = gql`
-  mutation createProject($title: String!, $projectId: ID!) {
-    createProject(title: $title, projectId: $projectId) {
+  mutation createProject($title: String!) {
+    addProject(title: $title, info: [], timeline: [], wireframe: []) {
       _id
       title
       info {
@@ -205,11 +204,23 @@ export const ADD_PROJECT = gql`
   }
 `;
 
-// Update Project has arguments projectid and title
+// Update Project
 
 export const UPDATE_PROJECT = gql`
-  mutation updateProject($projectId: ID!, $title: String!) {
-    updateProject(projectId: $projectId, title: $title) {
+  mutation updateProject(
+    $projectId: ID!
+    $title: String!
+    $info: [InfoInput]!
+    $timeline: [TimelineInput]!
+    $wireframe: [WireframeInput]!
+  ) {
+    updateProject(
+      projectId: $projectId
+      title: $title
+      info: $info
+      timeline: $timeline
+      wireframe: $wireframe
+    ) {
       _id
       title
       info {
@@ -233,11 +244,11 @@ export const UPDATE_PROJECT = gql`
   }
 `;
 
-// Delete Project has arguments project id and title
+// Delete Project
 
 export const DELETE_PROJECT = gql`
-  mutation deleteProject($projectId: ID!, $title: String!) {
-    deleteProject(projectId: $projectId, title: $title) {
+  mutation deleteProject($projectId: ID!) {
+    deleteProject(projectId: $projectId) {
       _id
       title
       info {
