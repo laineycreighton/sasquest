@@ -13,14 +13,16 @@ const About = () => {
   return (
     <div>
       {/* Header */}
-      <header>
-        <h1>SASQUEST</h1>
-        <h4>tame your beast</h4>
+      <header className="about-header">
+        <div className="sasquest-title">SASQUEST</div>
+        <div className="beast-title">tame your beast</div>
       </header>
       {/* Back Button */}
-      <button onClick={() => window.history.back()}>BACK</button>
+      <button className="about-button" onClick={() => window.history.back()}>
+        BACK
+      </button>
       {/* Article */}
-      <article>
+      <article className="about-article">
         <p>
           Embracing the challenge of a project is like taming a beast! For a
           software developer, curating an engaging portfolio is the secret to
