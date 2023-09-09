@@ -23,11 +23,17 @@ type Wireframe{
 }
 
   type Query {
+    users: [User]
+    user(email: String!): User
+    
     projects: [Project]!
     project(projectId: ID!): Project
   }
 
   type Mutation {
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+
     createWireframe(title: String!, imageUrl: String, note: String): Project
     updateWireframe(id: ID!, projectId: ID!, title: String!, imageUrl: String, note: String): Project
     deleteWireframe(id: ID!): Project
