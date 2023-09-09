@@ -141,7 +141,7 @@ const resolvers = {
 
   addProject: async (parent, { title, projectId }) => {
     try {
-      const updatedProject = await Project.findOneAndUpdate(
+      const updatedProject = await Project.create(
         { _id: projectId },
         { $addToSet: { projects: { title } } },
         { new: true, runValidators: true }
@@ -181,7 +181,7 @@ const resolvers = {
 
   removeProject: async (parent, { projectId, project }) => {
     try {
-      const updatedProject = await Project.findOneAndUpdate(
+      const updatedProject = await Project.findOneAndDelete(
         { _id: projectId },
         { $pull: { projects: project } },
         { new: true }
