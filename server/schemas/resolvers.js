@@ -125,7 +125,6 @@ const resolvers = {
         throw new Error(`Error removing project info: ${error.message}`);
       }
     },
-  },
-};
+  };
 
 module.exports = resolvers;
