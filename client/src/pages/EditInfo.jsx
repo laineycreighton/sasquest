@@ -1,16 +1,3 @@
-// components
-<ProjectNavBar />;
-// PUT route EditProject form (singular)
-
-// INCLUDES:
-//          - ProjectNavBar.jsx
-//          - ProjectHeader.jsx
-//          - UpdateProjectInfo.jsx
-//
-//
-//
-//
-//
 import ProjectNavBar from '../components/ProjectNavBar';
 import ProjectHeader from '../components/ProjectHeader';
 import UpdateProjectInfo from '../components/UpdateProjectInfo';
