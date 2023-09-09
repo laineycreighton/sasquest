@@ -1,19 +1,21 @@
 const { User, Project, Info, Timeline, Wireframe } = require("../models");
 const { signToken, AuthenticationError } = require('../utils/auth');
 
-//---------------------------------------- Refactor the code ----------------------------------------//
+//---------------------------------------- Add your code ----------------------------------------//
 const resolvers = {
     Query: {
         users: async () => {
+            // populate projects subdocument when querying for all users
             return User.find({}).populate('projects');
         },
         users: async (parent, { email }) => {
+            // populate projects subdocument when querying for one users
             return User.findOne({ email }).populate('projects');
         },
-        matchups: async (parent, { _id }) => {
-            const params = _id ? { _id } : {};
-            return Matchup.find(params);
-        },
+        // matchups: async (parent, { _id }) => {
+        //     const params = _id ? { _id } : {};
+        //     return Matchup.find(params);
+        // },
     },
     Mutation: {
         // create user
@@ -59,14 +61,14 @@ const resolvers = {
 
 
 
-        createVote: async (parent, { _id, techNum }) => {
-            const vote = await Matchup.findOneAndUpdate(
-                { _id },
-                { $inc: { [`tech${techNum}_votes`]: 1 } },
-                { new: true }
-            );
-            return vote;
-        },
+        // createVote: async (parent, { _id, techNum }) => {
+        //     const vote = await Matchup.findOneAndUpdate(
+        //         { _id },
+        //         { $inc: { [`tech${techNum}_votes`]: 1 } },
+        //         { new: true }
+        //     );
+        //     return vote;
+        // },
     },
 };
 
