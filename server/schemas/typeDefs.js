@@ -1,4 +1,19 @@
 const typeDefs = `
+{******* User typeDef ********}
+type User {
+  _id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  projects: [Project]
+}
+
+type Auth {
+  token: ID!
+  user: User
+}
+
 type Project {
   _id: ID
   title: String!
