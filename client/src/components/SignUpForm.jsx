@@ -74,7 +74,58 @@ const SignUpForm = () => {
     });
   };
 
-  return;
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="firstName">first name</label>
+          <input
+            type="text"
+            id="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">last name</label>
+          <input
+            type="text"
+            id="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="email">email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password">password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        {/* sign up button */}
+        <button type="submit">SIGN UP</button>
+      </form>
+      {/* back button */}
+      <button onClick={() => window.history.back()}>back</button>
+      {/* link to about page */}
+      <Link to="/about">ABOUT</Link>
+    </div>
+  );
 };
 
 export default SignUpForm;
