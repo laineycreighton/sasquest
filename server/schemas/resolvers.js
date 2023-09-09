@@ -2,11 +2,13 @@ const { User, Project } = require("../models");
 
 const resolvers = {
   Query: {
+    //----- Get All Wireframes -----//
     wireframe: async () => {
-      return Wireframe.find({});
+      return Project.find({});
     },
+    //----- Get One Wireframe -----//
     wireframeId: async (parent, { _id }) => {
-      return Wireframe.findById({ _id });
+      return Project.findById({ _id });
     },
 
     //----- Get All Projects -----//
