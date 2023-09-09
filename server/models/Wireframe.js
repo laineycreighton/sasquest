@@ -12,19 +12,27 @@ const wireframeSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Project",
     required: true,
+    minlength: 1,
+    maxlength: 280,
   },
 
   title: {
     type: String,
     required: true,
+    minlength: 1,
+    maxlength: 280,
   },
   imageUrl: {
     type: String,
     required: false,
+    minlength: 1,
+    maxlength: 280,
   },
   note: {
     type: String,
     required: false,
+    minlength: 1,
+    maxlength: 280,
   },
 });
 
