@@ -11,12 +11,25 @@ const resolvers = {
 
     //----- Get All Projects -----//
     projects: async () => {
-      return Project.find({});
+      try {
+        const projects = await Project.find({});
+        return projects;
+      } catch (error) {
+        throw new Error(`Error getting projects: ${error.message}`);
+      }
     },
 
     //----- Get One Project -----//
     project: async (parent, { projectId }) => {
-      return Project.findOne({ _id: projectId });
+      try {
+        const project = await Project.findOne({ _id: projectId });
+        if (!project) {
+          throw new Error(`Project not found`);
+        }
+        return project;
+      } catch (error) {
+        throw new Error(`Error getting project: ${error.message}`);
+      }
     },
   },
 
@@ -38,27 +51,80 @@ const resolvers = {
 
     //----- Add Project Info -----//
     addInfo: async (parent, { projectId, repoURL, deployedURL, description }) => {
-      return Project.findOneAndUpdate(
-        { _id: projectId },
-        {
-          $addToSet: { info: { repoURL, deployedURL, description } },
-        },
-        {
-          new: true,
-          runValidators: true,
+      try {
+        const updatedProject = await Project.findOneAndUpdate(
+          { _id: projectId },
+          {
+            $addToSet: { info: { repoURL, deployedURL, description } },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+
+        if (!updatedProject) {
+          throw new Error('Project not found');
         }
-      );
+
+        return updatedProject;
+      } catch (error) {
+        throw new Error(`Error adding project info: ${error.message}`);
+      }
     },
 
-    //----- Remove Project Info -----//
-    removeInfo: async (parent, { projectId, repoURL, deployedURL, description }) => {
-      return Project.findOneAndUpdate(
-        { _id: infoId },
-        { $pull: { info: { _id: infoId } } },
-        { new: true }
-      );
+    //----- Update Project Info -----//
+    updateInfo: async (parent, { projectId, infoId, updatedInfo }) => {
+      try {
+        const project = await Project.findById(projectId);
+
+        if (!project) {
+          throw new Error('Project not found');
+        }
+
+        const infoToUpdate = project.info.find((info) => info._id == infoId);
+
+        if (!infoToUpdate) {
+          throw new Error('Project info not found');
+        }
+
+        if (updatedInfo.repoURL !== undefined) {
+          infoToUpdate.repoURL = updatedInfo.repoURL;
+        }
+        if (updatedInfo.deployedURL !== undefined) {
+          infoToUpdate.deployedURL = updatedInfo.deployedURL;
+        }
+        if (updatedInfo.description !== undefined) {
+          infoToUpdate.description = updatedInfo.description;
+        }
+
+        await project.save();
+
+        return project;
+      } catch (error) {
+        throw new Error(`Error updating project info: ${error.message}`);
+      }
     },
   },
-};
+
+    //----- Remove Project Info -----//
+    removeInfo: async (parent, { projectId, infoId }) => {
+      try {
+        const updatedProject = await Project.findOneAndUpdate(
+          { _id: projectId },
+          { $pull: { info: { _id: infoId } } },
+          { new: true }
+        );
+
+        if (!updatedProject) {
+          throw new Error('Project not found');
+        }
+
+        return updatedProject;
+      } catch (error) {
+        throw new Error(`Error removing project info: ${error.message}`);
+      }
+    },
+  };
 
 module.exports = resolvers;

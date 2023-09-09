@@ -4,29 +4,54 @@ import App from './App.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import About from './components/pages/About.jsx';
-import Contact from './components/pages/Contact.jsx';
-import Portfolio from './components/pages/Portfolio.jsx';
-import Work from './components/pages/Work.jsx';
+import Home from './pages/Home.jsx';
+import Login from './pages/Login.jsx';
+import SignUp from './pages/SignUp.jsx';
+import About from './pages/About.jsx';
+import Home from './pages/Home.jsx';
+import ViewInfo from './pages/ViewInfo.jsx';
+import EditInfo from './pages/EditInfo.jsx';
+import Timeline from './pages/Timeline.jsx';
+import Wireframe from './pages/Wireframe.jsx';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
-
-        //Add Error Page
-
+        errorElement: <Error />,
         children: [
-
-            //index: true
-            //element: "REDIRECTED PAGE"
-
-            //Add children for:
-            //Login Page
-            //Sign Up Page
-            //Home Page
-            //Project Page
-
+            {
+                path: '/',
+                element: <Login />,
+            },
+            {
+                path: '/signup',
+                element: <SignUp />,
+            },
+            {
+                path: '/about',
+                element: <About />,
+            },
+            {
+                path: '/home',
+                element: <Home />,
+            },
+            {
+                path: '/projects/:projectId/info',
+                element: <ViewInfo />,
+            },
+            {
+                path: '/projects/:projectId/info',
+                element: <EditInfo />,
+            },
+            {
+                path: '/projects/:projectId/timeline',
+                element: <Timeline />,
+            },
+            {
+                path: '/projects/:projectId/wireframe',
+                element: <Wireframe />,
+            },
         ],
     },
 ]);
