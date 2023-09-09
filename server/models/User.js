@@ -38,19 +38,19 @@ const userSchema = new Schema({
 // checks if input is a new user or updating an existing user and hashes the password with bcrypt for new users
 userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
-      const saltRounds = 10;
-      this.password = await bcrypt.hash(this.password, saltRounds);
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
     }
-  
+// continues to the next function which below
     next();
-  });
-  
-  // checks if the provided password matches the stored password
-  userSchema.methods.isCorrectPassword = async function (password) {
+});
+
+// checks if the provided password matches the stored password
+userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
-  };
-  
-  const User = model('User', userSchema);
-  
-  module.exports = User;
-  
+};
+
+const User = model('User', userSchema);
+
+module.exports = User;
+
