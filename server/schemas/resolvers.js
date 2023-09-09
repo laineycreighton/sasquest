@@ -4,11 +4,24 @@ const resolvers = {
   Query: {
     //----- Get All Wireframes -----//
     wireframe: async () => {
-      return Project.find({});
+      try {
+        const wireframe = await Project.find({});
+        return wireframe;
+      } catch (error) {
+        throw new Error(`Error getting wireframe: ${error.message}`);
+      }
     },
     //----- Get One Wireframe -----//
     wireframeId: async (parent, { _id }) => {
-      return Project.findById({ _id });
+      try {
+        const wireframe = await Project.findOne({ _id });
+        if (!wireframe) {
+          throw new Error(`Wireframe not found`);
+        }
+        return wireframe;
+      } catch (error) {
+        throw new Error(`Error getting wireframe: ${error.message}`);
+      }
     },
 
     //----- Get All Projects -----//
