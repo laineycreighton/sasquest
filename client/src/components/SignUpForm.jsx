@@ -42,11 +42,13 @@ const SignUpForm = () => {
     }
   }, [error]);
 
+  // update state based on form input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+  // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -55,6 +57,9 @@ const SignUpForm = () => {
       event.preventDefault();
       event.stopPropagation();
     }
+
+    // validate form
+    setValidation(true);
 
     try {
       const { data } = await addUser({
@@ -66,6 +71,7 @@ const SignUpForm = () => {
       console.error(err);
     }
 
+    // clear form values
     setUserFormData({
       firstName: "",
       lastName: "",
@@ -76,50 +82,68 @@ const SignUpForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleFormSubmit} noValidate>
+        {/* first name */}
         <div>
           <label htmlFor="firstName">first name</label>
           <input
             type="text"
             id="firstName"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={userFormData.firstName}
+            onChange={handleInputChange}
             required
           />
+          {validated && !userFormData.firstName && (
+            <div className="alert">First name is required!</div>
+          )}
         </div>
+        {/* last name */}
         <div>
           <label htmlFor="lastName">last name</label>
           <input
             type="text"
             id="lastName"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={userFormData.lastName}
+            onChange={handleInputChange}
             required
           />
+          {validated && !userFormData.firstName && (
+            <div className="alert">Last name is required!</div>
+          )}
         </div>
+        {/* email */}
         <div>
           <label htmlFor="email">email</label>
           <input
             type="email"
             id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleInputChange}
             required
           />
+          {validated && !userFormData.firstName && (
+            <div className="alert">Email address is required!</div>
+          )}
         </div>
+        {/* password */}
         <div>
           <label htmlFor="password">password</label>
           <input
             type="password"
             id="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleInputChange}
             required
           />
+          {validated && !userFormData.firstName && (
+            <div className="alert">Password is required!</div>
+          )}
         </div>
         {/* sign up button */}
         <button type="submit">SIGN UP</button>
       </form>
+      {/* alert */}
+      {showAlert && <div className="alert">Something went wrong!</div>}
       {/* back button */}
       <button onClick={() => window.history.back()}>back</button>
       {/* link to about page */}
