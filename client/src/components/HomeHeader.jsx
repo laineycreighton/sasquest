@@ -6,7 +6,7 @@ export default function HomeHeader() {
     return (
         <div className='home-header'>
             <div className='redirect-about'>
-                <Link to="/login">Logout</Link>
+                <Link to="/">Logout</Link>
             </div>
             <div className='header'>
                 <header className='sasquest-name'>
