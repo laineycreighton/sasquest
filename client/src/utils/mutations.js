@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+//-------------------- WIREFRAME --------------------//
+// Create Wireframe
 export const CREATE_WIREFRAME = gql`
   mutation createWireframe(
     $projectId: ID!
@@ -13,6 +15,42 @@ export const CREATE_WIREFRAME = gql`
       imageUrl: $imageUrl
       note: $note
     ) {
+      _id
+      projectId
+      imageUrl
+      note
+    }
+  }
+`;
+
+// Update Wireframe
+export const UPDATE_WIREFRAME = gql`
+  mutation updateWireframe(
+    $projectId: ID!
+    $wireframeId: ID!
+    $title: String!
+    $imageUrl: String
+    $note: String
+  ) {
+    updateWireframe(
+      projectId: $projectId
+      wireframeId: $wireframeId
+      title: $title
+      imageUrl: $imageUrl
+      note: $note
+    ) {
+      _id
+      projectId
+      imageUrl
+      note
+    }
+  }
+`;
+
+// Delete Wireframe
+export const DELETE_WIREFRAME = gql`
+  mutation deleteWireframe($projectId: ID!, $wireframeId: ID!) {
+    deleteWireframe(projectId: $projectId, wireframeId: $wireframeId) {
       _id
       projectId
       imageUrl
