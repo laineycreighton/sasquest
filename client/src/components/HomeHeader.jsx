@@ -1,17 +1,3 @@
-// BELONGS TO:
-//      - Home.jsx
-//
-//
-//
-// FUNCTIONALITY:
-//      - link to logout:
-//                      01. Login.jsx
-//
-//
-// VISUAL:
-//      - renders the SASQUEST logo with tagline
-//                               01. logo
-//                               02. tagline
 import { Link } from 'react-router-dom'
 import '../styles/HomeHeader.css';
 
