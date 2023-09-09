@@ -35,22 +35,25 @@ const resolvers = {
 
   Mutation: {
     createWireframe: async (parent, args) => {
-      const wireframe = await Wireframe.create(args);
+      const wireframe = await Project.create(args);
       return wireframe;
     },
     updateWireframe: async (parent, { _id, ...args }) => {
-      const wireframe = await Wireframe.findByIdAndUpdate(_id, args, {
+      const wireframe = await Project.findByIdAndUpdate(_id, args, {
         new: true,
       });
       return wireframe;
     },
     deleteWireframe: async (parent, { _id }) => {
-      const wireframe = await Wireframe.findByIdAndDelete(_id);
+      const wireframe = await Project.findByIdAndDelete(_id);
       return wireframe;
     },
 
     //----- Add Project Info -----//
-    addInfo: async (parent, { projectId, repoURL, deployedURL, description }) => {
+    addInfo: async (
+      parent,
+      { projectId, repoURL, deployedURL, description }
+    ) => {
       try {
         const updatedProject = await Project.findOneAndUpdate(
           { _id: projectId },
@@ -64,7 +67,7 @@ const resolvers = {
         );
 
         if (!updatedProject) {
-          throw new Error('Project not found');
+          throw new Error("Project not found");
         }
 
         return updatedProject;
@@ -79,13 +82,13 @@ const resolvers = {
         const project = await Project.findById(projectId);
 
         if (!project) {
-          throw new Error('Project not found');
+          throw new Error("Project not found");
         }
 
         const infoToUpdate = project.info.find((info) => info._id == infoId);
 
         if (!infoToUpdate) {
-          throw new Error('Project info not found');
+          throw new Error("Project info not found");
         }
 
         if (updatedInfo.repoURL !== undefined) {
@@ -107,24 +110,24 @@ const resolvers = {
     },
   },
 
-    //----- Remove Project Info -----//
-    removeInfo: async (parent, { projectId, infoId }) => {
-      try {
-        const updatedProject = await Project.findOneAndUpdate(
-          { _id: projectId },
-          { $pull: { info: { _id: infoId } } },
-          { new: true }
-        );
+  //----- Remove Project Info -----//
+  removeInfo: async (parent, { projectId, infoId }) => {
+    try {
+      const updatedProject = await Project.findOneAndUpdate(
+        { _id: projectId },
+        { $pull: { info: { _id: infoId } } },
+        { new: true }
+      );
 
-        if (!updatedProject) {
-          throw new Error('Project not found');
-        }
-
-        return updatedProject;
-      } catch (error) {
-        throw new Error(`Error removing project info: ${error.message}`);
+      if (!updatedProject) {
+        throw new Error("Project not found");
       }
-    },
-  };
+
+      return updatedProject;
+    } catch (error) {
+      throw new Error(`Error removing project info: ${error.message}`);
+    }
+  },
+};
 
 module.exports = resolvers;

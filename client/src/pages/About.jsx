@@ -8,3 +8,16 @@
 //
 //
 //
+
+const About = () => {
+  return (
+    <div>
+      {/* Header */}
+      <Header />
+      {/* Back Button */}
+      <BackButton />
+      {/* Article */}
+      <Article />
+    </div>
+  );
+};

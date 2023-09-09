@@ -28,9 +28,9 @@ type Wireframe{
   }
 
   type Mutation {
-    createWireframe(title: String!, imageUrl: String, note: String): Wireframe
-    updateWireframe(id: ID!, title: String!, imageUrl: String, note: String): Wireframe
-    deleteWireframe(id: ID!): Wireframe
+    createWireframe(title: String!, imageUrl: String, note: String): Project
+    updateWireframe(id: ID!, projectId: ID!, title: String!, imageUrl: String, note: String): Project
+    deleteWireframe(id: ID!): Project
 
     createInfo(projectId: ID!, repoURL: String, deployedURL: String, description: String): Project
     updateInfo(projectId: ID!, repoURL: String, deployedURL: String, description: String): Project
