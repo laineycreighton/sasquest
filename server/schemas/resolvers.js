@@ -50,18 +50,30 @@ const resolvers = {
 
   Mutation: {
     createWireframe: async (parent, args) => {
-      const wireframe = await Project.create(args);
-      return wireframe;
+      try {
+        const wireframe = await Project.create(args);
+        return wireframe;
+      } catch (error) {
+        throw new Error(`Error creating wireframe: ${error.message}`);
+      }
     },
     updateWireframe: async (parent, { _id, ...args }) => {
-      const wireframe = await Project.findByIdAndUpdate(_id, args, {
-        new: true,
-      });
-      return wireframe;
+      try {
+        const wireframe = await Project.findByIdAndUpdate(_id, args, {
+          new: true,
+        });
+        return wireframe;
+      } catch (error) {
+        throw new Error(`Error updating wireframe: ${error.message}`);
+      }
     },
     deleteWireframe: async (parent, { _id }) => {
-      const wireframe = await Project.findByIdAndDelete(_id);
-      return wireframe;
+      try {
+        const wireframe = await Project.findByIdAndDelete(_id);
+        return wireframe;
+      } catch (error) {
+        throw new Error(`Error deleting wireframe: ${error.message}`);
+      }
     },
 
     //----- Add Project Info -----//
