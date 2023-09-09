@@ -1,4 +1,4 @@
-const { User, Project, Info, Timeline, Wireframe } = require("../models");
+const { User, Project } = require("../models");
 
 const resolvers = {
   Query: {
@@ -7,6 +7,16 @@ const resolvers = {
     },
     wireframeId: async (parent, { _id }) => {
       return Wireframe.findById({ _id });
+    },
+
+    //----- Get All Projects -----//
+    projects: async () => {
+      return Project.find({});
+    },
+
+    //----- Get One Project -----//
+    project: async (parent, { projectId }) => {
+      return Project.findOne({ _id: projectId });
     },
   },
 
@@ -24,6 +34,29 @@ const resolvers = {
     deleteWireframe: async (parent, { _id }) => {
       const wireframe = await Wireframe.findByIdAndDelete(_id);
       return wireframe;
+    },
+
+    //----- Add Project Info -----//
+    addInfo: async (parent, { projectId, repoURL, deployedURL, description }) => {
+      return Project.findOneAndUpdate(
+        { _id: projectId },
+        {
+          $addToSet: { info: { repoURL, deployedURL, description } },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+
+    //----- Remove Project Info -----//
+    removeInfo: async (parent, { projectId, repoURL, deployedURL, description }) => {
+      return Project.findOneAndUpdate(
+        { _id: infoId },
+        { $pull: { info: { _id: infoId } } },
+        { new: true }
+      );
     },
   },
 };
