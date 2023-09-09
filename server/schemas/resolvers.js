@@ -2,6 +2,16 @@ const { User, Project } = require("../models");
 
 const resolvers = {
   Query: {
+    //-------Get All Users---------//
+    users: async () => {
+      // populate projects subdocument when querying for all users
+      return User.find({}).populate('projects');
+    },
+    users: async (parent, { email }) => {
+      // populate projects subdocument when querying for one users
+      return User.findOne({ email }).populate('projects');
+    },
+
     //----- Get All Wireframes -----//
     wireframe: async () => {
       try {
@@ -49,6 +59,47 @@ const resolvers = {
   },
 
   Mutation: {
+    //----------- Create User ----------//
+    addUser: async (parent, { firstName, lastName, email, password }) => {
+      const user = await User.create({ firstName, lastName, email, password });
+      // assign json token to new user and log in user
+      const token = signToken(user);
+      return { token, user };
+    },
+    //----------- Login User ----------//
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email, password });
+      // if no user in database is found with the email, throw auth error
+      if (!user) {
+        throw AuthenticationError;
+      }
+      const correctPw = await User.isCorrectPassword(password);
+      // if password is incorrect, throw auth error
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
+      // if email and password match, sign the user in with JWT token
+      const token = signToken(user);
+      return { token, user };
+    },
+    //------------ Update Password ----------------//
+    updateUserPassword: async (parent, { currentPassword, newPassword }, { user }) => {
+      if (!user) {
+        // checks if there is a valid user object, if not (user not logged in) it throws auth error
+        throw new AuthenticationError('You must be logged in to update your password');
+      }
+      // if correctCurrentPassword is false, the provided password doesn't match the current saved password for that user
+      const correctCurrentPassword = await user.isCorrectPassword(currentPassword);
+      if (!correctCurrentPassword) {
+        throw new AuthenticationError('Invalid password');
+      };
+      // if the current password is correct, it overwrites the old password with the new password 
+      user.password = newPassword;
+      // saves updated password to the database
+      await user.save();
+      return user;
+    },
+
     createWireframe: async (parent, args) => {
       try {
         const wireframe = await Project.create(args);
