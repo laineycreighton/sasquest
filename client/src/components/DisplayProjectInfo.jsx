@@ -4,7 +4,7 @@
 //
 // FUNCTIONALITY:
 //      - GET one project info ROUTE
-//      - redirect user to edit project info page w/edit button
+//      - redirect user to edit project info page w/save button
 //
 //
 // VISUAL:
@@ -12,7 +12,7 @@
 //                               01. repo URL
 //                               02. deployed URL
 //                               03. description
-//                               04. edit button
+//                               04. save button
 //
 //
 //
@@ -22,7 +22,6 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import { Link, useParams } from "react-router-dom";
-import e from "express";
 
 // DisplayProjectInfo component that takes projectID as a prop
 const DisplayProjectInfo = ({ projectID }) => {
@@ -32,6 +31,16 @@ const DisplayProjectInfo = ({ projectID }) => {
   // useState hook to set project state
   // this will be used to populate the data
   const [project, setProject] = useState({});
+  const [projectFormData, setProjectFormData] = useState({
+    repoURL: "",
+    deployedURL: "",
+    description: "",
+  });
+
+  // state for form validation errors
+  const [formErrors, setFormErrors] = useState({});
+  // state for form submission status
+  const [formSubmitted, setFormSubmitted] = useState(false);
   // useQuery hook to make GraphQL query
   const { loading, data } = useQuery(GET_PROJECT_BY_ID, {
     variables: { projectID: id },
@@ -49,6 +58,37 @@ const DisplayProjectInfo = ({ projectID }) => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  // handleInputChange function to update state when user enters data in input field
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setProject({ ...project, [name]: value });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    // set formSubmitted state to true
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    try {
+      const { data } = await addProject({
+        variables: { ...projectFormData },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  setProjectFormData({
+    repoURL: "",
+    deployedURL: "",
+    description: "",
+  });
+
   // display project info
   return (
     // project info container
@@ -66,9 +106,7 @@ const DisplayProjectInfo = ({ projectID }) => {
             // value and onChange props to set project state
             // when a user enters or modifies data in the input field, it updates the corresponding state
             value={project.repoURL}
-            onChange={(e) =>
-              setProject({ ...project, repoURL: e.target.value })
-            }
+            onChange={handleInputChange}
           />
         </div>
         {/* deployed URL */}
@@ -80,9 +118,7 @@ const DisplayProjectInfo = ({ projectID }) => {
             name="deployedURL"
             placeholder="Enter deployed URL"
             value={project.deployedURL}
-            onChange={(e) =>
-              setProject({ ...project, deployedURL: e.target.value })
-            }
+            onChange={handleInputChange}
           />
         </div>
 
@@ -94,13 +130,13 @@ const DisplayProjectInfo = ({ projectID }) => {
             name="description"
             placeholder="Enter description"
             value={project.description}
-            onChange={(e) =>
-              setProject({ ...project, description: e.target.value })
-            }
+            onChange={handleInputChange}
           />
         </div>
-        <Link to={`/edit/${project._id}`}>
-          <button className="project-info__edit-btn">EDIT</button>
+        <Link to={`/save/${project._id}`}>
+          <button type="submit" className="project-info-save-btn">
+            SAVE
+          </button>
         </Link>
       </form>
     </div>
