@@ -20,7 +20,9 @@
 
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
+import { UPDATE_PROJECT } from "../utils/mutations";
 import { Link, useParams } from "react-router-dom";
 
 // DisplayProjectInfo component that takes projectID as a prop
@@ -45,7 +47,8 @@ const DisplayProjectInfo = ({ projectID }) => {
   const { loading, data } = useQuery(GET_PROJECT_BY_ID, {
     variables: { projectID: id },
   });
-
+  // useMutation hook to make GraphQL mutation
+  const [updateProject] = useMutation(UPDATE_PROJECT);
   // data population
   // useEffect hook to update state when data is fetched from GraphQL query
   useEffect(() => {
@@ -54,6 +57,7 @@ const DisplayProjectInfo = ({ projectID }) => {
       setProject(data.project);
     }
   }, [data]);
+
   // if the data is still loading, return loading message
   if (loading) {
     return <div>Loading...</div>;
@@ -62,7 +66,7 @@ const DisplayProjectInfo = ({ projectID }) => {
   // handleInputChange function to update state when user enters data in input field
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setProject({ ...project, [name]: value });
+    setProjectFormData({ ...projectFormData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
@@ -94,7 +98,7 @@ const DisplayProjectInfo = ({ projectID }) => {
     // project info container
     <div className="project-info">
       <h2>DESCRIPTION</h2>
-      <form>
+      <form onSubmit={handleFormSubmit}>
         {/* repo URL */}
         <div className="form-group">
           <label htmlFor="repoURL">REPO URL</label>
@@ -107,7 +111,11 @@ const DisplayProjectInfo = ({ projectID }) => {
             // when a user enters or modifies data in the input field, it updates the corresponding state
             value={project.repoURL}
             onChange={handleInputChange}
+            required
           />
+          {validated && !projectFormData.repoURL && (
+            <div className="alert">Repo URL is required!</div>
+          )}
         </div>
         {/* deployed URL */}
         <div className="form-group">
@@ -119,7 +127,11 @@ const DisplayProjectInfo = ({ projectID }) => {
             placeholder="Enter deployed URL"
             value={project.deployedURL}
             onChange={handleInputChange}
+            required
           />
+          {validated && !projectFormData.deployedURL && (
+            <div className="alert">Deployed URL is required!</div>
+          )}
         </div>
 
         {/* description */}
@@ -131,7 +143,15 @@ const DisplayProjectInfo = ({ projectID }) => {
             placeholder="Enter description"
             value={project.description}
             onChange={handleInputChange}
+            required
           />
+          {validated && !projectFormData.description && (
+            <div className="alert">Description is required!</div>
+          )}
+          {/* form errors */}
+          {formErrors.description && (
+            <div className="error">{formErrors.description}</div>
+          )}
         </div>
         <Link to={`/save/${project._id}`}>
           <button type="submit" className="project-info-save-btn">
@@ -139,6 +159,9 @@ const DisplayProjectInfo = ({ projectID }) => {
           </button>
         </Link>
       </form>
+      {formSubmitted && (
+        <div className="success-message">Project info saved!</div>
+      )}
     </div>
   );
 };
