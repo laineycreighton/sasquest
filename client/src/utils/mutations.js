@@ -1,11 +1,30 @@
 import { gql } from "@apollo/client";
-//-------------------- USER LOGIN --------------------//
+//-------------------- USER --------------------//
+// Login user
 export const LOGIN_USER = gql`
-mutation login($email: String!, $password: String!) {}
-
-`
-
-
+mutation login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    token
+    user {
+      _id
+      email
+    }
+  }
+}
+`;
+//  Create user
+export const CREATE_USER = gql`
+mutation createUser(firstName: String, lastName: String, email: String!, $email: String!, $password: String!) {
+  addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+    token
+    user {
+      _id
+      firstName
+      lastName
+    } 
+  }
+}
+`;
 //-------------------- WIREFRAME --------------------//
 // Create Wireframe
 export const CREATE_WIREFRAME = gql`
