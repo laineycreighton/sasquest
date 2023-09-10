@@ -1,4 +1,5 @@
-# <img src="./client/src/assets/images/sasquest-banner.png" alt="header" width="100%">
+
+# <img src="./client/src/assets/images/sasquest-banner-light.png" alt="header" width="100%">
 
 ## Table of Contents
 - [Description](#description)
@@ -60,13 +61,13 @@ Fear not, Sasquest will be your trusty companion on this exhilarating journey! W
 ![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white) &nbsp;&nbsp;&nbsp;&nbsp; ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) &nbsp;&nbsp;&nbsp;&nbsp; ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) &nbsp;&nbsp;&nbsp;&nbsp; ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) &nbsp;&nbsp;&nbsp;&nbsp; ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white) &nbsp;&nbsp;&nbsp;&nbsp; ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 <br>
 
-**Deployment End**
+**Deployment**
 <br>
 
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white) &nbsp;&nbsp;&nbsp;&nbsp; ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 <br>
 
-**Testing End**
+**Testing**
 <br>
 
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) &nbsp;&nbsp;&nbsp;&nbsp; ![Insomnia](https://img.shields.io/badge/Insomnia-black?style=for-the-badge&logo=insomnia&logoColor=5849BE)
