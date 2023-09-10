@@ -28,9 +28,12 @@ import { scale } from "@cloudinary/url-gen/actions/resize";
 // ---------------------------------------- Cloudinary ---------------------------------------- //
 const cloudinary = new Cloudinary({
   cloud: {
-    cloudName: "dfecvj7s4",
+    cloudName: cloudinaryCloudName,
+    api_key: cloudinaryApiKey,
+    api_secret: cloudinaryApiSecret,
   },
 });
+
 // ---------------------------------------- Add Wireframe ---------------------------------------- //
 const AddWireframe = () => {
   const [wireframeData, setWireframeData] = useState({
@@ -57,7 +60,7 @@ const AddWireframe = () => {
         upload_preset: "SASQUEST",
       });
 
-      if (response.ok) {
+      if (response) {
         // save the cloudinary url to the image property in state
         setWireframeData({ ...wireframeData, image: response.secure_url });
       } else {
