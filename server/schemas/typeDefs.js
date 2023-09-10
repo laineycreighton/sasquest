@@ -29,12 +29,18 @@ type Info {
   description: String
 }
 
-type Wireframe{
+type Wireframe {
   id: ID!
   projectId: ID
-  title : String!
+  title: String!
   imageUrl: String 
   note: String
+}
+
+type Timeline {
+  _id: ID!
+  date: Date!
+  goal: String!
 }
 
   type Query {
@@ -56,6 +62,10 @@ type Wireframe{
     createInfo(projectId: ID!, repoURL: String, deployedURL: String, description: String): Project
     updateInfo(projectId: ID!, repoURL: String, deployedURL: String, description: String): Project
     deleteInfo(projectId: ID!, infoId: ID!): Project
+
+    createTimeline(_id: ID!, projectId: ID date: Date!, goal: String!): Timeline
+    updateTimeline(_id: ID!, projectId: ID date: Date!, goal: String!): Timeline
+    deleteTimeline(_id: ID!): Timeline
   }
 `;
 

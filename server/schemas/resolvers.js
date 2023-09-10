@@ -57,6 +57,29 @@ const resolvers = {
         throw new Error(`Error getting project: ${error.message}`);
       }
     },
+
+    //----- Get All Timelines -----//
+    projects: async () => {
+      try {
+        const timelines = await Timeline.find({});
+        return timelines;
+      } catch (error) {
+        throw new Error(`Error getting timelines: ${error.message}`);
+      }
+    },
+
+    //----- Get One Timeline -----//
+    project: async (parent, { timelineId }) => {
+      try {
+        const timeline = await Timeline.findOne({ _id });
+        if (!timeline) {
+          throw new Error(`TImeline not found`);
+        }
+        return timeline;
+      } catch (error) {
+        throw new Error(`Error getting timeline: ${error.message}`);
+      }
+    },
   },
 
   Mutation: {
@@ -125,6 +148,36 @@ const resolvers = {
         return wireframe;
       } catch (error) {
         throw new Error(`Error deleting wireframe: ${error.message}`);
+      }
+    },
+
+     //----- Add Timeline -----//
+    createTimeline: async (parent, args) => {
+      try {
+        const timeline = await Timeline.create(args);
+        return timeline;
+      } catch (error) {
+        throw new Error(`Error creating timeline: ${error.message}`);
+      }
+    },
+     //----- Update Timeline -----//
+    updateTimeline: async (parent, { _id, ...args }) => {
+      try {
+        const timeline = await TImeline.findByIdAndUpdate(_id, args, {
+          new: true,
+        });
+        return timeline;
+      } catch (error) {
+        throw new Error(`Error updating timeline: ${error.message}`);
+      }
+    },
+     //----- Delete Timeline -----//
+    deleteTimeline: async (parent, { _id }) => {
+      try {
+        const timeline = await timeline.findByIdAndDelete(_id);
+        return timeline;
+      } catch (error) {
+        throw new Error(`Error deleting timeline: ${error.message}`);
       }
     },
 
