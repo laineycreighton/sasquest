@@ -6,3 +6,16 @@
 //
 //
 //
+
+const Wireframe = () => {
+    return (
+        <div>
+            <ProjectNavBar />
+            <ProjectHeader />
+            <AddWireframe />
+            <ViewWireframe />
+        </div>
+    )
+}
+
+export default Wireframe

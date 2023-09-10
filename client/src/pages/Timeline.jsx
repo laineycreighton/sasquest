@@ -1,9 +1,3 @@
-// pull in 
-<ProjectNavBar />
-<AddTimeline />
-<ViewTimeline />
-
-
 // INCLUDES:
 //          - ProjectNavBar.jsx
 //          - ProjectHeader.jsx
@@ -13,3 +7,16 @@
 //
 //
 //
+
+const Timeline = () => {
+    return (
+        <div>
+            <ProjectNavBar />
+            <ProjectHeader />
+            <AddTimeline />
+            <ViewTimeline />
+        </div>
+    )
+}
+
+export default Timeline
