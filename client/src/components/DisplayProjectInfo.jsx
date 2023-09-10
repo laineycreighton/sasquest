@@ -23,7 +23,8 @@ import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import { UPDATE_PROJECT } from "../utils/mutations";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { set } from "mongoose";
 
 // DisplayProjectInfo component that takes projectID as a prop
 const DisplayProjectInfo = ({ projectID }) => {
@@ -49,12 +50,18 @@ const DisplayProjectInfo = ({ projectID }) => {
   });
   // useMutation hook to make GraphQL mutation
   const [updateProject] = useMutation(UPDATE_PROJECT);
+
   // data population
   // useEffect hook to update state when data is fetched from GraphQL query
   useEffect(() => {
     // if data exists, set project state to data.project
     if (data) {
       setProject(data.project);
+      setProjectFormData({
+        repoURL: data.project.repoURL,
+        deployedURL: data.project.deployedURL,
+        description: data.project.description,
+      });
     }
   }, [data]);
 
@@ -71,17 +78,38 @@ const DisplayProjectInfo = ({ projectID }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // set formSubmitted state to true
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      return;
     }
 
+    const errors = {};
+    if (!projectFormData.repoURL) {
+      errors.repoURL = "Repo URL is required!";
+    }
+    if (!projectFormData.deployedURL) {
+      errors.deployedURL = "Deployed URL is required!";
+    }
+    if (!projectFormData.description) {
+      errors.description = "Description is required!";
+    }
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+        
     try {
-      const { data } = await addProject({
-        variables: { ...projectFormData },
+      const { data } = await updateProject({
+        variables: {
+          projectID: id,
+          project: { ...projectFormData },
+        },
       });
+      if (data) {
+        setFormSubmitted(true);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -109,11 +137,11 @@ const DisplayProjectInfo = ({ projectID }) => {
             placeholder="Enter repo URL"
             // value and onChange props to set project state
             // when a user enters or modifies data in the input field, it updates the corresponding state
-            value={project.repoURL}
+            value={projectFormData.repoURL}
             onChange={handleInputChange}
             required
           />
-          {validated && !projectFormData.repoURL && (
+          {formErrors.repoURL && (
             <div className="alert">Repo URL is required!</div>
           )}
         </div>
@@ -125,11 +153,11 @@ const DisplayProjectInfo = ({ projectID }) => {
             id="deployedURL"
             name="deployedURL"
             placeholder="Enter deployed URL"
-            value={project.deployedURL}
+            value={projectFormData.deployedURL}
             onChange={handleInputChange}
             required
           />
-          {validated && !projectFormData.deployedURL && (
+          {formErrors.deployedURL && (
             <div className="alert">Deployed URL is required!</div>
           )}
         </div>
@@ -141,23 +169,17 @@ const DisplayProjectInfo = ({ projectID }) => {
             id="description"
             name="description"
             placeholder="Enter description"
-            value={project.description}
+            value={projectFormData.description}
             onChange={handleInputChange}
             required
           />
-          {validated && !projectFormData.description && (
+          {formErrors.description && (
             <div className="alert">Description is required!</div>
           )}
-          {/* form errors */}
-          {formErrors.description && (
-            <div className="error">{formErrors.description}</div>
-          )}
         </div>
-        <Link to={`/save/${project._id}`}>
-          <button type="submit" className="project-info-save-btn">
-            SAVE
-          </button>
-        </Link>
+        <button type="submit" className="project-info-save-btn">
+          SAVE
+        </button>
       </form>
       {formSubmitted && (
         <div className="success-message">Project info saved!</div>
