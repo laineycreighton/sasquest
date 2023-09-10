@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import { Link, useParams } from "react-router-dom";
+import e from "express";
 
 // DisplayProjectInfo component that takes projectID as a prop
 const DisplayProjectInfo = ({ projectID }) => {
@@ -50,22 +51,58 @@ const DisplayProjectInfo = ({ projectID }) => {
   }
   // display project info
   return (
+    // project info container
     <div className="project-info">
-      <div className="project-info-repo">
-        <h3>REPO URL</h3>
-        <p>{project.repoURL}</p>
-      </div>
-      <div className="project-info-deployed">
-        <h3>DEPLOYED URL</h3>
-        <p>{project.deployedURL}</p>
-      </div>
-      <div className="project-info-description">
-        <h3>DESCRIPTION</h3>
-        <p>{project.description}</p>
-      </div>
-      <Link to={`/edit/${project._id}`}>
-        <button className="project-info__edit-btn">EDIT</button>
-      </Link>
+      <h2>DESCRIPTION</h2>
+      <form>
+        {/* repo URL */}
+        <div className="form-group">
+          <label htmlFor="repoURL">REPO URL</label>
+          <input
+            type="text"
+            id="repoURL"
+            name="repoURL"
+            placeholder="Enter repo URL"
+            // value and onChange props to set project state
+            // when a user enters or modifies data in the input field, it updates the corresponding state
+            value={project.repoURL}
+            onChange={(e) =>
+              setProject({ ...project, repoURL: e.target.value })
+            }
+          />
+        </div>
+        {/* deployed URL */}
+        <div className="form-group">
+          <label htmlFor="deployedURL">DEPLOYED URL</label>
+          <input
+            type="text"
+            id="deployedURL"
+            name="deployedURL"
+            placeholder="Enter deployed URL"
+            value={project.deployedURL}
+            onChange={(e) =>
+              setProject({ ...project, deployedURL: e.target.value })
+            }
+          />
+        </div>
+
+        {/* description */}
+        <div className="form-group">
+          <label htmlFor="description">DESCRIPTION</label>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="Enter description"
+            value={project.description}
+            onChange={(e) =>
+              setProject({ ...project, description: e.target.value })
+            }
+          />
+        </div>
+        <Link to={`/edit/${project._id}`}>
+          <button className="project-info__edit-btn">EDIT</button>
+        </Link>
+      </form>
     </div>
   );
 };
