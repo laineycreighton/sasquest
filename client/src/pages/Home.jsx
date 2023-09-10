@@ -1,5 +1,5 @@
 <HomeHeader/>
-<ProjectDashboard />
+<ProjectDashboard/>
 
 
 // INCLUDES:
