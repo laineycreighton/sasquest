@@ -49,7 +49,7 @@ const Login = (props) => {
                 <h4 className="card-header">Sign Up</h4>
                 <div className="card-body">
                     {data ? (
-                        <p>Why did that take so long? You should be redirected to the home page.</p>
+                        <p>That worked! You should be redirected to the home page.</p>
                     ) : (
                         <form on Submit={handleFormSubmit}>
                             <input
@@ -70,7 +70,6 @@ const Login = (props) => {
                             />
                             <button
                                 className="button"
-                                style={{ cursor: 'pinter' }}
                                 type="submit"
                             >Login</button>
                         </form>
