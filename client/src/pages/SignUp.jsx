@@ -16,7 +16,8 @@ import Auth from '../utils/auth';
 
 const Signup = () => {
     const [formState, setFormState] = useState({
-        username: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
     });

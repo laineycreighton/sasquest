@@ -12,8 +12,8 @@ mutation login($email: String!, $password: String!) {
   }
 }
 `;
-//  Create user
-export const CREATE_USER = gql`
+//  Add user
+export const ADD_USER = gql`
 mutation createUser(firstName: String, lastName: String, email: String!, $email: String!, $password: String!) {
   addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
     token
