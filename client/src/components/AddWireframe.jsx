@@ -59,7 +59,13 @@ const AddWireframe = () => {
         if (!error && result && result.event === "success") {
           // Extract the uploaded image's secure URL
           const imageUrl = result.info.secure_url;
-          setWireframeData({ ...wireframeData, image: imageUrl });
+
+          // apply transformations
+          const transformedImageUrl = cloudinary
+            .url(imageUrl)
+            .quality(80) // set image quality to 80%
+            .scale(scale().width(500)); // set image scale to 500px width
+          setWireframeData({ ...wireframeData, image: transformedImageUrl });
         }
       }
     );
