@@ -153,3 +153,61 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
+
+
+// return (
+//   <main className="signupform">
+//       <div className="card">
+//           <h3 className="header">Sign Up</h3>
+//           <div>
+//               {data ? (
+//                   <p>That worked! You should be redirected to the home page.</p>
+//               ) : (
+//                   <form onSubmit={handleFormSubmit}>
+//                       <input
+//                           className="form-input"
+//                           placeholder="First Name"
+//                           name="firstName"
+//                           type="text"
+//                           value={formState.name}
+//                           onChange={handleChange}
+//                       />
+//                       <input
+//                           className="form-input"
+//                           placeholder="Last Name"
+//                           name="lastName"
+//                           type="text"
+//                           value={formState.name}
+//                           onChange={handleChange}
+//                       />
+//                       <input
+//                           className="form-input"
+//                           placeholder="Email"
+//                           name="email"
+//                           type="email"
+//                           value={formState.name}
+//                           onChange={handleChange}
+//                       />
+//                       <input
+//                           className="form-input"
+//                           placeholder="password"
+//                           name="password"
+//                           type="password"
+//                           value={formState.name}
+//                           onChange={handleChange}
+//                       />
+//                       <button
+//                           className="form-btn"
+//                           type="submit"
+//                       >Sign Up</button>
+//                   </form>
+//               )}
+//               {error && (
+//                   <div>
+//                       {error.message}
+//                   </div>
+//               )}
+//           </div>
+//       </div>
+//   </main>
+// );
