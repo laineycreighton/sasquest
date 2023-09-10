@@ -99,19 +99,19 @@ const DisplayProjectInfo = ({ projectID }) => {
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
-        
-    try {
-      const { data } = await updateProject({
-        variables: {
-          projectID: id,
-          project: { ...projectFormData },
-        },
-      });
-      if (data) {
-        setFormSubmitted(true);
+      try {
+        const { data } = await updateProject({
+          variables: {
+            projectID: id,
+            project: { ...projectFormData },
+          },
+        });
+        if (data) {
+          setFormSubmitted(true);
+        }
+      } catch (err) {
+        console.error(err);
       }
-    } catch (err) {
-      console.error(err);
     }
   };
 
