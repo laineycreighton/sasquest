@@ -6,18 +6,18 @@ export const CREATE_WIREFRAME = gql`
   mutation createWireframe(
     $projectId: ID!
     $title: String!
-    $imageUrl: String
+    $imageURL: String
     $note: String
   ) {
     createWireframe(
       projectId: $projectId
       title: $title
-      imageUrl: $imageUrl
+      imageURL: $imageURL
       note: $note
     ) {
       _id
       projectId
-      imageUrl
+      imageURL
       note
     }
   }
@@ -29,19 +29,19 @@ export const UPDATE_WIREFRAME = gql`
     $projectId: ID!
     $wireframeId: ID!
     $title: String!
-    $imageUrl: String
+    $imageURL: String
     $note: String
   ) {
     updateWireframe(
       projectId: $projectId
       wireframeId: $wireframeId
       title: $title
-      imageUrl: $imageUrl
+      imageURL: $imageURL
       note: $note
     ) {
       _id
       projectId
-      imageUrl
+      imageURL
       note
     }
   }
@@ -53,7 +53,7 @@ export const DELETE_WIREFRAME = gql`
     deleteWireframe(projectId: $projectId, wireframeId: $wireframeId) {
       _id
       projectId
-      imageUrl
+      imageURL
       note
     }
   }

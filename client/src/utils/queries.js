@@ -6,7 +6,7 @@ export const QUERY_WIREFRAME = gql`
       _id
       projectId
       title
-      imageUrl
+      imageURL
       note
     }
   }
