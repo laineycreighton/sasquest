@@ -23,25 +23,32 @@ import { useQuery } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import { Link, useParams } from "react-router-dom";
 
+// DisplayProjectInfo component that takes projectID as a prop
 const DisplayProjectInfo = ({ projectID }) => {
+  // get projectID from useParams hook
   const { id } = useParams();
-  const [project, setProject] = useState({});
 
+  // useState hook to set project state
+  // this will be used to populate the data
+  const [project, setProject] = useState({});
+  // useQuery hook to make GraphQL query
   const { loading, data } = useQuery(GET_PROJECT_BY_ID, {
     variables: { projectID: id },
   });
 
-  //
+  // data population
+  // useEffect hook to update state when data is fetched from GraphQL query
   useEffect(() => {
+    // if data exists, set project state to data.project
     if (data) {
       setProject(data.project);
     }
   }, [data]);
-
+  // if the data is still loading, return loading message
   if (loading) {
     return <div>Loading...</div>;
   }
-
+  // display project info
   return (
     <div className="project-info">
       <div className="project-info-repo">
