@@ -22,15 +22,13 @@ import { useMutation } from "@apollo/client";
 import { CREATE_WIREFRAME } from "../utils/mutations";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
-import { quality } from "@cloudinary/url-gen/actions/quality";
-import { scale } from "@cloudinary/url-gen/actions/resize";
+import { quality, scale } from "@cloudinary/url-gen/actions";
 
 // ---------------------------------------- Cloudinary ---------------------------------------- //
 const cloudinary = new Cloudinary({
   cloud: {
     cloudName: cloudinaryCloudName,
     api_key: cloudinaryApiKey,
-    api_secret: cloudinaryApiSecret,
   },
 });
 
@@ -51,24 +49,23 @@ const AddWireframe = () => {
   };
   // ---------------------------------------- Image Upload ---------------------------------------- //
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    try {
-      const response = await cloudinary.upload(file, {
-        upload_preset: "SASQUEST",
-      });
-
-      if (response) {
-        // save the cloudinary url to the image property in state
-        setWireframeData({ ...wireframeData, image: response.secure_url });
-      } else {
-        console.error("Failed to upload image to Cloudinary");
+  const handleImageUpload = async () => {
+    const widget = cloudinary.createUploadWidget(
+      {
+        cloudName: cloudinaryCloudName,
+        uploadPreset: "SASQUEST",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          // Extract the uploaded image's secure URL
+          const imageUrl = result.info.secure_url;
+          setWireframeData({ ...wireframeData, image: imageUrl });
+        }
       }
-    } catch (error) {
-      console.error("Error uploading image: ", error);
-    }
+    );
+
+    // Open the Cloudinary upload widget
+    widget.open();
   };
   // ---------------------------------------- Submit Form ---------------------------------------- //
   const handleFormSubmit = async (event) => {
