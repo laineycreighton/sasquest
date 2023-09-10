@@ -22,7 +22,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_WIREFRAME } from "../utils/mutations";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
-import { quality, scale } from "@cloudinary/url-gen/actions";
+import { scale } from "@cloudinary/url-gen/actions";
 
 // ---------------------------------------- Cloudinary ---------------------------------------- //
 const cloudinary = new Cloudinary({
@@ -64,7 +64,8 @@ const AddWireframe = () => {
           const transformedImageUrl = cloudinary
             .url(imageUrl)
             .quality(80) // set image quality to 80%
-            .scale(scale().width(500)); // set image scale to 500px width
+            .resize(scale().width(500)) // set image scale to 500px width
+            .generate();
           setWireframeData({ ...wireframeData, image: transformedImageUrl });
         }
       }
@@ -73,6 +74,7 @@ const AddWireframe = () => {
     // Open the Cloudinary upload widget
     widget.open();
   };
+
   // ---------------------------------------- Submit Form ---------------------------------------- //
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -112,6 +114,14 @@ const AddWireframe = () => {
             required
           />
         </div>
+
+        {/* render the AdvancedImage component to display the image */}
+        {wireframeData.image && (
+          <div className="image-preview">
+            <label>Image Preview:</label>
+            <AdvancedImage cldImg={wireframeData.image} />
+          </div>
+        )}
 
         {/* image upload */}
         <div className="form-group">
