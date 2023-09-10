@@ -21,6 +21,16 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_WIREFRAME } from "../utils/mutations";
 import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage } from "@cloudinary/react";
+import { quality } from "@cloudinary/url-gen/actions/quality";
+import { scale } from "@cloudinary/url-gen/actions/resize";
+
+// ---------------------------------------- Cloudinary ---------------------------------------- //
+const cloudinary = new Cloudinary({
+  cloud: {
+    cloudName: "dfecvj7s4",
+  },
+});
 // ---------------------------------------- Add Wireframe ---------------------------------------- //
 const AddWireframe = () => {
   const [wireframeData, setWireframeData] = useState({
@@ -31,33 +41,25 @@ const AddWireframe = () => {
 
   const [createWireframe, { error }] = useMutation(CREATE_WIREFRAME);
 
-  // handle input change
+  // ---------------------------------------- Handle Input Change ---------------------------------------- //
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setWireframeData({ ...wireframeData, [name]: value });
   };
-  // ---------------------------------------- Image Upload - Cloudinary ---------------------------------------- //
+  // ---------------------------------------- Image Upload ---------------------------------------- //
+
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "cloudinary-upload-preset");
-
     try {
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/djxhcwoww/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await cloudinary.upload(file, {
+        upload_preset: "SASQUEST",
+      });
 
       if (response.ok) {
-        const data = await response.json();
         // save the cloudinary url to the image property in state
-        setWireframeData({ ...wireframeData, image: data.secure_url });
+        setWireframeData({ ...wireframeData, image: response.secure_url });
       } else {
         console.error("Failed to upload image to Cloudinary");
       }
@@ -106,7 +108,17 @@ const AddWireframe = () => {
         </div>
 
         {/* image upload */}
-        <div></div>
+        <div className="form-group">
+          <label htmlFor="image">UPLOAD</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            onChange={handleImageUpload}
+            required
+          />
+        </div>
 
         {/* notes */}
         <div className="form-group">
@@ -123,7 +135,9 @@ const AddWireframe = () => {
         </div>
 
         {/* new button */}
-        <button></button>
+        <button id="upload-widget" className="new-button">
+          NEW
+        </button>
       </form>
     </div>
   );
