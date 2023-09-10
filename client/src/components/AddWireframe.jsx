@@ -17,78 +17,78 @@
 //                               03. notes
 //                               04. new button - (window.location.reload())
 
-
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useHistory } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
-
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_WIREFRAME } from "../utils/mutations";
+// ---------------------------------------- Add Wireframe ---------------------------------------- //
 const AddWireframe = () => {
-    const [name, setName] = useState('')
-    const [image, setImage] = useState('')
-    const [notes, setNotes] = useState('')
-    const [error, setError] = useState('')
-    const { currentUser } = useAuth()
-    const history = useHistory()
+  const [wireframeData, setWireframeData] = useState({
+    name: "",
+    image: "",
+    notes: "",
+  });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const newWireframe = {
-                name,
-                image,
-                notes,
-                user_id: currentUser.id
-            }
-            await axios.post('/api/wireframes', newWireframe)
-            history.push('/wireframes')
-        } catch (err) {
-            setError(err.response.data.msg)
-        }
+  const [createWireframe, { error }] = useMutation(CREATE_WIREFRAME);
+
+  // handle input change
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setWireframeData({ ...wireframeData, [name]: value });
+  };
+};
+// ---------------------------------------- Image Upload - Cloudinary ---------------------------------------- //
+const handleImageUpload = async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "cloudinary-upload-preset");
+
+  try {
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/djxhcwoww/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      // save the cloudinary url to the image property in state
+      setWireframeData({ ...wireframeData, image: data.secure_url });
+    } else {
+      console.error("Failed to upload image to Cloudinary");
     }
+  } catch (error) {
+    console.error("Error uploading image: ", error);
+  }
+};
+// ---------------------------------------- Submit Form ---------------------------------------- //
+const handleFormSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const { data } = await createWireframe({
+      variables: { ...wireframeData },
+    });
+    if (data) {
+      // clear the form after successful submission
+      setWireframeData({
+        name: "",
+        image: "",
+        notes: "",
+      });
+      // reload the page to fetch updated wireframes
+      window.location.reload();
+    }
+  } catch (error) {
+    console.error("Error edding wireframe: ", error);
+  }
+};
 
-    return (
-        <div className='add-wireframe'>
-            <h1>Add Wireframe</h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter title'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Upload</Form.Label>
-                    <Form.Control
-                        type='file'
-                        placeholder='Upload image'
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Notes</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter info'
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                    />
-                </Form.Group>
-                <Button variant='primary' type='submit'>
-                    Submit
-                </Button>
-            </Form>
-            {error && <h3>{error}</h3>}
-            <Button variant='primary' onClick={() => window.location.reload()}>
-                New
-            </Button>
-        </div>
-    )
-}
+return (
+ 
+);
 
-export default AddWireframe
+export default AddWireframe;

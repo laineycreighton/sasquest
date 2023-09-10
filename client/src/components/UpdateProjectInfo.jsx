@@ -23,7 +23,6 @@ import { useMutation } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import { UPDATE_PROJECT } from "../utils/mutations";
 import { useParams } from "react-router-dom";
-import { set } from "mongoose";
 
 // DisplayProjectInfo component that takes projectID as a prop
 const DisplayProjectInfo = ({ projectID }) => {
