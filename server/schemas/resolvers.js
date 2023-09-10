@@ -7,6 +7,7 @@ const resolvers = {
       // populate projects subdocument when querying for all users
       return User.find({}).populate('projects');
     },
+    //-------Get One Users---------//
     users: async (parent, { email }) => {
       // populate projects subdocument when querying for one users
       return User.findOne({ email }).populate('projects');
