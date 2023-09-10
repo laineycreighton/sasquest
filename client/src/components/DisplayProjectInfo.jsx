@@ -177,7 +177,11 @@ const DisplayProjectInfo = ({ projectID }) => {
             <div className="alert">Description is required!</div>
           )}
         </div>
-        <button type="submit" className="project-info-save-btn">
+        <button
+          type="submit"
+          className="project-info-save-btn"
+          onClick={handleFormSubmit}
+        >
           SAVE
         </button>
       </form>
