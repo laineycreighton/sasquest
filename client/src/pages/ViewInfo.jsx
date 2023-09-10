@@ -6,3 +6,15 @@
 //
 //
 //
+
+const ViewInfo = () => {
+    return (
+        <div>
+            <ProjectNavBar />
+            <ProjectHeader />
+            <DisplayProjectInfo />
+        </div>
+    )
+}
+
+export default ViewInfo

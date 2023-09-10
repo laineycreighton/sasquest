@@ -8,7 +8,7 @@
 //
 //
 
-const Project = () => {
+const Timeline = () => {
     return (
         <div>
             <ProjectNavBar />
@@ -19,4 +19,4 @@ const Project = () => {
     )
 }
 
-export default Project
+export default Timeline
