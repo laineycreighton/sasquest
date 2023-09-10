@@ -64,7 +64,7 @@ const AddWireframe = () => {
                 <Form.Group>
                     <Form.Label>Upload</Form.Label>
                     <Form.Control
-                        type='text'
+                        type='file'
                         placeholder='Upload image'
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
