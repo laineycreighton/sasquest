@@ -1,4 +1,4 @@
-# Sasquest
+# <img src="./client/src/assets/images/sasquest-banner.png" alt="header" width="100%">
 
 ## Table of Contents
 - [Description](#description)
