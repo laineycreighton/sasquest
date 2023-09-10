@@ -21,6 +21,7 @@ const router = createBrowserRouter([
         element: <App />,
         errorElement: <Error />,
         children: [
+            // should the default route be Login? Doesn't that mean that it will always redirect to login page?
             {
                 path: '/',
                 element: <Login />,
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
                 path: '/home',
                 element: <Home />,
             },
+            // {
+            //     path: '/login',
+            //     element: <Login />
+            // },
             {
                 path: '/projects/:projectId/info',
                 element: <ViewInfo />,
