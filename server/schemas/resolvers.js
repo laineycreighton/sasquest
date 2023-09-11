@@ -9,12 +9,12 @@ const resolvers = {
     // },
 
     //-------Get A User---------//
-    // user: async (parent, { email }) => {
-    //   // populate projects subdocument when querying for one user
-    //   return User.findOne({ email }).populate("projects");
-    // },
+    user: async (parent, { email }) => {
+      // populate projects subdocument when querying for one user
+      return User.findOne({ email }).populate("projects");
+    },
 
-    user: async (parent, args, context) => {
+    me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
