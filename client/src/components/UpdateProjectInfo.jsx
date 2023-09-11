@@ -1,28 +1,10 @@
-// BELONGS TO:
-//      - EditInfo.jsx
-//
-//
-// FUNCTIONALITY:
-//      - POST one project info ROUTE
-//      - redirect user to edit project info page w/edit button
-//
-//
-// VISUAL:
-//      - renders form for project info
-//                               01. repo URL
-//                               02. deployed URL
-//                               03. description
-//                               04. edit button
-//
-//
-//
-//
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import { UPDATE_PROJECT } from "../utils/mutations";
 import { useParams } from "react-router-dom";
+
 
 // DisplayProjectInfo component that takes projectID as a prop
 const DisplayProjectInfo = ({ projectID }) => {

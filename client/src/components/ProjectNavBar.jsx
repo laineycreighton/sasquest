@@ -4,7 +4,7 @@
 import { Link } from 'react-router-dom'
 
 //----- Logout Component -----//
-import Logout from '../components/Logout.jsx'
+// import Logout from '../components/Logout.jsx'
 
 //----- Icons -----//
 import sasquatch from '../assets/images/sasquatch.png'
@@ -13,7 +13,7 @@ import canteen from '../assets/images/canteen.png'
 import tent from '../assets/images/tent.png'
 
 //----- CSS -----//
-import './styles/ProjectNavBar.css'
+import '../assets/css/ProjectNavBar.css'
 
 
 
@@ -44,9 +44,9 @@ export default function ProjectNavBar() {
                 <p>Wireframe</p>
             </div>
             {/*----- Log Out -----*/}
-            <div>
+            {/* <div>
                 <Logout />
-            </div>
+            </div> */}
         </nav>
     );
 }

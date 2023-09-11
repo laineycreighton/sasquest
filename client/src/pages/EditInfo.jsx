@@ -1,5 +1,5 @@
 import ProjectNavBar from '../components/ProjectNavBar';
-import ProjectHeader from '../components/ProjectHeader';
+// import ProjectHeader from '../components/ProjectHeader';
 import UpdateProjectInfo from '../components/UpdateProjectInfo';
 
 // Pass users array to the List component as a prop
