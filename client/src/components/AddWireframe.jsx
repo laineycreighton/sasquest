@@ -17,78 +17,145 @@
 //                               03. notes
 //                               04. new button - (window.location.reload())
 
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { CREATE_WIREFRAME } from "../utils/mutations";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage } from "@cloudinary/react";
+import { scale } from "@cloudinary/url-gen/actions";
 
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useHistory } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+// ---------------------------------------- Cloudinary ---------------------------------------- //
+const cloudinary = new Cloudinary({
+  cloud: {
+    cloudName: cloudinaryCloudName,
+    api_key: cloudinaryApiKey,
+  },
+});
 
+// ---------------------------------------- Add Wireframe ---------------------------------------- //
 const AddWireframe = () => {
-    const [name, setName] = useState('')
-    const [image, setImage] = useState('')
-    const [notes, setNotes] = useState('')
-    const [error, setError] = useState('')
-    const { currentUser } = useAuth()
-    const history = useHistory()
+  const [wireframeData, setWireframeData] = useState({
+    name: "",
+    image: "",
+    notes: "",
+  });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const newWireframe = {
-                name,
-                image,
-                notes,
-                user_id: currentUser.id
-            }
-            await axios.post('/api/wireframes', newWireframe)
-            history.push('/wireframes')
-        } catch (err) {
-            setError(err.response.data.msg)
+  const [createWireframe, { error }] = useMutation(CREATE_WIREFRAME);
+
+  // ---------------------------------------- Handle Input Change ---------------------------------------- //
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setWireframeData({ ...wireframeData, [name]: value });
+  };
+  // ---------------------------------------- Image Upload ---------------------------------------- //
+
+  const handleImageUpload = async () => {
+    const widget = cloudinary.createUploadWidget(
+      {
+        cloudName: cloudinaryCloudName,
+        uploadPreset: "SASQUEST",
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          // Extract the uploaded image's secure URL
+          const imageUrl = result.info.secure_url;
+
+          // apply transformations
+          const transformedImageUrl = cloudinary
+            .url(imageUrl)
+            .quality(80) // set image quality to 80%
+            .resize(scale().width(500)) // set image scale to 500px width
+            .generate();
+          setWireframeData({ ...wireframeData, image: transformedImageUrl });
         }
+      }
+    );
+
+    // Open the Cloudinary upload widget
+    widget.open();
+  };
+
+  // ---------------------------------------- Submit Form ---------------------------------------- //
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await createWireframe({
+        variables: { ...wireframeData },
+      });
+      if (data) {
+        // clear the form after successful submission
+        setWireframeData({
+          name: "",
+          image: "",
+          notes: "",
+        });
+        // reload the page to fetch updated wireframes
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error edding wireframe: ", error);
     }
+  };
 
-    return (
-        <div className='add-wireframe'>
-            <h1>Add Wireframe</h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter title'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Upload</Form.Label>
-                    <Form.Control
-                        type='file'
-                        placeholder='Upload image'
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Notes</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Enter info'
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                    />
-                </Form.Group>
-                <Button variant='primary' type='submit'>
-                    Submit
-                </Button>
-            </Form>
-            {error && <h3>{error}</h3>}
-            <Button variant='primary' onClick={() => window.location.reload()}>
-                New
-            </Button>
+  return (
+    <div className="add-wireframe">
+      <h2>WIREFRAME</h2>
+      <form onSubmit={handleFormSubmit}>
+        {/* page */}
+        <div className="form-group">
+          <label htmlFor="page">PAGE</label>
+          <input
+            type="text"
+            id="page"
+            name="page"
+            placeholder="Enter page name..."
+            value={wireframeData.page}
+            onChange={handleInputChange}
+            required
+          />
         </div>
-    )
-}
 
-export default AddWireframe
+        {/* render the AdvancedImage component to display the image */}
+        {wireframeData.image && (
+          <div className="image-preview">
+            <label>Image Preview:</label>
+            <AdvancedImage cldImg={wireframeData.image} />
+          </div>
+        )}
+
+        {/* image upload */}
+        <div className="form-group">
+          <label htmlFor="image">UPLOAD</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            onChange={handleImageUpload}
+            required
+          />
+        </div>
+
+        {/* notes */}
+        <div className="form-group">
+          <label htmlFor="notes">NOTES</label>
+          <textarea
+            name="notes"
+            id="notes"
+            cols="30"
+            rows="10"
+            placeholder="Enter notes (optional)..."
+            value={wireframeData.notes}
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+
+        {/* new button */}
+        <button id="upload-widget" className="new-button">
+          NEW
+        </button>
+      </form>
+    </div>
+  );
+};
+export default AddWireframe;
