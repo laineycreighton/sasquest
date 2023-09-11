@@ -1,8 +1,7 @@
 // header refers to metadata and other info that is within the HTTP request or response
 import './App.css';
-import { Outlet } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, createHttpLink } from '@apollo/client';
-import { setContext} from 'apollo/client/link/context';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+// import { setContext} from 'apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 
 // graphQL API end route
@@ -11,21 +10,21 @@ const httpLink = createHttpLink({
 });
 
 // middleware that attaches jwt token to header of each API call to authenticate user
-const authLink = setContext((_, {headers}) => {
-  const token = localStorage.getItem('id_token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
+// const authLink = setContext((_, {headers}) => {
+//   const token = localStorage.getItem('id_token');
+//   return {
+//     headers: {
+//       ...headers,
+//       authorization: token ? `Bearer ${token}` : '',
+//     },
+//   };
+// });
 
-const client = new ApolloClient({
-  // Gets client ready to run middleware before requesting anything from gql API
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+// const client = new ApolloClient({
+//   // Gets client ready to run middleware before requesting anything from gql API
+//   link: authLink.concat(httpLink),
+//   cache: new InMemoryCache(),
+// });
 
 function App() {
   return (
