@@ -5,6 +5,17 @@ const path = require("path");
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
+const cloudinary = require("cloudinary").v2;
+// load API keys and secret from .env
+const cloudinaryCloudName = process.env.CLOUDINARY_CLOUD_NAME;
+const cloudinaryApiKey = process.env.CLOUDINARY_API_KEY;
+const cloudinaryApiSecret = process.env.CLOUDINARY_API_SECRET;
+// configure cloudinary SDK with API credentials
+cloudinary.config({
+  cloud_name: cloudinaryCloudName,
+  api_key: cloudinaryApiKey,
+  api_secret: cloudinaryApiSecret,
+});
 
 const PORT = process.env.PORT || 3001;
 const app = express();

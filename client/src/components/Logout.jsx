@@ -1,33 +1,30 @@
-//-------------------- IMPORT --------------------//
+// //-------------------- IMPORT --------------------//
 
-//----- React useHistory -----//
-import { useHistory } from 'react-router-dom';
+// //----- React useHistory -----//
+// import { useHistory } from 'react-router-dom';
 
-//----- User Authentication -----//
-import Auth from '../utils/auth';
-
-//----- CSS -----//
-import './styles/Logout.css'
+// //----- User Authentication -----//
+// import Auth from '../utils/auth';
 
 
 
-//-------------------- LOGIC --------------------//
-const history = useHistory();
+// //-------------------- LOGIC --------------------//
+// const history = useHistory();
 
-  const handleLogout = () => {
-//TODO: write logic to logout a user
+//   const handleLogout = () => {
+// //TODO: write logic to logout a user
 
-//TODO: redirect the user to the login page ('/' - path)
-  };
+// //TODO: redirect the user to the login page ('/' - path)
+//   };
 
 
 
-//-------------------- EXPORT --------------------//
+// //-------------------- EXPORT --------------------//
 
-//----- Export the Logout Button -----//
-export default function Logout() {
-    return (
-        //----- Log Out Button -----//
-        <button onClick={handleLogout}>Log Out</button>
-      );
-}
+// //----- Export the Logout Button -----//
+// export default function Logout() {
+//     return (
+//         //----- Log Out Button -----//
+//         <button onClick={handleLogout}>Log Out</button>
+//       );
+// }
