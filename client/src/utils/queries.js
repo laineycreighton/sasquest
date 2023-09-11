@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+//--------------- ONE User ---------------//
 export const QUERY_USER = gql`
 query user($email: String!) {
   user(email: $email) {
@@ -75,4 +76,25 @@ export const GET_PROJECT_BY_ID = gql`
       }
     }
   }
+`;
+
+//--------------- All Timelines ---------------//
+export const GET_ALL_TIMELINES = gql`
+query getAllTimelines {
+  timelines {
+    _id
+    date
+    goal
+  }
+}
+`;
+//--------------- ONE Timeline ---------------//
+export const GET_TIMELINE_BY_ID = gql`
+query getTimelineById($timelineId: ID!) {
+  timeline (timelineId: $timelineId)
+    _id
+    date
+    goal
+  }
+}
 `;

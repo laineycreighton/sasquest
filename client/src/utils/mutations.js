@@ -296,3 +296,40 @@ export const DELETE_PROJECT = gql`
     }
   }
 `;
+
+//-------------------- TIMELINE --------------------//
+
+// Add Timeline
+export const ADD_TIMELINE = gql`
+  mutation createTimeline($date: Date!, $goal: String!) {
+    addTimeline(date: $date, goal: $goal) {
+      timeline {
+        _id
+        date
+        goal
+      }
+    }
+  }
+`;
+
+// Update Timeline
+export const UPDATE_TIMELINE = gql`
+  mutation updateTimeline($date: Date!, $goal: String!) {
+    updateTimeline(date: $date, $goal: goal) {
+      _id
+      date
+      goal
+    }
+  }
+`;
+
+// Delete Wireframe
+export const DELETE_TIMELINE = gql`
+  mutation deleteTimeline($date: Date!, $goal: String!) {
+    deleteTImeline(date: $date, goal: $goal) {
+      _id
+      date
+      goal
+    }
+  }
+`;

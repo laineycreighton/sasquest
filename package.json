@@ -14,5 +14,10 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "@cloudinary/react": "^1.11.2",
+    "cloudinary": "^1.40.0"
+    "apollo-server": "^3.12.1"
   }
 }
