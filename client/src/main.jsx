@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import './index.css'
+import 'normalize.css';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         children: [
             // should the default route be Login? Doesn't that mean that it will always redirect to login page?
             {
-                path: '/login',
+                path: '/',
                 element: <Login />,
             },
             {
@@ -30,17 +30,13 @@ const router = createBrowserRouter([
                 element: <SignUp />,
             },
             {
-                path: '/',
+                path: '/about',
                 element: <About />,
             },
             {
                 path: '/home',
                 element: <Home />,
             },
-            // {
-            //     path: '/login',
-            //     element: <Login />
-            // },
             {
                 path: '/projects/:projectId/info',
                 element: <ViewInfo />,
