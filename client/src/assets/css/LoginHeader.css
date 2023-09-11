@@ -39,13 +39,17 @@
 
 /*---------- MAIN ----------*/
 .login-header {
-    outline: red dashed 3px;
+    /* outline: red dashed 3px; */
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
 }
 
+/*----- ABOUT -----*/
 .redirect-about {
-    outline: blue dashed 3px;
+    /* outline: blue dashed 3px; */
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -53,11 +57,66 @@
 }
 
 .about {
-    outline: orange dashed 3px;
     font-family: var(--subheading);
     color: var(--lightgreen);
-    font-size: 20px;
+    font-size: 30px;
     margin: 15px 20px 5px 0;
     text-align: left;
     text-decoration: none;
+}
+
+/*----- LOGO -----*/
+.sasquest {
+    /* outline: greenyellow dashed 3px; */
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 8%;
+    width: 100%;
+}
+
+.lg-letters {
+    /* outline: orange dashed 3px; */
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+h1 {
+    /* outline: blue dashed 3px; */
+    font-family: var(--heading);
+    font-size: 150px;
+    color: var(--bright-orange);
+    text-shadow: 0 7px 1px var(--dark-orange);
+    text-align: center;
+    margin-top: -10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.logo-middle {
+    /* outline: purple dashed 3px; */
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    /* outline: rgb(255, 0, 128) dashed 3px; */
+    font-family: var(--heading);
+    font-size: 100px;
+    color: var(--bright-orange);
+    text-shadow: 0 7px 1px var(--dark-orange);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.tagline {
+    /* outline: red dashed 3px; */
+    font-family: var(--tagline);
+    color: var(--dark-orange);
+    font-size: 50px;
+    text-align: center;
+    margin-top: 0;
 }
