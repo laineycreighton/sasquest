@@ -1,6 +1,19 @@
 const { User, Project } = require("../models");
 
 const resolvers = {
+  
+  Query: {
+    //-------Get All Users---------//
+    users: async () => {
+      // populate projects subdocument when querying for all users
+      return User.find({}).populate('projects');
+    },
+    //-------Get One Users---------//
+    users: async (parent, { email }) => {
+      // populate projects subdocument when querying for one users
+      return User.findOne({ email }).populate('projects');
+    },
+
     Query: {
         //-------Get All Users---------//
         users: async () => {
@@ -35,6 +48,7 @@ const resolvers = {
                 throw new Error(`Error getting project: ${error.message}`);
             }
         },
+
 
     },
 
