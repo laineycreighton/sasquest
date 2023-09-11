@@ -1,22 +1,15 @@
-// INCLUDES:
-//          - LoginHeader.jsx
-//          - SignUpForm.jsx
-//
-//
-//
-//
-//
-    
- // Pass users array to the List component as a prop
+import LoginHeader from '../components/LoginHeader';
+// import SignUpForm from '../components/SignUpForm';
+
  export default function SignUp() {
     return (
         <div>
             <div>
                 <LoginHeader />
             </div>
-            <div>
+            {/* <div>
                 <SignUpForm />
-            </div>
+            </div> */}
         </div>
     );
 };

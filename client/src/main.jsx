@@ -9,7 +9,6 @@ import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
 import About from './pages/About.jsx';
-import UserHome from './pages/Home.jsx';
 import ViewInfo from './pages/ViewInfo.jsx';
 import EditInfo from './pages/EditInfo.jsx';
 import Timeline from './pages/Timeline.jsx';
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
         children: [
             // should the default route be Login? Doesn't that mean that it will always redirect to login page?
             {
-                path: '/',
+                path: '/login',
                 element: <Login />,
             },
             {
@@ -31,12 +30,12 @@ const router = createBrowserRouter([
                 element: <SignUp />,
             },
             {
-                path: '/about',
+                path: '/',
                 element: <About />,
             },
             {
                 path: '/home',
-                element: <UserHome />,
+                element: <Home />,
             },
             // {
             //     path: '/login',

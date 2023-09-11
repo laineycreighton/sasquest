@@ -1,3 +1,6 @@
+import LoginHeader from '../components/LoginHeader';
+// import LoginForm from '../components/LoginForm';
+
 // Pass users array to the List component as a prop
 export default function Login() {
     return (
@@ -5,9 +8,9 @@ export default function Login() {
             <div>
                 <LoginHeader />
             </div>
-            <div>
+            {/* <div>
                 <LoginForm />
-            </div>
+            </div> */}
         </div>
     );
 };
