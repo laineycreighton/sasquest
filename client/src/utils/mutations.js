@@ -12,9 +12,10 @@ mutation login($email: String!, $password: String!) {
   }
 }
 `;
+
 //  Add user
 export const ADD_USER = gql`
-mutation createUser(firstName: String, lastName: String, email: String!, $email: String!, $password: String!) {
+mutation addUser($firstName: String, $lastName: String, $email: String!, $password: String!) {
   addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
     token
     user {
@@ -25,6 +26,7 @@ mutation createUser(firstName: String, lastName: String, email: String!, $email:
   }
 }
 `;
+
 //-------------------- WIREFRAME --------------------//
 // Create Wireframe
 export const CREATE_WIREFRAME = gql`
@@ -87,13 +89,13 @@ export const DELETE_WIREFRAME = gql`
 //-------------------- INFO --------------------//
 // Add Info
 export const ADD_INFO = gql`
-  mutation addInfo(
+  mutation createInfo(
     $projectId: ID!
     $repoURL: String!
     $deployedURL: String!
     $description: String!
   ) {
-    addInfo(
+    createInfo(
       projectId: $projectId
       repoURL: $repoURL
       deployedURL: $deployedURL
@@ -163,14 +165,14 @@ export const UPDATE_INFO = gql`
 
 // Delete Info
 export const DELETE_INFO = gql`
-  mutation updateInfo(
+  mutation deleteInfo(
     $projectId: ID!
     $infoId: ID!
     $repoURL: String!
     $deployedURL: String!
     $description: String!
   ) {
-    updateInfo(
+    deleteInfo(
       projectId: $projectId
       infoId: $infoId
       repoURL: $repoURL
@@ -205,7 +207,7 @@ export const DELETE_INFO = gql`
 // Add Project
 export const ADD_PROJECT = gql`
   mutation createProject($title: String!) {
-    addProject(title: $title, info: [], timeline: [], wireframe: []) {
+    createProject(title: $title, info: [], timeline: [], wireframe: []) {
       _id
       title
       info {
@@ -302,7 +304,7 @@ export const DELETE_PROJECT = gql`
 // Add Timeline
 export const ADD_TIMELINE = gql`
   mutation createTimeline($date: Date!, $goal: String!) {
-    addTimeline(date: $date, goal: $goal) {
+    createTimeline(date: $date, goal: $goal) {
       timeline {
         _id
         date
@@ -315,7 +317,7 @@ export const ADD_TIMELINE = gql`
 // Update Timeline
 export const UPDATE_TIMELINE = gql`
   mutation updateTimeline($date: Date!, $goal: String!) {
-    updateTimeline(date: $date, $goal: goal) {
+    updateTimeline(date: $date, goal: $goal) {
       _id
       date
       goal
@@ -326,7 +328,7 @@ export const UPDATE_TIMELINE = gql`
 // Delete Wireframe
 export const DELETE_TIMELINE = gql`
   mutation deleteTimeline($date: Date!, $goal: String!) {
-    deleteTImeline(date: $date, goal: $goal) {
+    deleteTimeline(date: $date, goal: $goal) {
       _id
       date
       goal

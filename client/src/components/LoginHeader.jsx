@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import '../styles/LoginHeader.css';
+import '../assets/css/LoginHeader.css'
 
 //Export the LoginHeader page
 export default function LoginHeader() {

@@ -27,13 +27,10 @@ const httpLink = createHttpLink({
 // });
 
 function App() {
-  return (
-    <ApolloProvider client={client}>
+  return(
     <div className='main'>
         <Outlet />
     </div>
-    </ApolloProvider>
-  );
-}
+);}
 
 export default App
