@@ -4,18 +4,24 @@ import '../assets/css/LoginHeader.css'
 //Export the LoginHeader page
 export default function LoginHeader() {
     return (
-        <div>
-            <div className='redirect-about'>
-                <Link to="/about">About</Link>
-            </div>
-            <div className='header'>
-                <header className='sasquest-name'>
-                    <h1><span>S</span>ASQUES<span>T</span></h1>
-                </header>
-                <p className='tagline'>
-                    tame your beast
-                </p>
-            </div>
-        </div>
+        <div className='login-header'>
+            <nav className='redirect-about'>
+                <Link to="/about" className='about'>About</Link>
+            </nav>
+            <section className='sasquest'>
+                <div className='lg-letters'>
+                    <h1>S</h1>
+                </div>
+                <div className='logo-middle'>
+                    <h2>ASQUES</h2>
+                    <p className='tagline'>
+                        tame your beast
+                    </p>
+                </div>
+                <div className='lg-letters'>
+                    <h1>T</h1>
+                </div>
+            </section>
+        </div >
     )
 }
