@@ -4,9 +4,9 @@ import '../assets/css/LoginHeader.css'
 //Export the LoginHeader page
 export default function LoginHeader() {
     return (
-        <div>
+        <div className='login-header'>
             <div className='redirect-about'>
-                <Link to="/about">About</Link>
+                <Link to="/about" className='about'>About</Link>
             </div>
             <div className='header'>
                 <header className='sasquest-name'>

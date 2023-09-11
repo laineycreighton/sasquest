@@ -1,3 +1,63 @@
-p {
-    color: black;
+/*----- COLORS -----*/
+:root {
+    --dark-green: #19270D;
+    --bright-orange: #FF9902;
+    --dark-orange: #9D4E00;
+    --lightgreen: #3B8C54;
+    --accent: #818C3B;
+    --lightbrown: #72601B;
+    --white: #EEEEEE;
+}
+
+/*----- FONTS -----*/
+@font-face {
+    font-family: heading;
+    src: url(./assets/fonts/BungeeInline-Regular.ttf);
+}
+
+@font-face {
+    font-family: subheading;
+    src: url(./assets/fonts/Bungee-Regular.ttf);
+}
+
+@font-face {
+    font-family: tagline;
+    src: url(./assets/fonts/Smooch-Regular.ttf);
+}
+
+@font-face {
+    font-family: body;
+    src: url(./assets/fonts/Cabin.ttf);
+}
+
+:root {
+    --heading: heading;
+    --subheading: subheading;
+    --tagline: tagline;
+    --body: body;
+}
+
+/*---------- MAIN ----------*/
+.login-header {
+    outline: red dashed 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.redirect-about {
+    outline: blue dashed 3px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.about {
+    outline: orange dashed 3px;
+    font-family: var(--subheading);
+    color: var(--lightgreen);
+    font-size: 20px;
+    margin: 15px 20px 5px 0;
+    text-align: left;
+    text-decoration: none;
 }
