@@ -1,4 +1,5 @@
 const { User, Project } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -21,7 +22,7 @@ const resolvers = {
 
         return userData;
       }
-      throw new AuthenticationError("Not logged in");
+      throw AuthenticationError("Not logged in");
     },
 
     //----- Get All Projects -----//
@@ -30,7 +31,7 @@ const resolvers = {
         const projects = await Project.find({});
         return projects;
       } catch (error) {
-        throw new Error(`Error getting projects: ${error.message}`);
+        throw AuthenticationError(`Error getting projects: ${error.message}`);
       }
     },
 
@@ -39,11 +40,11 @@ const resolvers = {
       try {
         const project = await Project.findOne({ _id: projectId });
         if (!project) {
-          throw new Error(`Project not found`);
+          throw AuthenticationError(`Project not found`);
         }
         return project;
       } catch (error) {
-        throw new Error(`Error getting project: ${error.message}`);
+        throw AuthenticationError(`Error getting project: ${error.message}`);
       }
     },
   },
@@ -65,12 +66,12 @@ const resolvers = {
       const user = await User.findOne({ email, password });
       // if no user in database is found with the email, throw auth error
       if (!user) {
-        throw new Error("User not found!");
+        throw AuthenticationError("User not found!");
       }
       const correctPw = await User.isCorrectPassword(password);
       // if password is incorrect, throw auth error
       if (!correctPw) {
-        throw new Error("Incorrect pasword!");
+        throw AuthenticationError;
       }
       // if email and password match, sign the user in with JWT token
       const token = signToken(user);
@@ -85,7 +86,7 @@ const resolvers = {
     ) => {
       if (!user) {
         // checks if there is a valid user object, if not (user not logged in) it throws auth error
-        throw new AuthenticationError(
+        throw AuthenticationError(
           "You must be logged in to update your password"
         );
       }
@@ -94,7 +95,7 @@ const resolvers = {
         currentPassword
       );
       if (!correctCurrentPassword) {
-        throw new AuthenticationError("Invalid password");
+        throw AuthenticationError("Invalid password");
       }
       // if the current password is correct, it overwrites the old password with the new password
       user.password = newPassword;
@@ -120,7 +121,7 @@ const resolvers = {
 
         return newProject;
       } catch (error) {
-        throw new Error(`Error adding project: ${error.message}`);
+        throw AuthenticationError(`Error adding project: ${error.message}`);
       }
     },
 
@@ -134,12 +135,12 @@ const resolvers = {
         );
 
         if (!updatedProject) {
-          throw new Error("Project not found");
+          throw AuthenticationError("Project not found");
         }
 
         return updatedProject;
       } catch (error) {
-        throw new Error(`Error updating project: ${error.message}`);
+        throw AuthenticationError(`Error updating project: ${error.message}`);
       }
     },
 
@@ -151,12 +152,12 @@ const resolvers = {
         });
 
         if (!deletedProject) {
-          throw new Error("Project not found");
+          throw AuthenticationError("Project not found");
         }
 
         return deletedProject;
       } catch (error) {
-        throw new Error(`Error removing project: ${error.message}`);
+        throw AuthenticationError(`Error removing project: ${error.message}`);
       }
     },
 
@@ -180,12 +181,14 @@ const resolvers = {
         );
 
         if (!updatedProject) {
-          throw new Error("Project not found");
+          throw AuthenticationError("Project not found");
         }
 
         return updatedProject;
       } catch (error) {
-        throw new Error(`Error adding project info: ${error.message}`);
+        throw AuthenticationError(
+          `Error adding project info: ${error.message}`
+        );
       }
     },
 
@@ -195,13 +198,13 @@ const resolvers = {
         const project = await Project.findById(projectId);
 
         if (!project) {
-          throw new Error("Project not found");
+          throw AuthenticationError("Project not found");
         }
 
         const infoToUpdate = project.info.find((info) => info._id == infoId);
 
         if (!infoToUpdate) {
-          throw new Error("Project info not found");
+          throw AuthenticationError("Project info not found");
         }
 
         if (updatedInfo.repoURL !== undefined) {
@@ -218,7 +221,9 @@ const resolvers = {
 
         return project;
       } catch (error) {
-        throw new Error(`Error updating project info: ${error.message}`);
+        throw AuthenticationError(
+          `Error updating project info: ${error.message}`
+        );
       }
     },
 
@@ -232,12 +237,14 @@ const resolvers = {
         );
 
         if (!updatedProject) {
-          throw new Error("Project not found");
+          throw AuthenticationError("Project not found");
         }
 
         return updatedProject;
       } catch (error) {
-        throw new Error(`Error removing project info: ${error.message}`);
+        throw AuthenticationError(
+          `Error removing project info: ${error.message}`
+        );
       }
     },
 
@@ -249,7 +256,7 @@ const resolvers = {
         const timeline = await Project.create(args);
         return timeline;
       } catch (error) {
-        throw new Error(`Error creating timeline: ${error.message}`);
+        throw AuthenticationError(`Error creating timeline: ${error.message}`);
       }
     },
 
@@ -261,7 +268,7 @@ const resolvers = {
         });
         return timeline;
       } catch (error) {
-        throw new Error(`Error updating timeline: ${error.message}`);
+        throw AuthenticationError(`Error updating timeline: ${error.message}`);
       }
     },
 
@@ -271,7 +278,7 @@ const resolvers = {
         const timeline = await Project.findByIdAndDelete(_id);
         return timeline;
       } catch (error) {
-        throw new Error(`Error deleting timeline: ${error.message}`);
+        throw AuthenticationError(`Error deleting timeline: ${error.message}`);
       }
     },
 
@@ -283,7 +290,7 @@ const resolvers = {
         const wireframe = await Project.create(args);
         return wireframe;
       } catch (error) {
-        throw new Error(`Error creating wireframe: ${error.message}`);
+        throw AuthenticationError(`Error creating wireframe: ${error.message}`);
       }
     },
 
@@ -295,7 +302,7 @@ const resolvers = {
         });
         return wireframe;
       } catch (error) {
-        throw new Error(`Error updating wireframe: ${error.message}`);
+        throw AuthenticationError(`Error updating wireframe: ${error.message}`);
       }
     },
 
@@ -305,7 +312,7 @@ const resolvers = {
         const wireframe = await Project.findByIdAndDelete(_id);
         return wireframe;
       } catch (error) {
-        throw new Error(`Error deleting wireframe: ${error.message}`);
+        throw AuthenticationError(`Error deleting wireframe: ${error.message}`);
       }
     },
   },
