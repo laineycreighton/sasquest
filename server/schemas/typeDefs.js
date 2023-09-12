@@ -1,12 +1,11 @@
-const { gql } = require('apollo-server');
+const { gql } = require("apollo-server");
 
-const typeDefs = gql`
+const typeDefs = `
 type User {
   _id: ID!
   firstName: String!
   lastName: String!
   email: String!
-  password: String!
   projects: [Project]
 }
 
@@ -16,7 +15,7 @@ type Auth {
 }
 
 type Project {
-  _id: ID
+  _id: ID!
   title: String!
   info: [Info]
   timelines: [Timeline]
@@ -24,14 +23,14 @@ type Project {
 }
 
 type Info {
-  _id: ID
+  _id: ID!
   repoURL: String
   deployedURL: String
   description: String
 }
 
 type Timeline {
-  _id: ID
+  _id: ID!
   date: String
   goal: String
 }
@@ -46,7 +45,7 @@ type Wireframe {
 
   type Query {
     users: [User]
-    user(userId: ID!): User
+    user: User
 
     projects: [Project]!
     project(projectId: ID!): Project
@@ -57,9 +56,9 @@ type Wireframe {
     login(email: String!, password: String!): Auth
     updateUserPassword(currentPassword: String!, newPassword: String!): User
 
-    createProject(userId: ID!, title: String!): Project
+    createProject(userId: ID!, title: String!): User
     updateProject(userId: ID!, title: String!): Project
-    deleteProject(userId: ID!): Project
+    deleteProject(userId: ID!): User
 
     createWireframe(projectId: ID!, title: String!, imageUrl: String, note: String): Project
     updateWireframe(projectId: ID!, title: String!, imageUrl: String, note: String): Project
