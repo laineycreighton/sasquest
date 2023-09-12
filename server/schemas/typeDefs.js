@@ -46,7 +46,7 @@ type Wireframe {
 
   type Query {
     users: [User]
-    user(userId: ID!): User
+    user: User
 
     projects: [Project]!
     project(projectId: ID!): Project
@@ -57,9 +57,9 @@ type Wireframe {
     login(email: String!, password: String!): Auth
     updateUserPassword(currentPassword: String!, newPassword: String!): User
 
-    createProject(userId: ID!, title: String!): Project
+    createProject(userId: ID!, title: String!): User
     updateProject(userId: ID!, title: String!): Project
-    deleteProject(userId: ID!): Project
+    deleteProject(userId: ID!): User
 
     createWireframe(projectId: ID!, title: String!, imageUrl: String, note: String): Project
     updateWireframe(projectId: ID!, title: String!, imageUrl: String, note: String): Project

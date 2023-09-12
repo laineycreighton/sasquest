@@ -3,18 +3,7 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    //-------Get All Users---------//
-    // users: async () => {
-    //     return User.find();
-    // },
-
-    //-------Get A User---------//
-    user: async (parent, { email }) => {
-      // populate projects subdocument when querying for one user
-      return User.findOne({ email }).populate("projects");
-    },
-
-    me: async (parent, args, context) => {
+    user: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
@@ -22,30 +11,28 @@ const resolvers = {
 
         return userData;
       }
-      throw AuthenticationError("Not logged in");
+      throw AuthenticationError;
     },
 
     //----- Get All Projects -----//
-    projects: async () => {
-      try {
+    projects: async (parent, args, context) => {
+      if (context.user) {
         const projects = await Project.find({});
         return projects;
-      } catch (error) {
-        throw AuthenticationError(`Error getting projects: ${error.message}`);
       }
+      throw AuthenticationError;
     },
 
     //----- Get One Project -----//
-    project: async (parent, { projectId }) => {
-      try {
+    project: async (parent, { projectId }, context) => {
+      if (context.user) {
         const project = await Project.findOne({ _id: projectId });
         if (!project) {
-          throw AuthenticationError(`Project not found`);
+          throw console.log("No project found with this id!");
         }
         return project;
-      } catch (error) {
-        throw AuthenticationError(`Error getting project: ${error.message}`);
       }
+      throw AuthenticationError;
     },
   },
 
@@ -66,7 +53,7 @@ const resolvers = {
       const user = await User.findOne({ email, password });
       // if no user in database is found with the email, throw auth error
       if (!user) {
-        throw AuthenticationError("User not found!");
+        console.log("No user found with this email address!");
       }
       const correctPw = await User.isCorrectPassword(password);
       // if password is incorrect, throw auth error
@@ -84,236 +71,246 @@ const resolvers = {
       { currentPassword, newPassword },
       { user }
     ) => {
-      if (!user) {
+      if (user) {
         // checks if there is a valid user object, if not (user not logged in) it throws auth error
-        throw AuthenticationError(
-          "You must be logged in to update your password"
+        // if correctCurrentPassword is false, the provided password doesn't match the current saved password for that user
+        const correctCurrentPassword = await user.isCorrectPassword(
+          currentPassword
         );
+        if (!correctCurrentPassword) {
+          console.log("Invalid password");
+        }
+        // if the current password is correct, it overwrites the old password with the new password
+        user.password = newPassword;
+        // saves updated password to the database
+        await user.save();
+        return user;
       }
-      // if correctCurrentPassword is false, the provided password doesn't match the current saved password for that user
-      const correctCurrentPassword = await user.isCorrectPassword(
-        currentPassword
-      );
-      if (!correctCurrentPassword) {
-        throw AuthenticationError("Invalid password");
-      }
-      // if the current password is correct, it overwrites the old password with the new password
-      user.password = newPassword;
-      // saves updated password to the database
-      await user.save();
-      return user;
+      throw AuthenticationError;
     },
 
     //----- PROJECTS -----//
 
     // Add Project //
-    createProject: async (parent, { projectId, title }) => {
-      try {
-        const newProject = await Project.create(
-          { _id: projectId },
-          { $addToSet: { projects: { title } } },
-          { new: true, runValidators: true }
-        );
+    createProject: async (parent, args, context) => {
+      if (context.user) {
+        const newProject = await Project.create(args);
 
         if (!newProject) {
-          throw new Error("Project not found");
+          console.log("Project not found");
         }
 
-        return newProject;
-      } catch (error) {
-        throw AuthenticationError(`Error adding project: ${error.message}`);
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { projects: newProject._id } },
+          { new: true }
+        );
+
+        return updatedUser;
       }
+      throw AuthenticationError;
     },
 
     // Update Project //
-    updateProject: async (parent, { userId, title }) => {
-      try {
+    updateProject: async (parent, { title }, context) => {
+      if (context.user) {
         const updatedProject = await Project.findOneAndUpdate(
-          { _id: userId },
+          { _id: context.user._id },
           { $set: { title } },
           { new: true, runValidators: true }
         );
 
         if (!updatedProject) {
-          throw AuthenticationError("Project not found");
+          console.log("Project not found");
         }
 
         return updatedProject;
-      } catch (error) {
-        throw AuthenticationError(`Error updating project: ${error.message}`);
       }
+      throw AuthenticationError;
     },
 
     // Delete Project //
-    deleteProject: async (parent, { projectId }) => {
-      try {
+    deleteProject: async (parent, { projectId }, context) => {
+      if (context.user) {
         const deletedProject = await Project.findOneAndDelete({
           _id: projectId,
         });
 
-        if (!deletedProject) {
-          throw AuthenticationError("Project not found");
-        }
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { projects: { projectId } } },
+          { new: true }
+        );
 
-        return deletedProject;
-      } catch (error) {
-        throw AuthenticationError(`Error removing project: ${error.message}`);
+        // if (!deletedProject) {
+        //   console.log("Project not found");
+        // }
+
+        return updatedUser;
       }
+      throw AuthenticationError;
     },
 
     //----- INFO -----//
 
     // Add Info //
-    createInfo: async (
-      parent,
-      { projectId, repoURL, deployedURL, description }
-    ) => {
-      try {
-        const updatedProject = await Project.findOneAndUpdate(
-          { _id: projectId },
-          {
-            $addToSet: { info: { repoURL, deployedURL, description } },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
+    // createInfo: async (
+    //   parent,
+    //   { projectId, repoURL, deployedURL, description },
+    //   context
+    // ) => {
+    //  if
+    //     const updatedProject = await Project.findOneAndUpdate(
+    //       { _id: projectId },
+    //       {
+    //         $addToSet: { info: { repoURL, deployedURL, description } },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     );
 
-        if (!updatedProject) {
-          throw AuthenticationError("Project not found");
-        }
+    //     if (!updatedProject) {
+    //       throw AuthenticationError;
+    //     }
 
-        return updatedProject;
-      } catch (error) {
-        throw AuthenticationError(
-          `Error adding project info: ${error.message}`
-        );
-      }
-    },
+    //     return updatedProject;
+    //   } catch (error) {
+    //     throw AuthenticationError;
+    //   }
+    // },
 
     // Update Info //
-    updateInfo: async (parent, { projectId, infoId, updatedInfo }) => {
-      try {
-        const project = await Project.findById(projectId);
+    // updateInfo: async (parent, { projectId, infoId, updatedInfo }) => {
+    //   try {
+    //     const project = await Project.findById(projectId);
 
-        if (!project) {
-          throw AuthenticationError("Project not found");
-        }
+    //     if (!project) {
+    //       throw AuthenticationError;
+    //     }
 
-        const infoToUpdate = project.info.find((info) => info._id == infoId);
+    //     const infoToUpdate = project.info.find((info) => info._id == infoId);
 
-        if (!infoToUpdate) {
-          throw AuthenticationError("Project info not found");
-        }
+    //     if (!infoToUpdate) {
+    //       throw AuthenticationError;
+    //     }
 
-        if (updatedInfo.repoURL !== undefined) {
-          infoToUpdate.repoURL = updatedInfo.repoURL;
-        }
-        if (updatedInfo.deployedURL !== undefined) {
-          infoToUpdate.deployedURL = updatedInfo.deployedURL;
-        }
-        if (updatedInfo.description !== undefined) {
-          infoToUpdate.description = updatedInfo.description;
-        }
+    //     if (updatedInfo.repoURL !== undefined) {
+    //       infoToUpdate.repoURL = updatedInfo.repoURL;
+    //     }
+    //     if (updatedInfo.deployedURL !== undefined) {
+    //       infoToUpdate.deployedURL = updatedInfo.deployedURL;
+    //     }
+    //     if (updatedInfo.description !== undefined) {
+    //       infoToUpdate.description = updatedInfo.description;
+    //     }
 
-        await project.save();
+    //     await project.save();
 
-        return project;
-      } catch (error) {
-        throw AuthenticationError(
-          `Error updating project info: ${error.message}`
-        );
-      }
-    },
+    //     return project;
+    //   } catch (error) {
+    //     throw AuthenticationError;
+    //   }
+    // },
 
     // Remove Info //
-    deleteInfo: async (parent, { projectId, infoId }) => {
-      try {
-        const updatedProject = await Project.findOneAndUpdate(
-          { _id: projectId },
-          { $pull: { info: { _id: infoId } } },
-          { new: true }
-        );
+    // deleteInfo: async (parent, { projectId, infoId }) => {
+    //   try {
+    //     const updatedProject = await Project.findOneAndUpdate(
+    //       { _id: projectId },
+    //       { $pull: { info: { _id: infoId } } },
+    //       { new: true }
+    //     );
 
-        if (!updatedProject) {
-          throw AuthenticationError("Project not found");
-        }
+    //     if (!updatedProject) {
+    //       throw AuthenticationError;
+    //     }
 
-        return updatedProject;
-      } catch (error) {
-        throw AuthenticationError(
-          `Error removing project info: ${error.message}`
-        );
-      }
-    },
+    //     return updatedProject;
+    //   } catch (error) {
+    //     throw AuthenticationError;
+    //   }
+    // },
 
     //----- TIMELINE -----//
 
     // Add Timeline //
-    createTimeline: async (parent, args) => {
-      try {
-        const timeline = await Project.create(args);
+    createTimeline: async (parent, args, context) => {
+      if (context.user) {
+        const timeline = await Project.findByIdAndUpdate(
+          { _id: args.projectId },
+          { $push: { timelines: args } },
+          { new: true, runValidators: true }
+        );
         return timeline;
-      } catch (error) {
-        throw AuthenticationError(`Error creating timeline: ${error.message}`);
       }
+      throw AuthenticationError;
     },
 
     // Update Timeline //
-    updateTimeline: async (parent, { _id, ...args }) => {
-      try {
-        const timeline = await Project.findByIdAndUpdate(_id, args, {
-          new: true,
-        });
-        return timeline;
-      } catch (error) {
-        throw AuthenticationError(`Error updating timeline: ${error.message}`);
-      }
-    },
+    // updateTimeline: async (parent, { _id, ...args }) => {
+    //   try {
+    //     const timeline = await Project.findByIdAndUpdate(_id, args, {
+    //       new: true,
+    //     });
+    //     return timeline;
+    //   } catch (error) {
+    //     throw AuthenticationError(`Error updating timeline: ${error.message}`);
+    //   }
+    // },
 
     // Remove Timeline //
-    deleteTimeline: async (parent, { _id }) => {
-      try {
-        const timeline = await Project.findByIdAndDelete(_id);
+    deleteTimeline: async (parent, { projectId, timeLineId }, context) => {
+      if (context.user) {
+        const timeline = await Project.findByIdAndUpdate(
+          { _id: projectId },
+          { $pull: { timelines: { timeLineId } } },
+          { new: true, runValidators: true }
+        );
         return timeline;
-      } catch (error) {
-        throw AuthenticationError(`Error deleting timeline: ${error.message}`);
       }
+      throw AuthenticationError;
     },
 
     //----- WIREFRAME -----//
 
     // Add Wireframe //
-    createWireframe: async (parent, args) => {
-      try {
-        const wireframe = await Project.create(args);
+    createWireframe: async (parent, args, context) => {
+      if (context.user) {
+        const wireframe = await Project.findByIdAndUpdate(
+          { _id: args.projectId },
+          { $push: { wireframes: args } },
+          { new: true, runValidators: true }
+        );
         return wireframe;
-      } catch (error) {
-        throw AuthenticationError(`Error creating wireframe: ${error.message}`);
       }
+      throw AuthenticationError;
     },
 
     // Update Wireframe //
-    updateWireframe: async (parent, { _id, ...args }) => {
-      try {
-        const wireframe = await Project.findByIdAndUpdate(_id, args, {
-          new: true,
-        });
-        return wireframe;
-      } catch (error) {
-        throw AuthenticationError(`Error updating wireframe: ${error.message}`);
-      }
-    },
+    // updateWireframe: async (parent, { _id, ...args }) => {
+    //   try {
+    //     const wireframe = await Project.findByIdAndUpdate(_id, args, {
+    //       new: true,
+    //     });
+    //     return wireframe;
+    //   } catch (error) {
+    //     throw AuthenticationError(`Error updating wireframe: ${error.message}`);
+    //   }
+    // },
 
     // Remove Wireframe //
-    deleteWireframe: async (parent, { _id }) => {
-      try {
-        const wireframe = await Project.findByIdAndDelete(_id);
-        return wireframe;
-      } catch (error) {
-        throw AuthenticationError(`Error deleting wireframe: ${error.message}`);
+    deleteWireframe: async (parent, { projectId, wireFrameId }, context) => {
+      if (context.user) {
+        const timeline = await Project.findByIdAndUpdate(
+          { _id: projectId },
+          { $pull: { wireframes: { wireFrameId } } },
+          { new: true, runValidators: true }
+        );
+        return timeline;
       }
+      throw AuthenticationError;
     },
   },
 };
