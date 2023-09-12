@@ -222,6 +222,7 @@ export const ADD_PROJECT = gql`
       }
       wireframe {
         _id
+        projectId
         title
         imageURL
         note

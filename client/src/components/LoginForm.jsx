@@ -11,7 +11,7 @@ const Login = () => {
   // use mutation for login user
   const [login, { error, data }] = useMutation(LOGIN_USER);
   // set state for form validation
-  const [validated] = useState(false);
+  const [validated, setValidated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
@@ -40,14 +40,15 @@ const Login = () => {
     }
 
     // validate form
-    setValidation(true);
+    setValidated(true);
 
     try {
       const { data } = await login({
         variables: { ...userFormData },
       });
 
-      Auth.login(data.loginUser.token);
+      Auth.login(data.login.token);
+      window.location.assign("/home");
     } catch (err) {
       console.error(err);
     }
@@ -67,7 +68,7 @@ const Login = () => {
           <label htmlFor="email">email</label>
           <input
             type="email"
-            id="email"
+            name="email"
             value={userFormData.email}
             onChange={handleInputChange}
             required
@@ -81,7 +82,7 @@ const Login = () => {
           <label htmlFor="password">password</label>
           <input
             type="password"
-            id="password"
+            name="password"
             value={userFormData.password}
             onChange={handleInputChange}
             required

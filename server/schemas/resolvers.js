@@ -123,6 +123,7 @@ const resolvers = {
     createProject: async (parent, args, context) => {
       if (context.user) {
         const newProject = await Project.create(args);
+        console.log(newProject);
 
         if (!newProject) {
           console.log("Project not found");
