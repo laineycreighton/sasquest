@@ -1,19 +1,13 @@
-// INCLUDES:
-//          - HomeHeader.jsx
-//          - ProjectDashboard.jsx
-//          - NewProject.jsx
-//          
-//         
-//
-//
-//
-//
+import HomeHeader from '../components/HomeHeader';
+import ProjectDashboard from '../components/ProjectDashboard';
+import NewProject from '../components/NewProject';
 
 const Home = () => {
     return (
         <div>
             <HomeHeader/>
-            <ProjectDashboard />
+            {/* <ProjectDashboard /> */}
+            <NewProject />
         </div>
     )
 }

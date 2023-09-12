@@ -25,22 +25,22 @@ export default function ProjectNavBar() {
         //----- Nav Bar -----//
         <nav className="nav-bar">
             {/*----- Home -----*/}
-            <div>
-                <Link to="/home">{sasquatch}</Link>
+            <div className='nav-home'>
+                <Link to="/home"><img src={sasquatch} alt='sasquatch'/></Link>
             </div>
             {/*----- Project Info -----*/}
-            <div>
-                <Link to="/projects/:projectId/info">{backpack}</Link>
+            <div className='nav-info'>
+                <Link to="/projects/:projectId/info"><img src={backpack} alt='backpack'></img></Link>
                 <p>Info</p>
             </div>
             {/*----- Project Timeline Goals -----*/}
-            <div>
-                <Link to="/projects/:projectId/timeline">{canteen}</Link>
+            <div className='nav-timeline'>
+                <Link to="/projects/:projectId/timeline"><img src={canteen} alt='canteen'/></Link>
                 <p>Timeline</p>
             </div>
             {/*----- Project Wireframe -----*/}
-            <div>
-                <Link to="/projects/:projectId/wireframe">{tent}</Link>
+            <div className='nav-wireframe'>
+                <Link to="/projects/:projectId/wireframe"><img src={tent} alt='tent' /></Link>
                 <p>Wireframe</p>
             </div>
             {/*----- Log Out -----*/}

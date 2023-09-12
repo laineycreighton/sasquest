@@ -1,18 +1,13 @@
-// INCLUDES:
-//          - ProjectNavBar.jsx
-//          - ProjectHeader.jsx
-//          - DisplayProjectInfo.jsx
-//
-//
-//
-//
+import ProjectNavBar from '../components/ProjectNavBar';
+import ProjectHeader from '../components/ProjectHeader';
+// import DisplayProjectInfo from '../components/DisplayProjectInfo';
 
 const ViewInfo = () => {
     return (
         <div>
             <ProjectNavBar />
             <ProjectHeader />
-            <DisplayProjectInfo />
+            {/* <DisplayProjectInfo /> */}
         </div>
     )
 }

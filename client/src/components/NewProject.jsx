@@ -1,36 +1,36 @@
-// BELONGS TO:
-//      - Home.jsx
-//
-//
-// FUNCTIONALITY:
-//      - POST ROUTE for a new project:
-//                      01. Home.jsx
-//
-//
-// VISUAL:
-//      - renders a form for a new project
-//                               01. project name
-//                               02. save button - (window.location.reload())
+import '../assets/css/NewProject.css'
 
 const NewProject = () => {
 
-    const [projectName, setProjectName] = useState('')
+    // const [projectName, setProjectName] = useState('')
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('/api/projects', {projectName})
-        .then(() => {
-            window.location.reload()
-        })
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     axios.post('/api/projects', {projectName})
+    //     .then(() => {
+    //         window.location.reload()
+    //     })
+    // }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="projectName">Project Name:</label>
-                <input type="text" id="projectName" onChange={(e) => setProjectName(e.target.value)} />
-                <input type="submit" value="Save" />
-            </form>
+        <div className='home-placeholder'>
+            <div className='projects-placeholder'>
+                <div className='adventures-placeholder'>
+                    <p>your adventures</p>
+                </div>
+                <div className='display-placeholder'></div>
+            </div>
+            <div className='new-project'>
+                <form>
+                    {/* <form onSubmit={handleSubmit}> */}
+                    <label htmlFor="projectName">Project Name:</label>
+                    {/* <input type="text" id="projectName" onChange={(e) => setProjectName(e.target.value)} /> */}
+                    {/* <input type="submit" value="Save" /> */}
+                    <button>
+                        Create
+                    </button>
+                </form>
+            </div>
         </div>
     )
 }

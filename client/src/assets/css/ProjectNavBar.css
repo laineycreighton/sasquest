@@ -1,3 +1,85 @@
-div {
-    color: black;
+/*----- COLORS -----*/
+:root {
+    --dark-green: #19270D;
+    --bright-orange: #FF9902;
+    --dark-orange: #9D4E00;
+    --lightgreen: #3B8C54;
+    --accent: #818C3B;
+    --lightbrown: #72601B;
+    --white: #EEEEEE;
+}
+
+/*----- FONTS -----*/
+@font-face {
+    font-family: heading;
+    src: url(./assets/fonts/BungeeInline-Regular.ttf);
+}
+
+@font-face {
+    font-family: subheading;
+    src: url(./assets/fonts/Bungee-Regular.ttf);
+}
+
+@font-face {
+    font-family: tagline;
+    src: url(./assets/fonts/Smooch-Regular.ttf);
+}
+
+@font-face {
+    font-family: body;
+    src: url(./assets/fonts/Cabin.ttf);
+}
+
+:root {
+    --heading: heading;
+    --subheading: subheading;
+    --tagline: tagline;
+    --body: body;
+}
+
+/*----- NAV BAR -----*/
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--lightbrown);
+    border: var(--accent) solid 4px;
+}
+
+.nav-home img {
+    /* outline: blue dashed 3px; */
+    height: 75px;
+    width: auto;
+    margin-top: 4px;
+    padding: 5px;
+}
+
+.nav-info,
+.nav-timeline,
+.nav-wireframe {
+    /* outline: greenyellow dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
+    padding: 5px;
+}
+
+.nav-info img,
+.nav-timeline img,
+.nav-wireframe img {
+    /* outline: orange dashed 3px; */
+    height: 50px;
+    margin: 0;
+}
+
+.nav-info p,
+.nav-timeline p,
+.nav-wireframe p {
+    /* outline: orange dashed 3px; */
+    font-family: var(--subheading);
+    color: var(--dark-green);
+    margin: 0;
 }
