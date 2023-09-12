@@ -8,6 +8,7 @@ const timelineSchema = new Schema({
   date: {
     type: Date,
     required: true,
+    get: (date) => date.toLocaleDateString()
   },
   goal: {
     type: String,
