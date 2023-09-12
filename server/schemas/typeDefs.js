@@ -49,14 +49,16 @@ type Wireframe {
 
     projects: [Project]!
     project(projectId: ID!): Project
+
+    timelines: [Timeline]!
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    updateUserPassword(currentPassword: String!, newPassword: String!): User
+    updateUserPassword(email: String!, currentPassword: String!, newPassword: String!): User
 
-    createProject(userId: ID!, title: String!): User
+    createProject(title: String!): User
     updateProject(userId: ID!, title: String!): Project
     deleteProject(userId: ID!): User
 

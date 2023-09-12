@@ -34,6 +34,18 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+
+    // Get All Timelines
+    timelines: async (parent, args, context) => {
+      if (context.user) {
+        const timeline = await Project.find();
+        if(!timeline) {
+          throw console.log("No timeline found with this id!");
+        }
+        return timeline;
+      }
+      throw AuthenticationError;
+    }
   },
 
   //---------------------- MUTATIONS ---------------------//
@@ -68,14 +80,14 @@ const resolvers = {
     // Update Password //
     updateUserPassword: async (
       parent,
-      { currentPassword, newPassword },
-      context
+      { email, currentPassword, newPassword }
     ) => {
-      if (context.user) {
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $set: { password: newPassword } },
-          { new: true, runValidators: true }
+      const user = await User.findOne({ email });
+      if (user) {
+        // checks if there is a valid user object, if not (user not logged in) it throws auth error
+        // if correctCurrentPassword is false, the provided password doesn't match the current saved password for that user
+        const correctCurrentPassword = await user.isCorrectPassword(
+          currentPassword
         );
         if (!user) {
           console.log("User not found");
