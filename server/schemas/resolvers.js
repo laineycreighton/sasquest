@@ -50,12 +50,12 @@ const resolvers = {
 
     // Login User //
     login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email, password });
+      const user = await User.findOne({ email });
       // if no user in database is found with the email, throw auth error
       if (!user) {
-        console.log("No user found with this email address!");
+        throw AuthenticationError;
       }
-      const correctPw = await User.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
       // if password is incorrect, throw auth error
       if (!correctPw) {
         throw AuthenticationError;

@@ -6,7 +6,6 @@ type User {
   firstName: String!
   lastName: String!
   email: String!
-  password: String!
   projects: [Project]
 }
 
@@ -16,7 +15,7 @@ type Auth {
 }
 
 type Project {
-  _id: ID
+  _id: ID!
   title: String!
   info: [Info]
   timelines: [Timeline]
@@ -24,14 +23,14 @@ type Project {
 }
 
 type Info {
-  _id: ID
+  _id: ID!
   repoURL: String
   deployedURL: String
   description: String
 }
 
 type Timeline {
-  _id: ID
+  _id: ID!
   date: String
   goal: String
 }
