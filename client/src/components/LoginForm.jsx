@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
+import '../assets/css/LoginForm.css'
 
 const Login = () => {
   // set initial form state
@@ -59,10 +60,10 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleFormSubmit} noValidate>
+    <div className="login-form-container">
+      <form className='login-form' onSubmit={handleFormSubmit} noValidate>
         {/* email */}
-        <div>
+        <div className="login-email">
           <label htmlFor="email">email</label>
           <input
             type="email"
@@ -76,7 +77,7 @@ const Login = () => {
           )}
         </div>
         {/* password */}
-        <div>
+        <div className="login-password">
           <label htmlFor="password">password</label>
           <input
             type="password"
@@ -90,14 +91,15 @@ const Login = () => {
           )}
         </div>
         {/* login button */}
-        <button type="submit">LOGIN</button>
+        <div className="login-button-container">
+          <button type="submit">LOGIN</button>
+        </div>
+        <div>
+          <Link to="/signup" className="signup-link">sign up</Link>
+        </div>
       </form>
       {/* alert */}
       {showAlert && <div className="alert">Something went wrong!</div>}
-      {/* back button */}
-      <button onClick={() => window.history.back()}>back</button>
-      {/* link to about page */}
-      <Link to="/about">ABOUT</Link>
     </div>
   );
 };
