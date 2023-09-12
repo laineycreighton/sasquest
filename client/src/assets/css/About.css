@@ -1,0 +1,97 @@
+/*----- COLORS -----*/
+:root {
+    --dark-green: #19270D;
+    --bright-orange: #FF9902;
+    --dark-orange: #9D4E00;
+    --lightgreen: #3B8C54;
+    --accent: #818C3B;
+    --lightbrown: #72601B;
+    --white: #EEEEEE;
+}
+
+/*----- FONTS -----*/
+@font-face {
+    font-family: heading;
+    src: url(./assets/fonts/BungeeInline-Regular.ttf);
+}
+
+@font-face {
+    font-family: subheading;
+    src: url(./assets/fonts/Bungee-Regular.ttf);
+}
+
+@font-face {
+    font-family: tagline;
+    src: url(./assets/fonts/Smooch-Regular.ttf);
+}
+
+@font-face {
+    font-family: body;
+    src: url(./assets/fonts/Cabin.ttf);
+}
+
+:root {
+    --heading: heading;
+    --subheading: subheading;
+    --tagline: tagline;
+    --body: body;
+}
+
+/*----- MAIN -----*/
+.about-page {
+    height: 100vh;
+}
+
+/*----- BACK -----*/
+.redirect-back {
+    /* outline: blue dashed 3px; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.back {
+    font-family: var(--subheading);
+    color: var(--lightgreen);
+    font-size: 30px;
+    margin: 25px 50px 0 0;
+    text-align: left;
+    text-decoration: none;
+}
+
+/*----- ARTICLE -----*/
+.about-article {
+    /* outline: blue dashed 3px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: -80px;
+}
+
+.about-article p {
+    /* outline: blue dashed 3px; */
+    font-family: var(--body);
+    font-size: 20px;
+    color: var(--white);
+    margin-top: 15px;
+    text-align: center;
+}
+
+
+.align-article {
+    /* outline: yellow dashed 3px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    line-height: 1.25;
+}
+
+.about-mascot img {
+    /* outline: green dashed 3px; */
+    margin-right: 10px;
+    width: 200px;
+}

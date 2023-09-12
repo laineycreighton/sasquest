@@ -37,8 +37,8 @@
     --body: body;
 }
 
-/*---------- BACKGROUND ----------*/
-/* .main {
+/*----- ROOT -----*/
+html, body {
     background-image: url('./assets/images/crinkle-paper.PNG');
     background-size: cover;
     background-position: top center;
@@ -46,4 +46,6 @@
     background-repeat: repeat;
     padding: 0;
     margin: 0;
-} */
+    height: 100%;
+    width: 100vw;
+}
