@@ -12,6 +12,7 @@ import { Outlet } from "react-router-dom";
 // graphQL API end route
 const httpLink = createHttpLink({
   uri: "/graphql",
+
 });
 
 // middleware that attaches jwt token to header of each API call to authenticate user
