@@ -55,6 +55,7 @@ const resolvers = {
     // Create User //
     addUser: async (parent, { firstName, lastName, email, password }) => {
       try {
+        console.log("adduser");
         const user = await User.create({
           firstName,
           lastName,

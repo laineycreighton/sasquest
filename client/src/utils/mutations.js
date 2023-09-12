@@ -15,25 +15,15 @@ export const LOGIN_USER = gql`
 
 //  Add user
 export const ADD_USER = gql`
-  mutation addUser(
-    $firstName: String
-    $lastName: String
-    $email: String!
-    $password: String!
-  ) {
-    addUser(
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-      password: $password
-    ) {
-      token
-      user {
-        _id
-        email
-      }
+  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+  addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+    token
+    user {
+      _id
+      email
     }
   }
+}
 `;
 
 //-------------------- WIREFRAME --------------------//
@@ -60,28 +50,28 @@ export const CREATE_WIREFRAME = gql`
 `;
 
 // Update Wireframe
-export const UPDATE_WIREFRAME = gql`
-  mutation updateWireframe(
-    $projectId: ID!
-    $wireframeId: ID!
-    $title: String!
-    $imageURL: String
-    $note: String
-  ) {
-    updateWireframe(
-      projectId: $projectId
-      wireframeId: $wireframeId
-      title: $title
-      imageURL: $imageURL
-      note: $note
-    ) {
-      _id
-      projectId
-      imageURL
-      note
-    }
-  }
-`;
+// export const UPDATE_WIREFRAME = gql`
+//   mutation updateWireframe(
+//     $projectId: ID!
+//     $wireframeId: ID!
+//     $title: String!
+//     $imageURL: String
+//     $note: String
+//   ) {
+//     updateWireframe(
+//       projectId: $projectId
+//       wireframeId: $wireframeId
+//       title: $title
+//       imageURL: $imageURL
+//       note: $note
+//     ) {
+//       _id
+//       projectId
+//       imageURL
+//       note
+//     }
+//   }
+// `;
 
 // Delete Wireframe
 export const DELETE_WIREFRAME = gql`
@@ -324,15 +314,15 @@ export const ADD_TIMELINE = gql`
 `;
 
 // Update Timeline
-export const UPDATE_TIMELINE = gql`
-  mutation updateTimeline($date: Date!, $goal: String!) {
-    updateTimeline(date: $date, goal: $goal) {
-      _id
-      date
-      goal
-    }
-  }
-`;
+// export const UPDATE_TIMELINE = gql`
+//   mutation updateTimeline($date: Date!, $goal: String!) {
+//     updateTimeline(date: $date, goal: $goal) {
+//       _id
+//       date
+//       goal
+//     }
+//   }
+// `;
 
 // Delete Wireframe
 export const DELETE_TIMELINE = gql`
