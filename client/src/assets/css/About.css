@@ -86,7 +86,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 70%;
+    line-height: 1.25;
 }
 
 .about-mascot img {
