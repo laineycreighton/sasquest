@@ -1,23 +1,3 @@
-// BELONGS TO:
-//      - ViewInfo.jsx
-//
-//
-// FUNCTIONALITY:
-//      - GET one project info ROUTE
-//      - redirect user to edit project info page w/save button
-//
-//
-// VISUAL:
-//      - renders project info
-//                               01. repo URL
-//                               02. deployed URL
-//                               03. description
-//                               04. save button
-//
-//
-//
-//
-
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";

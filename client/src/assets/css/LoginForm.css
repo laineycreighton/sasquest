@@ -1,0 +1,113 @@
+/*----- COLORS -----*/
+:root {
+    --dark-green: #19270D;
+    --bright-orange: #FF9902;
+    --dark-orange: #9D4E00;
+    --lightgreen: #3B8C54;
+    --accent: #818C3B;
+    --lightbrown: #72601B;
+    --white: #EEEEEE;
+}
+
+/*----- FONTS -----*/
+@font-face {
+    font-family: heading;
+    src: url(./assets/fonts/BungeeInline-Regular.ttf);
+}
+
+@font-face {
+    font-family: subheading;
+    src: url(./assets/fonts/Bungee-Regular.ttf);
+}
+
+@font-face {
+    font-family: tagline;
+    src: url(./assets/fonts/Smooch-Regular.ttf);
+}
+
+@font-face {
+    font-family: body;
+    src: url(./assets/fonts/Cabin.ttf);
+}
+
+:root {
+    --heading: heading;
+    --subheading: subheading;
+    --tagline: tagline;
+    --body: body;
+}
+
+/*----- FORM -----*/
+.login-form-container {
+    /* outline: red dashed 3px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    /* outline: green dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+/*----- EMAIL & PASSWORD -----*/
+.login-email,
+.login-password {
+    /* outline: purple dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--body);
+    font-size: 25px;
+    color: var(--lightbrown);
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.login-email input,
+.login-password input {
+    background-color: #3A4530;
+    color: var(--white);
+    border: #595959 solid 1px;
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 80%;
+}
+
+/*----- BUTTON -----*/
+.login-button-container {
+    /* outline: purple dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.login-button-container button {
+    /* outline: yellow dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--subheading);
+    font-size: 25px;
+    color: var(--accent);
+    background-color: var(--dark-green);
+    border: var(--dark-orange) solid 3px;
+    border-radius: 5px;
+}
+
+/*----- SIGNUP -----*/
+.signup-link{
+    font-size: 20px;
+color: var(--lightbrown);
+}
