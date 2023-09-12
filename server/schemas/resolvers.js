@@ -89,13 +89,19 @@ const resolvers = {
         const correctCurrentPassword = await user.isCorrectPassword(
           currentPassword
         );
-        if (!correctCurrentPassword) {
-          console.log("Invalid password");
+        if (!user) {
+          console.log("User not found");
         }
+        // checks if there is a valid user object, if not (user not logged in) it throws auth error
+        // if updatePassword is false, the provided password doesn't match the current saved password for that user
+        // const updatePassword = await user.isCorrectPassword(currentPassword);
+        // if (!updatePassword) {
+        //   console.log("Invalid password");
+        // }
         // if the current password is correct, it overwrites the old password with the new password
         user.password = newPassword;
         // saves updated password to the database
-        await user.save();
+        // await user.save();
         return user;
       }
       throw AuthenticationError;
