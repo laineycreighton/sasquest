@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 //----- Icons -----//
 import backpack from '../assets/images/backpack.png'
 
+//----- CSS -----//
+import '../assets/css/ProjectDashboard.css'
+
 
 
 //-------------------- EXPORT --------------------//
@@ -29,7 +32,7 @@ const noProjects = `
 </div>`
 
 //----- No Projects Created Return -----//
-const ProjectDashboard = ({ projects, title }) => {
+const ProjectDashboard = ({ projects }) => {
     if (!projects.length) {
         return {noProjects};
     }

@@ -1,0 +1,91 @@
+/*----- COLORS -----*/
+:root {
+    --dark-green: #19270D;
+    --bright-orange: #FF9902;
+    --dark-orange: #9D4E00;
+    --lightgreen: #3B8C54;
+    --accent: #818C3B;
+    --lightbrown: #72601B;
+    --white: #EEEEEE;
+}
+
+/*----- FONTS -----*/
+@font-face {
+    font-family: heading;
+    src: url(./assets/fonts/BungeeInline-Regular.ttf);
+}
+
+@font-face {
+    font-family: subheading;
+    src: url(./assets/fonts/Bungee-Regular.ttf);
+}
+
+@font-face {
+    font-family: tagline;
+    src: url(./assets/fonts/Smooch-Regular.ttf);
+}
+
+@font-face {
+    font-family: body;
+    src: url(./assets/fonts/Cabin.ttf);
+}
+
+:root {
+    --heading: heading;
+    --subheading: subheading;
+    --tagline: tagline;
+    --body: body;
+}
+
+
+
+/* .home-placeholder {
+    outline: green dashed 3px;
+} */
+
+.projects-placeholder {
+    /* outline: blue dashed 3px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 450px;
+}
+
+.adventures-placeholder {
+    /* outline: purple dashed 3px; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* transform: rotate(-90deg); */
+    width: 350px;
+    height: 400px;
+    margin-right: -350px;
+}
+
+.adventures-placeholder p {
+    outline: var(--accent) solid 4px;
+    transform: rotate(-90deg);
+    font-family: var(--subheading);
+    font-size: 30px;
+    color: var(--lightbrown);
+    margin-left: -164px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 48px;
+    padding-right: 48px;
+}
+
+.display-placeholder {
+    outline: var(--accent) solid 4px;
+    width: 700px;
+    height: 402px;
+    margin: 0;
+    overflow: hidden;
+}
+
+/*----- FORM -----*/
+/* .new-project {
+    outline: red dashed 3px;
+} */

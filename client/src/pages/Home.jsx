@@ -7,7 +7,7 @@ const Home = () => {
         <div>
             <HomeHeader/>
             {/* <ProjectDashboard /> */}
-            {/* <NewProject /> */}
+            <NewProject />
         </div>
     )
 }
