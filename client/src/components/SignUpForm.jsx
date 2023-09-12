@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
+import '../assets/css/SignUpForm.css'
 
 const SignUpForm = () => {
   // set initial form state
@@ -67,73 +68,81 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleFormSubmit} noValidate>
-        {/* first name */}
-        <div>
-          <label htmlFor="firstName">first name</label>
-          <input
-            type="text"
-            name="firstName"
-            value={userFormData.firstName}
-            onChange={handleInputChange}
-            required
-          />
-          {validated && !userFormData.firstName && (
-            <div className="alert">First name is required!</div>
-          )}
-        </div>
-        {/* last name */}
-        <div>
-          <label htmlFor="lastName">last name</label>
-          <input
-            type="text"
-            name="lastName"
-            value={userFormData.lastName}
-            onChange={handleInputChange}
-            required
-          />
-          {validated && !userFormData.firstName && (
-            <div className="alert">Last name is required!</div>
-          )}
-        </div>
-        {/* email */}
-        <div>
-          <label htmlFor="email">email</label>
-          <input
-            type="email"
-            name="email"
-            value={userFormData.email}
-            onChange={handleInputChange}
-            required
-          />
-          {validated && !userFormData.firstName && (
-            <div className="alert">Email address is required!</div>
-          )}
-        </div>
-        {/* password */}
-        <div>
-          <label htmlFor="password">password</label>
-          <input
-            type="password"
-            name="password"
-            value={userFormData.password}
-            onChange={handleInputChange}
-            required
-          />
-          {validated && !userFormData.firstName && (
-            <div className="alert">Password is required!</div>
-          )}
+    <div className="signup-form-container">
+      <form className='signup-form' onSubmit={handleFormSubmit} noValidate>
+        <div className="signup-inputs">
+          <div className="signup-user-name">
+            {/* first name */}
+            <div className="signup-first-name">
+              <label htmlFor="firstName">first name</label>
+              <input
+                type="text"
+                name="firstName"
+                value={userFormData.firstName}
+                onChange={handleInputChange}
+                required
+              />
+              {validated && !userFormData.firstName && (
+                <div className="alert">First name is required!</div>
+              )}
+            </div>
+            {/* last name */}
+            <div className="signup-last-name">
+              <label htmlFor="lastName">last name</label>
+              <input
+                type="text"
+                name="lastName"
+                value={userFormData.lastName}
+                onChange={handleInputChange}
+                required
+              />
+              {validated && !userFormData.firstName && (
+                <div className="alert">Last name is required!</div>
+              )}
+            </div>
+          </div>
+          <div className="signup-user-credentials">
+            {/* email */}
+            <div className="signup-email">
+              <label htmlFor="email">email</label>
+              <input
+                type="email"
+                name="email"
+                value={userFormData.email}
+                onChange={handleInputChange}
+                required
+              />
+              {validated && !userFormData.firstName && (
+                <div className="alert">Email address is required!</div>
+              )}
+            </div>
+            {/* password */}
+            <div className="signup-password">
+              <label htmlFor="password">password</label>
+              <input
+                type="password"
+                name="password"
+                value={userFormData.password}
+                onChange={handleInputChange}
+                required
+              />
+              {validated && !userFormData.firstName && (
+                <div className="alert">Password is required!</div>
+              )}
+            </div>
+          </div>
         </div>
         {/* sign up button */}
-        <button type="submit">SIGN UP</button>
+        <div className="signup-button-container">
+          <button type="submit">SIGN UP</button>
+        </div>
       </form>
       {/* alert */}
       {showAlert && <div className="alert">Something went wrong!</div>}
-      {/* back button */}
-      <button onClick={() => window.history.back()}>back</button>
-      {/* link to about page */}
-      <Link to="/about">ABOUT</Link>
+      <div>
+        {/* link to login page */}
+        <Link to="/" className="login-link">login</Link>
+      </div>
     </div>
   );
 };
