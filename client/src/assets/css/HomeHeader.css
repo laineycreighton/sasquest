@@ -10,24 +10,25 @@
 }
 
 /*----- FONTS -----*/
+/*----- FONTS -----*/
 @font-face {
     font-family: heading;
-    src: url(./assets/fonts/BungeeInline-Regular.ttf);
+    src: url('../fonts/BungeeInline-Regular.ttf');
 }
 
 @font-face {
     font-family: subheading;
-    src: url(./assets/fonts/Bungee-Regular.ttf);
+    src: url('../fonts/Bungee-Regular.ttf');
 }
 
 @font-face {
     font-family: tagline;
-    src: url(./assets/fonts/Smooch-Regular.ttf);
+    src: url('../fonts/Smooch-Regular.ttf');
 }
 
 @font-face {
     font-family: body;
-    src: url(./assets/fonts/Cabin.ttf);
+    src: url('../fonts/Cabin.ttf');
 }
 
 :root {
