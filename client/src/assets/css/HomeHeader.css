@@ -38,12 +38,12 @@
 }
 
 /*---------- MAIN ----------*/
-.full-header {
+.full-home-header {
     display: flex;
     flex-direction: row;
 }
 
-.login-header {
+.home-header {
     /* outline: red dashed 3px; */
     display: flex;
     flex-direction: column;
@@ -55,26 +55,27 @@
 }
 
 /*----- SASQUATCH -----*/
-.mascot {
+.home-mascot {
     /* outline: red dashed 3px; */
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     height: auto;
     z-index: 10;
 }
 
-.mascot img {
+.home-mascot img {
     /* outline: blue dashed 3px; */
-    transform: rotate(30deg);
-    margin-left: -250px;
-    width: 400px;
+    transform: rotate(-25deg);
+    margin-top: 200px;
+    margin-right: -175px;
+    width: 300px;
     height: auto;
     overflow: hidden;
 }
 
 /*----- ABOUT -----*/
-.redirect-about {
+.redirect-logout {
     /* outline: blue dashed 3px; */
     display: flex;
     justify-content: flex-end;
@@ -82,7 +83,7 @@
     width: 100%;
 }
 
-.about {
+.logout {
     font-family: var(--subheading);
     color: var(--lightgreen);
     font-size: 25px;
@@ -92,31 +93,31 @@
 }
 
 /*----- LOGO -----*/
-.sasquest {
+.home-sasquest {
     /* outline: greenyellow dashed 3px; */
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
-    margin: 0;
+    margin-top: -35px;
     width: 100%;
 }
 
-.lg-letters {
+.home-lg-letters {
     /* outline: orange dashed 3px; */
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
 }
 
-h1 {
+.homeLg {
     /* outline: blue dashed 3px; */
     font-family: var(--heading);
-    font-size: 150px;
+    font-size: 75px;
     color: var(--bright-orange);
     text-shadow: 0 7px 1px var(--dark-orange);
     text-align: center;
-    margin-top: -10px;
+    margin-top: -5px;
     margin-left: 0;
     margin-right: 0;
 }
@@ -127,10 +128,10 @@ h1 {
     margin-bottom: 0;
 }
 
-h2 {
+.homeMiddle {
     /* outline: rgb(255, 0, 128) dashed 3px; */
     font-family: var(--heading);
-    font-size: 100px;
+    font-size: 50px;
     color: var(--bright-orange);
     text-shadow: 0 7px 1px var(--dark-orange);
     text-align: center;
@@ -139,11 +140,11 @@ h2 {
 }
 
 /*----- TAGLINE -----*/
-.tagline {
+.home-tagline {
     /* outline: red dashed 3px; */
     font-family: var(--tagline);
     color: var(--dark-orange);
-    font-size: 60px;
+    font-size: 30px;
     text-align: center;
-    margin-top: -15px;
+    margin-top: -5px;
 }
