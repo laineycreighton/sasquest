@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../../utils/mutations";
-import Auth from "../../utils/auth";
+import { LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -67,7 +67,7 @@ const Login = () => {
           <input
             type="email"
             id="email"
-            value={email}
+            value={userFormData.email}
             onChange={handleInputChange}
             required
           />
@@ -81,7 +81,7 @@ const Login = () => {
           <input
             type="password"
             id="password"
-            value={password}
+            value={userFormData.password}
             onChange={handleInputChange}
             required
           />

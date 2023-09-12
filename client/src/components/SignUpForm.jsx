@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../../utils/mutations";
-import Auth from "../../utils/auth";
+import { ADD_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 const SignUpForm = () => {
@@ -13,7 +13,7 @@ const SignUpForm = () => {
     password: "",
   });
   // set state for form validation
-  const [validated] = useState(false);
+  const [validated, setValidated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   // use mutation for adding user
@@ -44,9 +44,10 @@ const SignUpForm = () => {
     }
 
     // validate form
-    setValidation(true);
+    setValidated(true);
 
     try {
+      console.log({ ...userFormData });
       const { data } = await addUser({
         variables: { ...userFormData },
       });
@@ -73,7 +74,7 @@ const SignUpForm = () => {
           <label htmlFor="firstName">first name</label>
           <input
             type="text"
-            id="firstName"
+            name="firstName"
             value={userFormData.firstName}
             onChange={handleInputChange}
             required
@@ -87,7 +88,7 @@ const SignUpForm = () => {
           <label htmlFor="lastName">last name</label>
           <input
             type="text"
-            id="lastName"
+            name="lastName"
             value={userFormData.lastName}
             onChange={handleInputChange}
             required
@@ -101,8 +102,8 @@ const SignUpForm = () => {
           <label htmlFor="email">email</label>
           <input
             type="email"
-            id="email"
-            value={email}
+            name="email"
+            value={userFormData.email}
             onChange={handleInputChange}
             required
           />
@@ -115,8 +116,8 @@ const SignUpForm = () => {
           <label htmlFor="password">password</label>
           <input
             type="password"
-            id="password"
-            value={password}
+            name="password"
+            value={userFormData.password}
             onChange={handleInputChange}
             required
           />
@@ -138,55 +139,3 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
-
-return (
-  <main className="signupform">
-    <div className="card">
-      <h3 className="header">Sign Up</h3>
-      <div>
-        {data ? (
-          <p>That worked! You should be redirected to the home page.</p>
-        ) : (
-          <form onSubmit={handleFormSubmit}>
-            <input
-              className="form-input"
-              placeholder="First Name"
-              name="firstName"
-              type="text"
-              value={formState.name}
-              onChange={handleChange}
-            />
-            <input
-              className="form-input"
-              placeholder="Last Name"
-              name="lastName"
-              type="text"
-              value={formState.name}
-              onChange={handleChange}
-            />
-            <input
-              className="form-input"
-              placeholder="Email"
-              name="email"
-              type="email"
-              value={formState.name}
-              onChange={handleChange}
-            />
-            <input
-              className="form-input"
-              placeholder="password"
-              name="password"
-              type="password"
-              value={formState.name}
-              onChange={handleChange}
-            />
-            <button className="form-btn" type="submit">
-              Sign Up
-            </button>
-          </form>
-        )}
-        {error && <div>{error.message}</div>}
-      </div>
-    </div>
-  </main>
-);

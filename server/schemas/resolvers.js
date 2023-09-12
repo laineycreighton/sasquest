@@ -39,13 +39,13 @@ const resolvers = {
     timelines: async (parent, args, context) => {
       if (context.user) {
         const timeline = await Project.find();
-        if(!timeline) {
+        if (!timeline) {
           throw console.log("No timeline found with this id!");
         }
         return timeline;
       }
       throw AuthenticationError;
-    }
+    },
   },
 
   //---------------------- MUTATIONS ---------------------//
@@ -54,10 +54,19 @@ const resolvers = {
 
     // Create User //
     addUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
-      // assign json token to new user and log in user
-      const token = signToken(user);
-      return { token, user };
+      try {
+        const user = await User.create({
+          firstName,
+          lastName,
+          email,
+          password,
+        });
+        // assign json token to new user and log in user
+        const token = signToken(user);
+        return { token, user };
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     // Login User //
