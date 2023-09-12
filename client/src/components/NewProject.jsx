@@ -39,13 +39,7 @@ const NewProject = () => {
     }
 
     return (
-        <div className='home-placeholder'>
-            <div className='projects-placeholder'>
-                <div className='adventures-placeholder'>
-                    <p>your adventures</p>
-                </div>
-                <div className='display-placeholder'></div>
-            </div>
+        <div className='new-project-container'>
             <div className='new-project'>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="projectName">Project Name:</label>
