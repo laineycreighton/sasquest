@@ -107,6 +107,8 @@ const ViewTimeline = ({ date, goal }) => {
                         value={timelineFormData.timelineDate}
                         onChange={handleInputChange}
                         required
+                        // conditional statment on the picture green red yellow
+// use day js and do a conditional statment compairing the system date with the inputed date for timeline
                     />
                     {formErrors.repoURL && (
                         <div className="alert">Timeline date is required!</div>
