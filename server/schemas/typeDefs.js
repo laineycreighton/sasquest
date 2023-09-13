@@ -32,7 +32,7 @@ type Timeline {
 }
 
 type Wireframe {
-  id: ID!
+  _id: ID!
   projectId: String
   title: String
   imageUrl: String
