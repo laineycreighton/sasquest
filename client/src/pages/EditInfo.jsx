@@ -1,24 +1,30 @@
-import ProjectNavBar from "../components/ProjectNavBar";
-// import ProjectHeader from '../components/ProjectHeader';
-import UpdateProjectInfo from "../components/UpdateProjectInfo";
+import React from "react";
+import ProjectNavBar from '../components/ProjectNavBar';
+import ProjectHeader from '../components/ProjectHeader';
+import UpdateInfo from '../components/UpdateInfo';
+import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
 
 // Pass users array to the List component as a prop
 export default function EditInfo() {
-  return !Auth.loggedIn() ? (
+
+    const { projectId } = useParams();
+    const { data } = useQuery(GET_PROJECT_BY_ID, {
+      variables: { projectId: projectId },
+    });
+  
+    const project = data?.project || {};
+    console.log(data);
+
+    return  !Auth.loggedIn() ? (
     <Navigate to="/login" />
   ) : (
-    <div>
-      <div>
-        <ProjectNavBar />
-      </div>
-      <div>
-        <ProjectHeader />
-      </div>
-      <div>
-        <UpdateProjectInfo />
-      </div>
-    </div>
-  );
+        // Wrap the entire component with AnimatedCursor
+        <AnimatedCursor>
+                <ProjectNavBar />
+                <ProjectHeader />
+                <UpdateInfo />
+        </AnimatedCursor>
+    );
 }

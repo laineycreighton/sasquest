@@ -1,11 +1,13 @@
+import React from "react";
 import ProjectNavBar from "../components/ProjectNavBar";
 import ProjectHeader from "../components/ProjectHeader";
-import DisplayProjectInfo from "../components/DisplayProjectInfo";
+import DisplayInfo from "../components/DisplayInfo";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
+import AnimatedCursor from "react-animated-cursor"; // Import AnimatedCursor
 
 const ViewInfo = () => {
   const { projectId } = useParams();
@@ -20,9 +22,10 @@ const ViewInfo = () => {
     <Navigate to="/login" />
   ) : (
     <div>
+      <AnimatedCursor /> {/* Add AnimatedCursor here */}
       <ProjectNavBar />
       {/* <ProjectHeader /> */}
-      <DisplayProjectInfo project={project} />
+      <DisplayInfo project={project} />
     </div>
   );
 };
