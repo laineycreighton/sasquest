@@ -1,62 +1,67 @@
-import '../assets/css/NewProject.css'
-import { useState } from 'react'
-import { useMutation } from '@apollo/client'
-import { ADD_PROJECT } from '../utils/mutations'
-// import { QUERY_PROJECTS } from '../utils/queries'
+import "../assets/css/NewProject.css";
+import { useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_PROJECT } from "../utils/mutations";
+import { QUERY_USER } from "../utils/queries";
 // import gql from 'graphql-tag'
 
-
 const NewProject = () => {
+  const [formState, setFormState] = useState({ title: "" });
+  const [createProject, { error }] = useMutation(ADD_PROJECT);
 
-    const [formState, setFormState] = useState({ projectName: '' });
-    const [createProject, { error }] = useMutation(ADD_PROJECT);
-    // const [projectName, setProjectName] = useState({
-    //     title: '',
-    // })
-    // const [createProject, { error }] = useMutation(ADD_PROJECT, {});
+  const { data } = useQuery(QUERY_USER);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-    
-        // try {
-            const { data } = await createProject({
-                variables: { projectName: formState.projectName }, // Use formState.projectName
-            });
-    setFormState({ projectName: '' });
-            window.location.reload();
-        // } catch (error) {
-        //     console.error(error);
-        // }
-    };
-    
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        if (name === 'projectName') {
-            setFormState({ ...formState, projectName: value });
-        } else {
-            setFormState({ ...formState, [name]: value });
-        }
-    }
+  const user = data?.user || {};
 
-    return (
-        <div className='home-placeholder'>
-            <div className='projects-placeholder'>
-                <div className='adventures-placeholder'>
-                    <p>your adventures</p>
-                </div>
-                <div className='display-placeholder'></div>
-            </div>
-            <div className='new-project'>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="projectName">Project Name:</label>
-                    <input type="text" id="projectName" onChange={handleChange} />
-                    <button type='submit'>
-                        Create
-                    </button>
-                </form>
-            </div>
+  console.log(user);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    const { data } = await createProject({
+      variables: { title: formState.title },
+    });
+
+    setFormState({ title: "" });
+    // window.location.reload();
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({ ...formState, [name]: value });
+  };
+
+  return (
+    <div className="home-placeholder">
+      <div className="projects-placeholder">
+        <div className="adventures-placeholder">
+          <p>your adventures</p>
         </div>
-    )
-}
+        <div className="display-placeholder">
+          {user.projects?.map((project) => (
+            <a href={`/projects/${project._id}/info`} key={project._id}>
+              {" "}
+              {project.title}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div className="new-project">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="title">Project Name:</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="title"
+            value={formState.title}
+          />
+          <button type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default NewProject
+export default NewProject;

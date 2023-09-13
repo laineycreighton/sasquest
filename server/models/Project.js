@@ -29,8 +29,18 @@ const projectSchema = new Schema({
     trim: true,
   },
 
-  timelines: [timelineSchema],
-  wireframes: [wireframeSchema],
+  timelines: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Timeline",
+    },
+  ],
+  wireframes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Wireframe",
+    },
+  ],
 });
 
 const Project = model("Project", projectSchema);

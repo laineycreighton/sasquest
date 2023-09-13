@@ -15,15 +15,25 @@ export const LOGIN_USER = gql`
 
 //  Add user
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-  addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-    token
-    user {
-      _id
-      email
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
+      token
+      user {
+        _id
+        email
+      }
     }
   }
-}
 `;
 
 //-------------------- WIREFRAME --------------------//
@@ -205,27 +215,14 @@ export const DELETE_INFO = gql`
 
 // Add Project
 export const ADD_PROJECT = gql`
-  mutation createProject($title: String!) {
-    createProject(title: $title, info: [], timeline: [], wireframe: []) {
+  mutation CreateProject($title: String!) {
+    createProject(title: $title) {
       _id
-      title
-      info {
+      firstName
+      lastName
+      email
+      projects {
         _id
-        repoURL
-        deployedURL
-        description
-      }
-      timeline {
-        _id
-        date
-        goal
-      }
-      wireframe {
-        _id
-        projectId
-        title
-        imageURL
-        note
       }
     }
   }

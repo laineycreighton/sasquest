@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <ViewInfo />,
       },
       {
-        path: "/projects/:projectId/info",
+        path: "/projects/:projectId/edit",
         element: <EditInfo />,
       },
       {

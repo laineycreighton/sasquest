@@ -3,16 +3,16 @@ import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import { UPDATE_PROJECT } from "../utils/mutations";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 // DisplayProjectInfo component that takes projectID as a prop
-const DisplayProjectInfo = ({ projectID }) => {
+const DisplayProjectInfo = (props) => {
   // get projectID from useParams hook
-  const { id } = useParams();
+  // const { id } = useParams();
 
   // useState hook to set project state
   // this will be used to populate the data
-  const [project, setProject] = useState({});
+  // const [project, setProject] = useState({});
   const [projectFormData, setProjectFormData] = useState({
     repoURL: "",
     deployedURL: "",
@@ -20,34 +20,34 @@ const DisplayProjectInfo = ({ projectID }) => {
   });
 
   // state for form validation errors
-  const [formErrors, setFormErrors] = useState({});
-  // state for form submission status
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  // useQuery hook to make GraphQL query
-  const { loading, data } = useQuery(GET_PROJECT_BY_ID, {
-    variables: { projectID: id },
-  });
+  // const [formErrors, setFormErrors] = useState({});
+  // // state for form submission status
+  // const [formSubmitted, setFormSubmitted] = useState(false);
+  // // useQuery hook to make GraphQL query
+  // const { loading, data } = useQuery(GET_PROJECT_BY_ID, {
+  //   variables: { projectID: id },
+  // });
   // useMutation hook to make GraphQL mutation
-  const [updateProject] = useMutation(UPDATE_PROJECT);
+  // const [updateProject] = useMutation(UPDATE_PROJECT);
 
   // data population
   // useEffect hook to update state when data is fetched from GraphQL query
-  useEffect(() => {
-    // if data exists, set project state to data.project
-    if (data) {
-      setProject(data.project);
-      setProjectFormData({
-        repoURL: data.project.repoURL,
-        deployedURL: data.project.deployedURL,
-        description: data.project.description,
-      });
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   // if data exists, set project state to data.project
+  //   if (data) {
+  //     setProject(data.project);
+  //     setProjectFormData({
+  //       repoURL: data.project.repoURL,
+  //       deployedURL: data.project.deployedURL,
+  //       description: data.project.description,
+  //     });
+  //   }
+  // }, [data]);
 
   // if the data is still loading, return loading message
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   // handleInputChange function to update state when user enters data in input field
   const handleInputChange = (event) => {
@@ -56,56 +56,54 @@ const DisplayProjectInfo = ({ projectID }) => {
   };
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-      return;
-    }
-
-    const errors = {};
-    if (!projectFormData.repoURL) {
-      errors.repoURL = "Repo URL is required!";
-    }
-    if (!projectFormData.deployedURL) {
-      errors.deployedURL = "Deployed URL is required!";
-    }
-    if (!projectFormData.description) {
-      errors.description = "Description is required!";
-    }
-    setFormErrors(errors);
-
-    if (Object.keys(errors).length === 0) {
-      try {
-        const { data } = await updateProject({
-          variables: {
-            projectID: id,
-            project: { ...projectFormData },
-          },
-        });
-        if (data) {
-          setFormSubmitted(true);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
+    //   event.preventDefault();
+    //   const form = event.currentTarget;
+    //   if (form.checkValidity() === false) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //     return;
+    //   }
+    //   const errors = {};
+    //   if (!projectFormData.repoURL) {
+    //     errors.repoURL = "Repo URL is required!";
+    //   }
+    //   if (!projectFormData.deployedURL) {
+    //     errors.deployedURL = "Deployed URL is required!";
+    //   }
+    //   if (!projectFormData.description) {
+    //     errors.description = "Description is required!";
+    //   }
+    //   setFormErrors(errors);
+    //   if (Object.keys(errors).length === 0) {
+    //     try {
+    //       const { data } = await updateProject({
+    //         variables: {
+    //           projectID: id,
+    //           project: { ...projectFormData },
+    //         },
+    //       });
+    //       if (data) {
+    //         setFormSubmitted(true);
+    //       }
+    //     } catch (err) {
+    //       console.error(err);
+    //     }
+    //   }
   };
 
-  setProjectFormData({
-    repoURL: "",
-    deployedURL: "",
-    description: "",
-  });
+  // setProjectFormData({
+  //   repoURL: "",
+  //   deployedURL: "",
+  //   description: "",
+  // });
 
   // display project info
   return (
     // project info container
     <div className="project-info">
-      <h2>DESCRIPTION</h2>
+      <h2>{props.title}</h2>
       <form onSubmit={handleFormSubmit}>
+        <h4>update Project Form</h4>
         {/* repo URL */}
         <div className="form-group">
           <label htmlFor="repoURL">REPO URL</label>
@@ -120,9 +118,9 @@ const DisplayProjectInfo = ({ projectID }) => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.repoURL && (
+          {/* {formErrors.repoURL && (
             <div className="alert">Repo URL is required!</div>
-          )}
+          )} */}
         </div>
         {/* deployed URL */}
         <div className="form-group">
@@ -136,9 +134,9 @@ const DisplayProjectInfo = ({ projectID }) => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.deployedURL && (
+          {/* {formErrors.deployedURL && (
             <div className="alert">Deployed URL is required!</div>
-          )}
+          )} */}
         </div>
 
         {/* description */}
@@ -152,9 +150,9 @@ const DisplayProjectInfo = ({ projectID }) => {
             onChange={handleInputChange}
             required
           />
-          {formErrors.description && (
+          {/* {formErrors.description && (
             <div className="alert">Description is required!</div>
-          )}
+          )} */}
         </div>
         <button
           type="submit"
@@ -164,9 +162,9 @@ const DisplayProjectInfo = ({ projectID }) => {
           SAVE
         </button>
       </form>
-      {formSubmitted && (
+      {/* {formSubmitted && (
         <div className="success-message">Project info saved!</div>
-      )}
+      )} */}
     </div>
   );
 };

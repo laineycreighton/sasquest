@@ -1,10 +1,6 @@
-const { Schema, Types } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const wireframeSchema = new Schema({
-  wireFrameId: {
-    type: Schema.Types.ObjectId,
-    default: () => new Types.ObjectId(),
-  },
   title: {
     type: String,
     required: true,
@@ -24,4 +20,6 @@ const wireframeSchema = new Schema({
   },
 });
 
-module.exports = wireframeSchema;
+const Wireframe = model("Wireframe", wireframeSchema);
+
+module.exports = Wireframe;
