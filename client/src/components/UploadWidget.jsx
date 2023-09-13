@@ -6,7 +6,13 @@ export default function UploadWidget() {
   const [unsignedPreset, setUnsignedPreset] = useState("");
   const [uploadedImage, setUploadedImage] = useState(""); // Added state for uploaded image
 
+  // Load uploaded image from local storage on component mount
   useEffect(() => {
+    const storedUploadedImage = localStorage.getItem("uploadedImage");
+    if (storedUploadedImage) {
+      setUploadedImage(storedUploadedImage);
+    }
+
     const cldScript = document.getElementById("cloudinaryUploadWidgetScript");
     if (typeof window !== "undefined" && !loaded && !cldScript) {
       const script = document.createElement("script");
@@ -25,7 +31,12 @@ export default function UploadWidget() {
     }
     if (result && result.event === "success") {
       console.log(result);
-      setUploadedImage(result.info.secure_url);
+      const imageUrl = result.info.secure_url;
+
+      // Save the image URL to local storage
+      localStorage.setItem("uploadedImage", imageUrl);
+
+      setUploadedImage(imageUrl);
     }
   };
 
@@ -41,10 +52,32 @@ export default function UploadWidget() {
     );
   };
 
+  // Handle input change
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "cloudName") {
+      setCloudName(value);
+    } else if (name === "unsignedPreset") {
+      setUnsignedPreset(value);
+    }
+  };
+
+  // Handle form submit
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  // Delete the uploaded image from local storage
+  const handleDeleteImage = () => {
+    // Remove the image URL from local storage
+    localStorage.removeItem("uploadedImage");
+    setUploadedImage("");
+  };
+
   return (
     <div>
       <h3 className="font-medium">WIREFRAME</h3>
-      <form className="w-full">
+      <form className="w-full" onSubmit={handleFormSubmit}>
         {/* page */}
         <div className="md:flex md:items-center">
           <div className="md:w-1/3">
@@ -56,13 +89,13 @@ export default function UploadWidget() {
             <input
               className="whatever"
               id="cloudName"
+              name="cloudName"
               type="text"
               value={cloudName}
-              onChange={(e) => setCloudName(e.target.value)}
+              onChange={handleInputChange}
             />
           </div>
         </div>
-
         {/* notes */}
         <div className="whatever">
           <div className="whatever">
@@ -73,14 +106,14 @@ export default function UploadWidget() {
           <div className="whatever">
             <input
               className="whatever"
-              type="text"
               id="inline-unsigned-preset"
+              name="unsignedPreset"
+              type="text"
               value={unsignedPreset}
-              onChange={(e) => setUnsignedPreset(e.target.value)}
+              onChange={handleInputChange}
             />
           </div>
         </div>
-
         {/* Upload button */}
         <div className="whatever">
           <div className="whatever"></div>
@@ -88,9 +121,20 @@ export default function UploadWidget() {
             <button className="whatever" type="button" onClick={uploadWidget}>
               Upload
             </button>
-            {/* Display the uploaded image */}
             {uploadedImage && (
-              <img src={uploadedImage} alt="uploaded using the upload widget" />
+              <div>
+                <img
+                  src={uploadedImage}
+                  alt="uploaded using the upload widget"
+                />
+                <button
+                  className="whatever"
+                  type="button"
+                  onClick={handleDeleteImage}
+                >
+                  Delete Image
+                </button>
+              </div>
             )}
           </div>
         </div>
