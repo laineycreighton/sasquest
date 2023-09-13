@@ -1,28 +1,10 @@
-// BELONGS TO:
-//      - Wireframe.jsx
-//
-//
-// FUNCTIONALITY:
-//      - POST ROUTE for a new wireframe:
-//                      01. name
-//                      02. upload image(using Cloudinary)
-//                      03. notes
-//
-//
-//
-// VISUAL:
-//      - renders a form for a new wireframe
-//                               01. name
-//                               02. upload
-//                               03. notes
-//                               04. new button - (window.location.reload())
-
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_WIREFRAME } from "../utils/mutations";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
 import { scale } from "@cloudinary/url-gen/actions/resize";
+import '../assets/css/AddWireframe.css'
 
 // ---------------------------------------- Cloudinary ---------------------------------------- //
 const cloudinary = new Cloudinary({
@@ -98,7 +80,7 @@ const AddWireframe = () => {
   };
 
   return (
-    <div className="add-wireframe">
+    <div className="wireframe-container">
       <h2>WIREFRAME</h2>
       <form onSubmit={handleFormSubmit}>
         {/* page */}

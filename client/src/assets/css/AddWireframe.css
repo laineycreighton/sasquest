@@ -36,3 +36,8 @@
     --tagline: tagline;
     --body: body;
 }
+
+/*----- FORM -----*/
+.wireframe-container {
+    outline: red dashed 3px;
+}

@@ -7,12 +7,8 @@ export default function SignUp() {
   return (
     <div>
       <AnimatedCursor /> {/* Add AnimatedCursor here */}
-      <div>
-        <LoginHeader />
-      </div>
-      <div>
-        <SignUpForm />
-      </div>
+      <LoginHeader />
+      <SignUpForm />
     </div>
   );
 }

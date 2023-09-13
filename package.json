@@ -22,6 +22,7 @@
     "apollo-server": "^3.12.1",
     "cloudinary": "^1.40.0",
     "env-cmd": "^10.1.0",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "react-animated-cursor": "^2.8.1"
   }
 }
