@@ -61,9 +61,7 @@ const Login = () => {
     });
   };
 
-  return !Auth.loggedIn() ? (
-    <Navigate to="/login" />
-  ) : (
+  return (
     <div className="login-form-container">
       <form className="login-form" onSubmit={handleFormSubmit} noValidate>
         {/* email */}
