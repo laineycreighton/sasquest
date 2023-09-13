@@ -37,12 +37,12 @@ export const GET_ALL_PROJECTS = gql`
     projects {
       _id
       title
-      info {
-        _id
-        repoURL
-        deployedURL
-        description
-      }
+
+      _id
+      repoURL
+      deployedURL
+      description
+
       timeline {
         _id
         date

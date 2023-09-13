@@ -4,10 +4,13 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, args, context) => {
+      console.log("user");
       if (context.user) {
+        console.log(context.user);
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
           .populate("projects");
+        console.log(userData);
 
         return userData;
       }
