@@ -169,6 +169,11 @@ const DisplayProjectInfo = ({ projectID }) => {
       {formSubmitted && (
         <div className="success-message">Project info edit!</div>
       )}
+
+      {/* TODO: ADD DELETE PROJECT FUNCTIONALITY */}
+      <div>
+        <button>DELETE PROJECT</button>
+      </div>
     </div>
   );
 };
