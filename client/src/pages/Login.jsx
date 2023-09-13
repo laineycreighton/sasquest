@@ -1,12 +1,14 @@
+import React from "react";
 import LoginHeader from "../components/LoginHeader";
 import LoginForm from "../components/LoginForm";
+import AnimatedCursor from "react-animated-cursor"; // Import AnimatedCursor
 
-// Pass users array to the List component as a prop
 export default function Login() {
   return (
     <div>
-        <LoginHeader />
-        <LoginForm />
+      <AnimatedCursor /> {/* Add AnimatedCursor here */}
+      <LoginHeader />
+      <LoginForm />
     </div>
   );
 }
