@@ -9,22 +9,23 @@ import { Navigate } from "react-router-dom";
 // Pass users array to the List component as a prop
 export default function EditInfo() {
 
-    const { projectId } = useParams();
-    const { data } = useQuery(GET_PROJECT_BY_ID, {
-      variables: { projectId: projectId },
-    });
-  
-    const project = data?.project || {};
-    console.log(data);
+  const { projectId } = useParams();
+  const { data } = useQuery(GET_PROJECT_BY_ID, {
+    variables: { projectId: projectId },
+  });
 
-    return  !Auth.loggedIn() ? (
+  const project = data?.project || {};
+  console.log(data);
+
+  return !Auth.loggedIn() ? (
     <Navigate to="/login" />
   ) : (
-        // Wrap the entire component with AnimatedCursor
-        <AnimatedCursor>
-                <ProjectNavBar />
-                <ProjectHeader />
-                <UpdateInfo />
-        </AnimatedCursor>
-    );
+    // Wrap the entire component with AnimatedCursor
+    <div>
+      <AnimatedCursor /> {/* Add AnimatedCursor here */}
+      <ProjectNavBar />
+      <ProjectHeader />
+      <UpdateInfo />
+    </div>
+  );
 }
