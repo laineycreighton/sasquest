@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 //--------------- ONE User ---------------//
 export const QUERY_USER = gql`
-  query user {
-    user {
+  query user($userId: ID!) {
+    user(userId: $userId) {
       _id
       email
       firstName
@@ -30,6 +30,8 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+
 
 export const QUERY_WIREFRAME = gql`
   query wireframe {
