@@ -1,6 +1,6 @@
 import ProjectNavBar from "../components/ProjectNavBar";
 import ProjectHeader from "../components/ProjectHeader";
-import DisplayProjectInfo from "../components/DisplayProjectInfo";
+import DisplayInfo from "../components/DisplayInfo";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
@@ -18,7 +18,7 @@ const ViewInfo = () => {
     <div>
       <ProjectNavBar />
       {/* <ProjectHeader /> */}
-      <DisplayProjectInfo project={project} />
+      <DisplayInfo project={project} />
     </div>
   );
 };
