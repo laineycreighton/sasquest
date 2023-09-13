@@ -1,157 +1,48 @@
-import { gql } from "@apollo/client";
+const { Schema, model } = require("mongoose");
+const timelineSchema = require("./TimeLines");
+const wireframeSchema = require("./WireFrame");
 
-//--------------- ONE User ---------------//
-export const QUERY_USER = gql`
-  query GetUserById($userId: ID!) {
-    user(userId: $userId) {
-      _id
-      email
-      firstName
-      lastName
-      projects {
-        _id
-        deployedURL
-        description
-        repoURL
-        timelines {
-          _id
-          date
-          goal
-        }
-        title
-        wireframes {
-          id
-          imageUrl
-          note
-          projectId
-          title
-        }
-      }
-    }
-  }
-`;
+const projectSchema = new Schema({
+  title: {
+    type: String,
+    required: "Please give your project a title!",
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
+  repoURL: {
+    type: String,
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
+  deployedURL: {
+    type: String,
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
+  description: {
+    type: String,
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
 
-//--------------- ALL Projects for One User ---------------//
-export const GET_ALL_PROJECTS_FOR_USER = gql`
-  query GetProjectsByUserId($userId: ID!) {
-    user(userId: $userId) {
-      _id
-      projects {
-        _id
-        title
-        info {
-          _id
-          repoURL
-          deployedURL
-          description
-        }
-        timeline {
-          _id
-          date
-          goal
-        }
-        wireframes {
-          _id
-          title
-          imageURL
-          note
-        }
-      }
-    }
-  }
-`;
+  timelines: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Timeline",
+    },
+  ],
+  wireframes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Wireframe",
+    },
+  ],
+});
 
-//----------------- ALL TIMELINES -----------------//
-export const QUERY_WIREFRAME = gql`
-  query wireframe {
-    wireframes {
-      _id
-      projectId
-      title
-      imageURL
-      note
-    }
-  }
-`;
+const Project = model("Project", projectSchema);
 
-//--------------- ALL Projects ---------------//
-export const GET_ALL_PROJECTS = gql`
-  query projects {
-    projects {
-      _id
-      title
-      info {
-        _id
-        repoURL
-        deployedURL
-        description
-      }
-      timeline {
-        _id
-        date
-        goal
-      }
-      wireframes {
-        _id
-        title
-        imageURL
-        note
-      }
-    }
-  }
-`;
-
-//--------------- ONE Project ---------------//
-export const GET_PROJECT_BY_ID = gql`
-  query GetProjectById($projectId: ID!) {
-    project(projectId: $projectId) {
-      _id
-      title
-      repoURL
-      deployedURL
-      description
-      timelines {
-        _id
-        date
-        goal
-      }
-      wireframes {
-        id
-        projectId
-        title
-        imageUrl
-        note
-      }
-    }
-  }
-`;
-
-//--------------- ALL Timelines for One Project ---------------//
-export const GET_TIMELINES_FOR_PROJECT = gql`
-  query GetTimelinesByProjectId($projectId: ID!) {
-    project(projectId: $projectId) {
-      _id
-      timelines {
-        _id
-        date
-        goal
-      }
-    }
-  }
-`;
-
-//--------------- ALL Wireframes for One Project ---------------//
-export const GET_WIREFRAMES_FOR_PROJECT = gql`
-  query GetWireframesByProjectId($projectId: ID!) {
-    project(projectId: $projectId) {
-      _id
-      wireframes {
-        id
-        projectId
-        title
-        imageUrl
-        note
-      }
-    }
-  }
-`;
+module.exports = Project;
