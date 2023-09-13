@@ -2,15 +2,37 @@ import { gql } from "@apollo/client";
 
 //--------------- ONE User ---------------//
 export const QUERY_USER = gql`
-query user($email: String!) {
-  user(email: $email) {
-    _id
-    email
+  query user {
+    user {
+      _id
+      email
+      firstName
+      lastName
+      projects {
+        _id
+        info {
+          _id
+          deployedURL
+          description
+          repoURL
+        }
+        timelines {
+          _id
+          date
+          goal
+        }
+        title
+        wireframes {
+          id
+          imageUrl
+          note
+          projectId
+          title
+        }
+      }
+    }
   }
-}
 `;
-
-
 
 export const QUERY_WIREFRAME = gql`
   query wireframe {
@@ -26,7 +48,7 @@ export const QUERY_WIREFRAME = gql`
 
 //--------------- ALL Projects ---------------//
 export const GET_ALL_PROJECTS = gql`
-  query getAllProjects {
+  query projects {
     projects {
       _id
       title
@@ -53,25 +75,23 @@ export const GET_ALL_PROJECTS = gql`
 
 //--------------- ONE Project ---------------//
 export const GET_PROJECT_BY_ID = gql`
-  query getProjectById($projectId: ID!) {
+  query project($projectId: ID!) {
     project(projectId: $projectId) {
       _id
       title
-      info {
-        _id
-        repoURL
-        deployedURL
-        description
-      }
-      timeline {
+      repoURL
+      deployedURL
+      description
+      timelines {
         _id
         date
         goal
       }
-      wireframe {
-        _id
+      wireframes {
+        id
+        projectId
         title
-        imageURL
+        imageUrl
         note
       }
     }

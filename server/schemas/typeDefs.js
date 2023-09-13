@@ -17,17 +17,13 @@ type Auth {
 type Project {
   _id: ID!
   title: String
-  info: [Info]
+  repoURL: String
+  deployedURL: String
+  description: String
   timelines: [Timeline]
   wireframes: [Wireframe]
 }
 
-type Info {
-  _id: ID!
-  repoURL: String
-  deployedURL: String
-  description: String
-}
 
 type Timeline {
   _id: ID!
@@ -37,7 +33,7 @@ type Timeline {
 
 type Wireframe {
   id: ID!
-  projectId: ID
+  projectId: String
   title: String
   imageUrl: String
   note: String
@@ -59,9 +55,9 @@ type Wireframe {
     login(email: String!, password: String!): Auth
     updateUserPassword(email: String!, currentPassword: String!, newPassword: String!): User
 
-    createProject(title: String!): Project
-    updateProject(userId: ID!, title: String!): Project
-    deleteProject(userId: ID!): Project
+    createProject(title: String!): User
+    updateProject(projectId: ID!, title: String!): Project
+    deleteProject(projectId: ID!): User
 
     createWireframe(projectId: ID!, title: String!, imageUrl: String, note: String): Project
     updateWireframe(projectId: ID!, title: String!, imageUrl: String, note: String): Project

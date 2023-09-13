@@ -26,7 +26,9 @@ const resolvers = {
     //----- Get One Project -----//
     project: async (parent, { projectId }, context) => {
       if (context.user) {
-        const project = await Project.findOne({ _id: projectId });
+        const project = await Project.findOne({ _id: projectId })
+          .populate("timelines")
+          .populate("wireframes");
         if (!project) {
           throw console.log("No project found with this id!");
         }

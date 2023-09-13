@@ -1,14 +1,10 @@
-const { Schema, Types } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 
 const timelineSchema = new Schema({
-  timeLineId: {
-    type: Schema.Types.ObjectId,
-    default: () => new Types.ObjectId(),
-  },
   date: {
     type: Date,
     required: true,
-    get: (date) => date.toLocaleDateString()
+    get: (date) => date.toLocaleDateString(),
   },
   goal: {
     type: String,
@@ -18,4 +14,6 @@ const timelineSchema = new Schema({
   },
 });
 
-module.exports = timelineSchema;
+const Timeline = model("Timeline", timelineSchema);
+
+module.exports = Timeline;
