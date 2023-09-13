@@ -34,7 +34,8 @@ class Auth {
   // logs out user by destroying jwt token from local storage
   logout() {
     localStorage.removeItem("id_token");
-    window.location.reload();
+    window.location.assign("/");
+    console.log("logging out");
   }
 }
 

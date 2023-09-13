@@ -12,11 +12,12 @@ const ViewInfo = () => {
   });
 
   const project = data?.project || {};
+  console.log(data);
 
   return (
     <div>
       <ProjectNavBar />
-      <ProjectHeader />
+      {/* <ProjectHeader /> */}
       <DisplayProjectInfo project={project} />
     </div>
   );

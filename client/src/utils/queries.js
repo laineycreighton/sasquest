@@ -10,12 +10,9 @@ export const QUERY_USER = gql`
       lastName
       projects {
         _id
-        info {
-          _id
-          deployedURL
-          description
-          repoURL
-        }
+        deployedURL
+        description
+        repoURL
         timelines {
           _id
           date

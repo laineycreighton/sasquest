@@ -29,6 +29,7 @@ const resolvers = {
         const project = await Project.findOne({ _id: projectId })
           .populate("timelines")
           .populate("wireframes");
+
         if (!project) {
           throw console.log("No project found with this id!");
         }
@@ -125,7 +126,7 @@ const resolvers = {
     createProject: async (parent, args, context) => {
       if (context.user) {
         const newProject = await Project.create(args);
-        console.log(newProject);
+        // console.log(newProject);
 
         if (!newProject) {
           console.log("Project not found");
