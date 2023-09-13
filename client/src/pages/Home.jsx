@@ -6,8 +6,8 @@ const Home = () => {
     return (
         <div>
             <HomeHeader/>
-            {/* <ProjectDashboard /> */}
             <NewProject />
+            <ProjectDashboard />
         </div>
     )
 }
