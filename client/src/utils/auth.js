@@ -29,12 +29,12 @@ class Auth {
   // logs in a user by adding the jwt idToken to local storage
   login(idToken) {
     localStorage.setItem("id_token", idToken);
-    window.location.assign("/");
+    // window.location.assign("/");
   }
   // logs out user by destroying jwt token from local storage
   logout() {
     localStorage.removeItem("id_token");
-    window.location.assign("/");
+    // window.location.assign("/");
     console.log("logging out");
   }
 }
