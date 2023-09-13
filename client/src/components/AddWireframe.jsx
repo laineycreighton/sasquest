@@ -22,13 +22,13 @@ import { useMutation } from "@apollo/client";
 import { CREATE_WIREFRAME } from "../utils/mutations";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
-import { scale } from "@cloudinary/url-gen/actions";
+import { scale } from "@cloudinary/url-gen/actions/resize";
 
 // ---------------------------------------- Cloudinary ---------------------------------------- //
 const cloudinary = new Cloudinary({
   cloud: {
-    cloudName: cloudinaryCloudName,
-    api_key: cloudinaryApiKey,
+    cloudName: "dfecvj7s4",
+    api_key: "532141383337385",
   },
 });
 
@@ -52,7 +52,7 @@ const AddWireframe = () => {
   const handleImageUpload = async () => {
     const widget = cloudinary.createUploadWidget(
       {
-        cloudName: cloudinaryCloudName,
+        cloudName: "dfecvj7s4",
         uploadPreset: "SASQUEST",
       },
       (error, result) => {
