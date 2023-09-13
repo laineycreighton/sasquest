@@ -1,7 +1,7 @@
+import React from "react";
 import ProjectNavBar from '../components/ProjectNavBar.jsx';
-import ProjectHeader from '../components/ProjectHeader.jsx';
 import AddTimeline from '../components/AddTimeline.jsx';
-// import ViewTimeline from '../components/ViewTimeline.jsx';
+import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
 
 import { GET_ALL_PROJECTS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
@@ -12,12 +12,15 @@ const Timeline = () => {
     console.log(data);
   }
   return (
-    <div>
-      <ProjectNavBar />
-      {/* <ProjectHeader /> */}
-      <AddTimeline />
-      {/* <ViewTimeline /> */}
-    </div>
+    // Wrap the entire component with AnimatedCursor
+    <AnimatedCursor>
+      <div>
+        <ProjectNavBar />
+        {/* <ProjectHeader /> */}
+        <AddTimeline />
+        {/* <ViewTimeline /> */}
+      </div>
+    </AnimatedCursor>
   );
 };
 
