@@ -31,7 +31,35 @@ export const QUERY_USER = gql`
   }
 `;
 
-
+//--------------- ALL Projects for One User ---------------//
+export const GET_ALL_PROJECTS_FOR_USER = gql`
+  query GetProjectsByUserId($userId: ID!) {
+    user(userId: $userId) {
+      _id
+      projects {
+        _id
+        title
+        info {
+          _id
+          repoURL
+          deployedURL
+          description
+        }
+        timeline {
+          _id
+          date
+          goal
+        }
+        wireframe {
+          _id
+          title
+          imageURL
+          note
+        }
+      }
+    }
+  }
+`;
 
 export const QUERY_WIREFRAME = gql`
   query wireframe {
