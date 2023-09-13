@@ -1,6 +1,6 @@
 import React from "react";
 import ProjectNavBar from '../components/ProjectNavBar';
-// import ProjectHeader from '../components/ProjectHeader';
+import ProjectHeader from '../components/ProjectHeader';
 import UpdateProjectInfo from '../components/UpdateProjectInfo';
 import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
 
