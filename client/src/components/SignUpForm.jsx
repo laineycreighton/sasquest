@@ -4,7 +4,6 @@ import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 import "../assets/css/SignUpForm.css";
-import { Navigate } from "react-router-dom";
 
 const SignUpForm = () => {
   // set initial form state
@@ -69,9 +68,7 @@ const SignUpForm = () => {
     });
   };
 
-  return !Auth.loggedIn() ? (
-    <Navigate to="/login" />
-  ) : (
+  return (
     <div className="signup-form-container">
       <form className="signup-form" onSubmit={handleFormSubmit} noValidate>
         <div className="signup-inputs">
@@ -145,7 +142,7 @@ const SignUpForm = () => {
       {showAlert && <div className="alert">Something went wrong!</div>}
       <div>
         {/* link to login page */}
-        <Link to="/" className="login-link">
+        <Link to="/login" className="login-link">
           login
         </Link>
       </div>

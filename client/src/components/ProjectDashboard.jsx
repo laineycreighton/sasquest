@@ -3,6 +3,7 @@
 //----- Queries -----//
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries.js";
+import { Navigate } from "react-router-dom";
 
 //----- Icons -----//
 import backpack from "../assets/images/backpack.png";
