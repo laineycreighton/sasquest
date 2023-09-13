@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom'
-import sasquatch from '../assets/images/sasquatch.png'
-import '../assets/css/About.css'
+import React from "react";
+import { Link } from 'react-router-dom';
+import sasquatch from '../assets/images/sasquatch.png';
+import '../assets/css/About.css';
+import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
 
 const About = () => {
   return (
@@ -27,6 +29,7 @@ const About = () => {
           </section>
         </div>
       </div >
+
       {/* Article */}
       <article className="about-article">
         <div className='align-article'>
@@ -53,6 +56,8 @@ const About = () => {
           </div>
         </div>
       </article>
+
+      <AnimatedCursor />
     </div>
   );
 };

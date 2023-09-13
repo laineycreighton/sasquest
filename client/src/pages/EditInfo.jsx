@@ -1,9 +1,9 @@
+import React from "react";
 import ProjectNavBar from '../components/ProjectNavBar';
-// import ProjectHeader from '../components/ProjectHeader';
-import UpdateInfo from '../components/UpdateInfo';
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_PROJECT_BY_ID } from "../utils/queries";
+import ProjectHeader from '../components/ProjectHeader';
+import UpdateProjectInfo from '../components/UpdateProjectInfo';
+import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
+
 
 // Pass users array to the List component as a prop
 export default function EditInfo() {
@@ -17,10 +17,11 @@ export default function EditInfo() {
     console.log(data);
 
     return (
-        <div>
-            <ProjectNavBar />
-            <ProjectHeader />
-            <UpdateInfo project={project} />
-        </div>
+        // Wrap the entire component with AnimatedCursor
+        <AnimatedCursor>
+                <ProjectNavBar />
+                <ProjectHeader />
+                <UpdateProjectInfo />
+        </AnimatedCursor>
     );
 }

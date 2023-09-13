@@ -1,9 +1,11 @@
+import React from "react";
 import ProjectNavBar from "../components/ProjectNavBar";
 import ProjectHeader from "../components/ProjectHeader";
 import DisplayInfo from "../components/DisplayInfo";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
+import AnimatedCursor from "react-animated-cursor"; // Import AnimatedCursor
 
 const ViewInfo = () => {
   const { projectId } = useParams();
@@ -16,6 +18,7 @@ const ViewInfo = () => {
 
   return (
     <div>
+      <AnimatedCursor /> {/* Add AnimatedCursor here */}
       <ProjectNavBar />
       {/* <ProjectHeader /> */}
       <DisplayInfo project={project} />
