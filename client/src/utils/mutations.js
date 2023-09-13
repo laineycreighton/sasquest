@@ -312,15 +312,15 @@ export const ADD_TIMELINE = gql`
 `;
 
 // Update Timeline
-// export const UPDATE_TIMELINE = gql`
-//   mutation updateTimeline($date: Date!, $goal: String!) {
-//     updateTimeline(date: $date, goal: $goal) {
-//       _id
-//       date
-//       goal
-//     }
-//   }
-// `;
+export const UPDATE_TIMELINE = gql`
+  mutation updateTimeline($date: Date!, $goal: String!) {
+    updateTimeline(date: $date, goal: $goal) {
+      _id
+      date
+      goal
+    }
+  }
+`;
 
 // Delete Wireframe
 export const DELETE_TIMELINE = gql`
