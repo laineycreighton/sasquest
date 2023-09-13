@@ -32,7 +32,7 @@ type Timeline {
 }
 
 type Wireframe {
-  _id: ID!
+  id: ID!
   projectId: String
   title: String
   imageUrl: String
@@ -42,12 +42,10 @@ type Wireframe {
   type Query {
     users: [User]
     user: User
-    
-
     projects: [Project]!
     project(projectId: ID!): Project
-
     timelines: [Timeline]!
+   
   }
 
   type Mutation {
