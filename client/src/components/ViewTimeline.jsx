@@ -1,25 +1,10 @@
-// BELONGS TO:
-//      - Timeline.jsx
-//
-//
-// FUNCTIONALITY:
-//      - GET all projects timeline ROUTE
-//      - white function to set status for each timeline goal based on date
-//
-// VISUAL:
-//      - renders sections of projects timeline
-//                               01. date
-//                               02. goal
-//                               03. status // NEED TO ADD STATUS!!
-//
-
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { GET_TIMELINE_BY_ID } from "../utils/queries";
 import { UPDATE_TIMELINE } from "../utils/mutations";
 import { useParams } from "react-router-dom";
-import { set } from "mongoose";
+// import { set } from "mongoose";
 
 const ViewTimeline = ({ date, goal }) => {
     const { id } = useParams();
@@ -80,7 +65,7 @@ const ViewTimeline = ({ date, goal }) => {
                         timelineID: id,
                         timeline: { ...timelineFormData },
                     },
-                }):
+                });
                 if (data) {
                     setFormSubmitted(true);
                 }

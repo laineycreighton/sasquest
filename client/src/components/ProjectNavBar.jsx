@@ -51,9 +51,9 @@ export default function ProjectNavBar() {
         <p>Wireframe</p>
       </div>
       {/*----- Log Out -----*/}
-      <button type="button" className="logout" onClick={() => Auth.logout()}>
-        logout
-      </button>
+        <button type="button" className="nav-logout" onClick={() => Auth.logout()}>
+          logout
+        </button>
     </nav>
   );
 }

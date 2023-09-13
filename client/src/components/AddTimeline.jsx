@@ -1,45 +1,62 @@
-// BELONGS TO:
-//      - Timeline.jsx
-//
-//
-// FUNCTIONALITY:
-//      - POST ROUTE for a new timeline:
-//                      01. Date
-//                      02. Goal
-//
-//
-// VISUAL:
-//      - renders a form for a new timeline goal
-//                               01. date
-//                               02. goal
-//                               03. new button - (window.location.reload())
+import "../assets/css/AddTimeline.css";
+import { useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_TIMELINE } from "../utils/mutations.js";
 
-const NewTimeline = () => {
-    const [timelineDate, setTimelineDate] = useState('')
-    const [timelineGoal, setTimelineGoal] = useState('')
+const AddTimeline = () => {
+    const [formState, setFormState] = useState({
+        date: '',
+        goal: '',
+    });
+    const [createTimeline, { error }] = useMutation(ADD_TIMELINE);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('/api/timeline', { timelineDate })
-            .then(() => {
-                window.location.reload();
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
+        try {
+            const { data } = await createTimeline({
+                variables: { ...formState },
             });
-        axios.post('/api/timeline', { timelineGoal})
-        .then(() => {
-                window.location.reload();
-        });    
+
+            setFormState({
+                date: '',
+                goal: ''
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({ ...formState, [name]: value });
+    };
+
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="timelineDate">Date</label>
-                <input type="Date" id="date" on onChange={(e) => setTimelineDate(e.target.value)} />
-                <label htmlFor="timelineGoal">Goal</label>
-                <input type="text" id="goal" on onChange={(e) => setTimelineGoal(e.target.value)} />
-                <input type="submit" value="New" />
-            </form>
+        <div className="timeline-dashboard">
+            <div className="timeline-container">
+                <div className="timeline-header">
+                    <p>TIMELINE</p>
+                </div>
+                <form className="timeline-form" onSubmit={handleFormSubmit}>
+                    <div className="timeline-date">
+                        <label htmlFor="timelineDate">Date</label>
+                        <input type="Date" id="date" on onChange={handleChange} />
+                    </div>
+                    <div className="timeline-goal">
+                        <label htmlFor="timelineGoal">Goal</label>
+                        <input type="text" id="goal" on onChange={handleChange} />
+                    </div>
+                    <div className="timeline-button">
+                        <button type="submit" value="New">
+                            Add
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
 
-export default NewTimeline;
+export default AddTimeline;
