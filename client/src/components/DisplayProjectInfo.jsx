@@ -9,7 +9,7 @@ import { UPDATE_PROJECT } from "../utils/mutations";
 const DisplayProjectInfo = (props) => {
   // get projectID from useParams hook
   // const { id } = useParams();
-
+  console.log(props);
   // useState hook to set project state
   // this will be used to populate the data
   // const [project, setProject] = useState({});
@@ -101,7 +101,9 @@ const DisplayProjectInfo = (props) => {
   return (
     // project info container
     <div className="project-info">
-      <h2>{props.title}</h2>
+      <div>
+        <h2>{props.project.title}</h2>
+      </div>
       <form onSubmit={handleFormSubmit}>
         <h4>update Project Form</h4>
         {/* repo URL */}

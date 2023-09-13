@@ -39,7 +39,15 @@ const NewProject = () => {
         <div className="adventures-placeholder">
           <p>your adventures</p>
         </div>
-        <div className="display-placeholder">
+        <div
+          className="display-placeholder"
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            paddingLeft: "10%",
+            flexDirection: "column",
+          }}
+        >
           {user.projects?.map((project) => (
             <a href={`/projects/${project._id}/info`} key={project._id}>
               {" "}
