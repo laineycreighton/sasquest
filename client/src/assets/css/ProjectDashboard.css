@@ -38,6 +38,116 @@
 }
 
 /*----- MAIN -----*/
+.dashboard {
+    /* outline: aquamarine dashed 3px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .projects-container {
-    outline: red dashed 3px;
+    /* outline: red dashed 3px; */
+    border: var(--accent) solid 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 500px;
+    margin-top: 20px;
+}
+
+.dashboard-header {
+    /* outline: blue dashed 3px; */
+    border-right: var(--accent) solid 3px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 500px;
+    margin: 0;
+}
+
+h3 {
+    /* outline: aqua dashed 3px; */
+    font-family: var(--subheading);
+    font-size: 40px;
+    color: var(--lightbrown);
+    text-align: center;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+}
+
+/*----- NO PROJECTS -----*/
+.no-projects {
+    /* outline: green dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 500px;
+}
+
+.uncharted {
+    /* outline: orange dashed 3px; */
+    font-family: var(--subheading);
+    font-size: 50px;
+    background-color: black;
+    color: #FF6A17;
+    border: #FF6A17 solid 5px;
+    padding: 5px 20px 5px 20px;
+}
+
+.start {
+    /* outline: orange dashed 3px; */
+    font-family: var(--subheading);
+    font-size: 35px;
+    color: #FF6A17;
+}
+
+/*----- DISPLAY PROJECTS -----*/
+.display-projects {
+    /* outline: purple dashed 3px; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 90%;
+    height: 500px;
+}
+
+.each-project {
+    /* outline: blue dashed 3px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    margin: 25px;
+    overflow: scroll;
+}
+
+.each-project a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--subheading);
+    font-size: 15px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.each-project a:hover {
+    border: var(--accent) solid 3px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.each-project-title {
+    margin: 0;
+}
+
+.project-icon img{
+    width: 75px;
 }

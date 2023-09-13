@@ -62,17 +62,17 @@
     top: 0;
     right: 0;
     height: auto;
-    z-index: 10;
+    padding: 30px;
+    overflow: hidden;
 }
 
 .home-mascot img {
     /* outline: blue dashed 3px; */
-    transform: rotate(-25deg);
+    transform: rotate(-20deg);
     margin-top: 200px;
-    margin-right: -175px;
+    margin-right: -195px;
     width: 300px;
     height: auto;
-    overflow: hidden;
 }
 
 /*----- ABOUT -----*/
@@ -86,8 +86,10 @@
 
 .logout {
     font-family: var(--subheading);
-    color: var(--lightgreen);
     font-size: 25px;
+    color: var(--lightgreen);
+    background-color: #ffffff00;
+    border: none;
     margin: 25px 50px 0 0;
     text-align: left;
     text-decoration: none;
