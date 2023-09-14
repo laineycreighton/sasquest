@@ -24,7 +24,7 @@ export default function EditInfo() {
     <div>
       <AnimatedCursor /> {/* Add AnimatedCursor here */}
       <ProjectNavBar />
-      <ProjectHeader />
+      {/* <ProjectHeader /> */}
       <UpdateInfo />
     </div>
   );
