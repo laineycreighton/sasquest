@@ -6,9 +6,9 @@ import ProjectNavBar from "../components/ProjectNavBar";
 const Home = () => {
   return (
     <div>
-      <ProjectNavBar />
+      {/* <ProjectNavBar /> */}
       <HomeHeader />
-      {/* <ProjectDashboard /> */}
+      <ProjectDashboard />
       <NewProject />
     </div>
   );
