@@ -4,7 +4,6 @@ import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 import "../assets/css/LoginForm.css";
-import { Navigate } from "react-router-dom";
 
 const Login = () => {
   // set initial form state
@@ -49,9 +48,9 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
-      // window.location.assign("/home");
-    } catch (err) {
-      console.error(err);
+      window.location.assign("/");
+    } catch (error) {
+      console.error(error);
     }
 
     // clear form values
@@ -74,7 +73,7 @@ const Login = () => {
             onChange={handleInputChange}
             required
           />
-          {validated && !userFormData.firstName && (
+          {validated && !userFormData.email && (
             <div className="alert">Email address is required!</div>
           )}
         </div>
@@ -88,7 +87,7 @@ const Login = () => {
             onChange={handleInputChange}
             required
           />
-          {validated && !userFormData.firstName && (
+          {validated && !userFormData.password && (
             <div className="alert">Password is required!</div>
           )}
         </div>

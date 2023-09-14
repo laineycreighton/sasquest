@@ -16,17 +16,18 @@ module.exports = {
     if (req.headers.authorization) {
       token = token.split(" ").pop().trim();
     }
-    console.log("authmiddleware");
+    console.log(token);
 
     if (!token) {
-      return req;
+      return;
     }
 
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-    } catch {
-      console.log("Invalid token");
+    } catch (error) {
+      console.log("Invalid token: ", error);
+      throw new Error("Invalid token")
     }
 
     // return req;
@@ -34,6 +35,6 @@ module.exports = {
   signToken: function ({ email, _id }) {
     const payload = { email, _id };
 
-    // return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
