@@ -1,4 +1,3 @@
-import React from "react";
 import ProjectNavBar from "../components/ProjectNavBar";
 import ProjectHeader from "../components/ProjectHeader";
 import DisplayInfo from "../components/DisplayInfo";
@@ -14,12 +13,12 @@ const ViewInfo = () => {
   });
 
   const project = data?.project || {};
-  console.log(data);
+  // console.log(selected);
 
   return (
     <div>
       <AnimatedCursor /> {/* Add AnimatedCursor here */}
-      <ProjectNavBar />
+      <ProjectNavBar projectId={projectId} />
       {/* <ProjectHeader /> */}
       <DisplayInfo project={project} />
     </div>

@@ -1,6 +1,5 @@
-import React from "react";
 import HomeHeader from "../components/HomeHeader";
-import ProjectDashboard from "../components/ProjectDashboard";
+
 import NewProject from "../components/NewProject";
 
 
@@ -9,7 +8,6 @@ const Home = () => {
     <div>
       <HomeHeader />
       <NewProject />
-      <ProjectDashboard />
     </div>
   );
 };

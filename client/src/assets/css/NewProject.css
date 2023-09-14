@@ -1,87 +1,87 @@
 /*----- COLORS -----*/
 :root {
-    --dark-green: #19270D;
-    --bright-orange: #FF9902;
-    --dark-orange: #9D4E00;
-    --lightgreen: #3B8C54;
-    --accent: #818C3B;
-    --lightbrown: #72601B;
-    --white: #EEEEEE;
+  --dark-green: #19270d;
+  --bright-orange: #ff9902;
+  --dark-orange: #9d4e00;
+  --lightgreen: #3b8c54;
+  --accent: #818c3b;
+  --lightbrown: #72601b;
+  --white: #eeeeee;
 }
 
 /*----- FONTS -----*/
 @font-face {
-    font-family: heading;
-    src: url('../fonts/BungeeInline-Regular.ttf');
+  font-family: heading;
+  src: url("../fonts/BungeeInline-Regular.ttf");
 }
 
 @font-face {
-    font-family: subheading;
-    src: url('../fonts/Bungee-Regular.ttf');
+  font-family: subheading;
+  src: url("../fonts/Bungee-Regular.ttf");
 }
 
 @font-face {
-    font-family: tagline;
-    src: url('../fonts/Smooch-Regular.ttf');
+  font-family: tagline;
+  src: url("../fonts/Smooch-Regular.ttf");
 }
 
 @font-face {
-    font-family: body;
-    src: url('../fonts/Cabin.ttf');
+  font-family: body;
+  src: url("../fonts/Cabin.ttf");
 }
 
 :root {
-    --heading: heading;
-    --subheading: subheading;
-    --tagline: tagline;
-    --body: body;
+  --heading: heading;
+  --subheading: subheading;
+  --tagline: tagline;
+  --body: body;
 }
 
 /*----- FORM -----*/
 .new-project-container {
-    /* outline: blue dashed 3px; */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  /* outline: blue dashed 3px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .new-project {
-    /* outline: red dashed 3px; */
-    width: 50%;
+  /* outline: red dashed 3px; */
+  width: 50%;
 }
 
 /*----- LABEL -----*/
 .new-project label {
-    /* outline: yellow dashed 3px; */
-    font-family: var(--body);
-    font-size: 25px;
-    color: var(--lightbrown);
-    margin-right: 15px;
+  /* outline: yellow dashed 3px; */
+  font-family: var(--body);
+  font-size: 25px;
+  color: var(--lightbrown);
+  margin-right: 15px;
 }
 
 /*----- INPUT -----*/
 .new-project input {
-    /* outline: orange dashed 3px; */
-    font-family: var(--subheading);
-    font-size: 20px;
-    background-color: #3A4530;
-    color: var(--dark-orange);
-    border: #595959 solid 1px;
-    border-radius: 5px;
-    line-height: 1.25;
-    margin-right: 15px;
-    width: 50%;
+  /* outline: orange dashed 3px; */
+  font-family: var(--subheading);
+  font-size: 20px;
+  background-color: #3a4530;
+  color: var(--dark-orange);
+  border: #595959 solid 1px;
+  border-radius: 5px;
+  line-height: 1.25;
+  margin-right: 15px;
+  width: 50%;
 }
 
 /*----- BUTTON -----*/
 .new-project button {
-    /* outline: red dashed 3px; */
-    font-family: var(--subheading);
-    font-size: 20px;
-    color: var(--dark-orange);
-    background-color: var(--dark-green);
-    border: var(--dark-orange) solid 3px;
-    border-radius: 5px;
+  /* outline: red dashed 3px; */
+  font-family: var(--subheading);
+  font-size: 20px;
+  color: var(--dark-orange);
+  background-color: var(--dark-green);
+  border: var(--dark-orange) solid 3px;
+  border-radius: 5px;
 }

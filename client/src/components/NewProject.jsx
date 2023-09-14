@@ -3,7 +3,9 @@ import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_PROJECT } from "../utils/mutations.js";
 import { QUERY_USER } from "../utils/queries.js";
+import ProjectDashboard from "./ProjectDashboard";
 // import gql from 'graphql-tag'
+import Auth from "../utils/auth";
 
 const NewProject = () => {
   const [formState, setFormState] = useState({ title: "" });
@@ -13,10 +15,17 @@ const NewProject = () => {
 
   const user = data?.user || {};
 
-  console.log(user);
+  console.log(data);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     console.log(formState);
 
     const { data } = await createProject({
@@ -34,15 +43,23 @@ const NewProject = () => {
   };
 
   return (
-    <div className='new-project-container'>
-      <div className='new-project'>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="title">Project Name:</label>
-          <input type="text" onChange={handleChange} name="title" value={formState.title}/>
-          <button type='submit'>Create</button>
-        </form>
+    <>
+      <div className="new-project-container">
+        <div className="new-project">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="title">Project Name:</label>
+            <input
+              type="text"
+              onChange={handleChange}
+              name="title"
+              value={formState.title}
+            />
+            <button type="submit">Create</button>
+          </form>
+        </div>
       </div>
-    </div>
+      <ProjectDashboard projects={user.projects} />
+    </>
   );
 };
 

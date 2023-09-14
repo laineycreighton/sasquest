@@ -42,12 +42,10 @@ type Wireframe {
   type Query {
     users: [User]
     user: User
-    
-
     projects: [Project]!
     project(projectId: ID!): Project
-
     timelines: [Timeline]!
+   
   }
 
   type Mutation {
