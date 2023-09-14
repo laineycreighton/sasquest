@@ -3,21 +3,23 @@ import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { GET_TIMELINE_BY_ID } from "../utils/queries";
 import { UPDATE_TIMELINE } from "../utils/mutations";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 // import { set } from "mongoose";
 
-const ViewTimeline = ({ date, goal }) => {
-    const { id } = useParams();
+const ViewTimeline = (prop) => {
+// const ViewTimeline = ({ date, goal }) => {
+    // const { id } = useParams();
+    // const [timeline, setTimeline] = useState({});
 
-    const [timeline, setTimeline] = useState({});
     const [timelineFormData, setTimelineFormData] = useState({
         date: "",
         goal: ""
     });
     // state for form validation errors
-    const [formErrors, setFormErrors] = useState({});
+    // const [formErrors, setFormErrors] = useState({});
     // state for form submission status
-    const [formSubmitted, setFormSubmitted] = useState(false);
+    // const [formSubmitted, setFormSubmitted] = useState(false);
+    
     // useQuery hook to make GraphQL query
     const { loading, data } = useQuery(GET_TIMELINE_BY_ID, {
         variables: { timelineId: id },

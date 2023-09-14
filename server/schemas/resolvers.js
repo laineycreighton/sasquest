@@ -4,28 +4,40 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     user: async (parent, args, context) => {
-      if (context.user) {
+      // if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
           .populate("projects");
 
         return userData;
-      }
+      // }
+      throw AuthenticationError;
+    },
+
+    users: async (parent, args, context) => {
+      // if (context.user) {
+        const userData = await User.find({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("projects");
+
+        return userData;
+      // }
       throw AuthenticationError;
     },
 
     //----- Get All Projects -----//
     projects: async (parent, args, context) => {
-      if (context.user) {
+      console.log(context)
+      // if (context.user) {
         const projects = await Project.find({});
         return projects;
-      }
-      throw AuthenticationError;
+      // }
+      // throw AuthenticationError;
     },
 
     //----- Get One Project -----//
     project: async (parent, { projectId }, context) => {
-      if (context.user) {
+      // if (context.user) {
         const project = await Project.findOne({ _id: projectId })
           .populate("timelines")
           .populate("wireframes");
@@ -34,19 +46,19 @@ const resolvers = {
           throw console.log("No project found with this id!");
         }
         return project;
-      }
+      // }
       throw AuthenticationError;
     },
 
     // Get All Timelines
     timelines: async (parent, args, context) => {
-      if (context.user) {
+      // if (context.user) {
         const timeline = await Project.find();
         if (!timeline) {
           throw console.log("No timeline found with this id!");
         }
         return timeline;
-      }
+      // }
       throw AuthenticationError;
     },
   },

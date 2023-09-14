@@ -5,7 +5,6 @@ import { GET_PROJECT_BY_ID } from "../utils/queries";
 import { UPDATE_PROJECT, DELETE_PROJECT } from "../utils/mutations";
 import { useParams } from "react-router-dom";
 
-
 // DisplayProjectInfo component that takes projectID as a prop
 const DisplayProjectInfo = ({ projectID }) => {
   // get projectID from useParams hook
@@ -191,7 +190,7 @@ const DisplayProjectInfo = ({ projectID }) => {
 
       {/* delete functionality */}
       <div>
-        <button onClick={handleDeleteClick}>DELETE PROJECT</button>
+        <button type="button" onClick={handleDeleteClick}>DELETE PROJECT</button>
       </div>
     </div>
   );

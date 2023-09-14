@@ -313,8 +313,8 @@ export const ADD_TIMELINE = gql`
 
 // Update Timeline
 export const UPDATE_TIMELINE = gql`
-  mutation updateTimeline($date: Date!, $goal: String!) {
-    updateTimeline(date: $date, goal: $goal) {
+  mutation updateTimeline($date: Date!, $goal: String) {
+    updateTimeline(Date: $date, goal: $goal) {
       _id
       date
       goal

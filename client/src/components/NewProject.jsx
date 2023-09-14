@@ -24,7 +24,7 @@ const NewProject = () => {
     });
 
     setFormState({ title: "" });
-    // window.location.reload();
+    window.location.reload();
   };
 
   const handleChange = (event) => {

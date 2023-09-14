@@ -1,5 +1,5 @@
 // header refers to metadata and other info that is within the HTTP request or response
-import "./App.css";
+// import "./App.css";
 import {
   ApolloClient,
   InMemoryCache,
