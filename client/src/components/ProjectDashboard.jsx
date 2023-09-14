@@ -43,7 +43,7 @@ const ProjectDashboard = () => {
       <div className="projects-container">
         {/*----- Container Header -----*/}
         <div className="dashboard-header">
-          <h3>YOUR ADVENTURES</h3>
+          <h3 className="your-adventures">YOUR ADVENTURES</h3>
         </div>
 
         {/*----- Display Projects -----*/}
