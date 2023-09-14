@@ -16,12 +16,11 @@ const resolvers = {
 
     //----- Get All Projects -----//
     projects: async (parent, args, context) => {
-      if (!context.user) {
-        throw new AuthenticationError("User not authenticated");
+      if (context.user) {
+        const projects = await Project.find({});
+        return projects;
       }
-    
-      const projects = await Project.find({});
-      return projects;
+      throw AuthenticationError;
     },
 
     //----- Get One Project -----//
@@ -184,6 +183,88 @@ const resolvers = {
       throw AuthenticationError;
     },
 
+    //----- INFO -----//
+
+    // Add Info //
+    // createInfo: async (
+    //   parent,
+    //   { projectId, repoURL, deployedURL, description },
+    //   context
+    // ) => {
+    //  if
+    //     const updatedProject = await Project.findOneAndUpdate(
+    //       { _id: projectId },
+    //       {
+    //         $addToSet: { info: { repoURL, deployedURL, description } },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     );
+
+    //     if (!updatedProject) {
+    //       throw AuthenticationError;
+    //     }
+
+    //     return updatedProject;
+    //   } catch (error) {
+    //     throw AuthenticationError;
+    //   }
+    // },
+
+    // Update Info //
+    // updateInfo: async (parent, { projectId, infoId, updatedInfo }) => {
+    //   try {
+    //     const project = await Project.findById(projectId);
+
+    //     if (!project) {
+    //       throw AuthenticationError;
+    //     }
+
+    //     const infoToUpdate = project.info.find((info) => info._id == infoId);
+
+    //     if (!infoToUpdate) {
+    //       throw AuthenticationError;
+    //     }
+
+    //     if (updatedInfo.repoURL !== undefined) {
+    //       infoToUpdate.repoURL = updatedInfo.repoURL;
+    //     }
+    //     if (updatedInfo.deployedURL !== undefined) {
+    //       infoToUpdate.deployedURL = updatedInfo.deployedURL;
+    //     }
+    //     if (updatedInfo.description !== undefined) {
+    //       infoToUpdate.description = updatedInfo.description;
+    //     }
+
+    //     await project.save();
+
+    //     return project;
+    //   } catch (error) {
+    //     throw AuthenticationError;
+    //   }
+    // },
+
+    // Remove Info //
+    // deleteInfo: async (parent, { projectId, infoId }) => {
+    //   try {
+    //     const updatedProject = await Project.findOneAndUpdate(
+    //       { _id: projectId },
+    //       { $pull: { info: { _id: infoId } } },
+    //       { new: true }
+    //     );
+
+    //     if (!updatedProject) {
+    //       throw AuthenticationError;
+    //     }
+
+    //     return updatedProject;
+    //   } catch (error) {
+    //     throw AuthenticationError;
+    //   }
+    // },
+
     //----- TIMELINE -----//
 
     // Add Timeline //
@@ -200,16 +281,16 @@ const resolvers = {
     },
 
     // Update Timeline //
-    updateTimeline: async (parent, { _id, ...args }) => {
-      try {
-        const timeline = await Project.findByIdAndUpdate(_id, args, {
-          new: true,
-        });
-        return timeline;
-      } catch (error) {
-        throw AuthenticationError(`Error updating timeline: ${error.message}`);
-      }
-    },
+    // updateTimeline: async (parent, { _id, ...args }) => {
+    //   try {
+    //     const timeline = await Project.findByIdAndUpdate(_id, args, {
+    //       new: true,
+    //     });
+    //     return timeline;
+    //   } catch (error) {
+    //     throw AuthenticationError(`Error updating timeline: ${error.message}`);
+    //   }
+    // },
 
     // Remove Timeline //
     deleteTimeline: async (parent, { projectId, timeLineId }, context) => {
@@ -267,85 +348,3 @@ const resolvers = {
 };
 
 module.exports = resolvers;
-
-//----- INFO -----//
-
-// Add Info //
-// createInfo: async (
-//   parent,
-//   { projectId, repoURL, deployedURL, description },
-//   context
-// ) => {
-//  if
-//     const updatedProject = await Project.findOneAndUpdate(
-//       { _id: projectId },
-//       {
-//         $addToSet: { info: { repoURL, deployedURL, description } },
-//       },
-//       {
-//         new: true,
-//         runValidators: true,
-//       }
-//     );
-
-//     if (!updatedProject) {
-//       throw AuthenticationError;
-//     }
-
-//     return updatedProject;
-//   } catch (error) {
-//     throw AuthenticationError;
-//   }
-// },
-
-// Update Info //
-// updateInfo: async (parent, { projectId, infoId, updatedInfo }) => {
-//   try {
-//     const project = await Project.findById(projectId);
-
-//     if (!project) {
-//       throw AuthenticationError;
-//     }
-
-//     const infoToUpdate = project.info.find((info) => info._id == infoId);
-
-//     if (!infoToUpdate) {
-//       throw AuthenticationError;
-//     }
-
-//     if (updatedInfo.repoURL !== undefined) {
-//       infoToUpdate.repoURL = updatedInfo.repoURL;
-//     }
-//     if (updatedInfo.deployedURL !== undefined) {
-//       infoToUpdate.deployedURL = updatedInfo.deployedURL;
-//     }
-//     if (updatedInfo.description !== undefined) {
-//       infoToUpdate.description = updatedInfo.description;
-//     }
-
-//     await project.save();
-
-//     return project;
-//   } catch (error) {
-//     throw AuthenticationError;
-//   }
-// },
-
-// Remove Info //
-// deleteInfo: async (parent, { projectId, infoId }) => {
-//   try {
-//     const updatedProject = await Project.findOneAndUpdate(
-//       { _id: projectId },
-//       { $pull: { info: { _id: infoId } } },
-//       { new: true }
-//     );
-
-//     if (!updatedProject) {
-//       throw AuthenticationError;
-//     }
-
-//     return updatedProject;
-//   } catch (error) {
-//     throw AuthenticationError;
-//   }
-// },

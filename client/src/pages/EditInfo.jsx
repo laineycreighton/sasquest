@@ -3,8 +3,6 @@ import ProjectNavBar from '../components/ProjectNavBar';
 import ProjectHeader from '../components/ProjectHeader';
 import UpdateInfo from '../components/UpdateInfo';
 import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
-import Auth from "../utils/auth";
-import { Navigate } from "react-router-dom";
 
 // Pass users array to the List component as a prop
 export default function EditInfo() {
@@ -17,9 +15,7 @@ export default function EditInfo() {
   const project = data?.project || {};
   console.log(data);
 
-  return !Auth.loggedIn() ? (
-    <Navigate to="/login" />
-  ) : (
+  return (
     // Wrap the entire component with AnimatedCursor
     <div>
       <AnimatedCursor /> {/* Add AnimatedCursor here */}

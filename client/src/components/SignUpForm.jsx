@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
-import "../assets/css/SignUpForm.css";
+import '../assets/css/SignUpForm.css'
 
 const SignUpForm = () => {
   // set initial form state
@@ -50,10 +50,12 @@ const SignUpForm = () => {
     try {
       console.log({ ...userFormData });
       const { data } = await addUser({
+        
         variables: { ...userFormData },
-      });
 
-      console.log(data);
+      });
+      
+    console.log(data);
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
@@ -70,7 +72,7 @@ const SignUpForm = () => {
 
   return (
     <div className="signup-form-container">
-      <form className="signup-form" onSubmit={handleFormSubmit} noValidate>
+      <form className='signup-form' onSubmit={handleFormSubmit} noValidate>
         <div className="signup-inputs">
           <div className="signup-user-name">
             {/* first name */}
@@ -142,9 +144,7 @@ const SignUpForm = () => {
       {showAlert && <div className="alert">Something went wrong!</div>}
       <div>
         {/* link to login page */}
-        <Link to="/login" className="login-link">
-          login
-        </Link>
+        <Link to="/" className="login-link">login</Link>
       </div>
     </div>
   );
