@@ -1,5 +1,3 @@
-//TODO: USE THIS FILE TO DISPLAY THE PROJECT DETAILS
-
 import { useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
@@ -14,7 +12,7 @@ const DisplayProjectInfo = ({ projectID }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const project = data.project; // Assuming the query result contains a 'project' object
+  const project = data.project; 
 
   return (
     <div>
