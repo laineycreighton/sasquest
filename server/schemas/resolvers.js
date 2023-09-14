@@ -164,19 +164,19 @@ const resolvers = {
     // Delete Project //
     deleteProject: async (parent, { projectId }, context) => {
       if (context.user) {
+        console.log("Deleting project with ID:", projectId);
         const deletedProject = await Project.findOneAndDelete({
           _id: projectId,
         });
 
+        console.log("Deleted project:", deletedProject);
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { projects: { projectId } } },
           { new: true }
         );
 
-        // if (!deletedProject) {
-        //   console.log("Project not found");
-        // }
+        console.log("Updated user:", updatedUser);
 
         return updatedUser;
       }
