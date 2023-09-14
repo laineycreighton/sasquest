@@ -163,7 +163,7 @@ const DisplayProjectInfo = ({ projectID }) => {
           className="project-info-edit-btn"
           onClick={handleEditClick}
         >
-          EDIT
+          SAVE
         </button>
       </form>
       {formSubmitted && (
