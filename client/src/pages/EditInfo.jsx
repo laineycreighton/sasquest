@@ -2,7 +2,7 @@ import React from "react";
 import ProjectNavBar from '../components/ProjectNavBar';
 import ProjectHeader from '../components/ProjectHeader';
 import UpdateInfo from '../components/UpdateInfo';
-import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
+import AnimatedCursor from "react-animated-cursor";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ export default function EditInfo() {
   ) : (
     // Wrap the entire component with AnimatedCursor
     <div>
-      <AnimatedCursor /> {/* Add AnimatedCursor here */}
+      <AnimatedCursor />
       <ProjectNavBar />
       <ProjectHeader />
       <UpdateInfo />

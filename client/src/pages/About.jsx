@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import sasquatch from '../assets/images/sasquatch.png';
 import '../assets/css/About.css';
-import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
+import AnimatedCursor from "react-animated-cursor"; 
 
 const About = () => {
   return (
     <div>
-      <AnimatedCursor /> {/* Add AnimatedCursor here */}
+      <AnimatedCursor />
       <div className='about-page'>
         {/* Header */}
         <div className='full-header'>
