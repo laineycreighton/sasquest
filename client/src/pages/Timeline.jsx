@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
 import React from "react";
-import AnimatedCursor from "react-animated-cursor"; // Import AnimatedCursor
+import AnimatedCursor from "react-animated-cursor";
 
 const Timeline = () => {
   const { loading, data } = useQuery(GET_ALL_PROJECTS);
@@ -18,7 +18,7 @@ const Timeline = () => {
     <Navigate to="/login" />
   ) : (
     <div>
-      <AnimatedCursor /> {/* Add AnimatedCursor here */}
+      <AnimatedCursor />
       <ProjectNavBar />
       {/* <ProjectHeader /> */}
       <AddTimeline />

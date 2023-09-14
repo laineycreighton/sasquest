@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
 import Auth from "../utils/auth";
 import { Navigate } from "react-router-dom";
-import AnimatedCursor from "react-animated-cursor"; // Import AnimatedCursor
+import AnimatedCursor from "react-animated-cursor";
 
 const ViewInfo = () => {
   const { projectId } = useParams();
@@ -22,7 +22,7 @@ const ViewInfo = () => {
     <Navigate to="/login" />
   ) : (
     <div>
-      <AnimatedCursor /> {/* Add AnimatedCursor here */}
+      <AnimatedCursor />
       <ProjectNavBar />
       {/* <ProjectHeader /> */}
       <DisplayInfo project={project} />
