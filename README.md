@@ -125,10 +125,10 @@ Website URL: [Sasquest](deployed url)
 
 ### *__Luke Harriman__*
 ---
-[![Email](./client/src/assets/images/mail%20(1).svg)](mailto:dev.lainey@gmail.com) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![LinkedIn](./client/src/assets/images/linkedin%20(1).svg)](https://www.linkedin.com/in/lainey-creighton/) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![Portfolio](./client/src/assets/images/globe.svg)](https://laineycreighton.netlify.app/) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![GitHub](./client/src/assets/images/github%20(1).svg)](https://github.com/laineycreighton)
+[![Email](./client/src/assets/images/mail%20(1).svg)](mailto:dev.lukeharriman1013@gmail.com) &nbsp;&nbsp;&nbsp;&nbsp; 
+[![LinkedIn](./client/src/assets/images/linkedin%20(1).svg)](https://www.linkedin.com/in/luke-harriman-12901a280/) &nbsp;&nbsp;&nbsp;&nbsp; 
+[![Portfolio](./client/src/assets/images/globe.svg)](https://lth1013.github.io/portfolio-1/) &nbsp;&nbsp;&nbsp;&nbsp; 
+[![GitHub](./client/src/assets/images/github%20(1).svg)](https://github.com/lth1013)
 
 <br>
 
