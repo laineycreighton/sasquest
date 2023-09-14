@@ -53,3 +53,14 @@
     margin: 5px;
 }
 
+/* Media Query */
+@media (max-width: 508px) {
+    .project-header {
+        order: 1;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        display: none;
+    }
+}
+

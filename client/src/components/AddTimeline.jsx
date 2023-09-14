@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TIMELINE } from "../utils/mutations.js";
 
-const AddTimeline = () => {
+const AddTimeline = ({projectId}) => {
     const [formState, setFormState] = useState({
+        projectId: projectId,
         date: '',
         goal: '',
     });
@@ -12,6 +13,7 @@ const AddTimeline = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        console.log("button is clicked");
         console.log(formState);
         try {
             const { data } = await createTimeline({
@@ -50,7 +52,7 @@ const AddTimeline = () => {
                         <input type="text" name="goal" onChange={handleChange} />
                     </div>
                     <div className="timeline-button">
-                        <button type="submit" value="New">
+                        <button type="submit" onClick={handleFormSubmit}>
                             Add
                         </button>
                     </div>
