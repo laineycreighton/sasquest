@@ -8,9 +8,9 @@ const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 const cloudinary = require("cloudinary").v2;
 // load API keys and secret from .env
-const cloudinaryCloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
-const cloudinaryApiKey = process.env.REACT_APP_CLOUDINARY_API_KEY;
-const cloudinaryApiSecret = process.env.REACT_APP_CLOUDINARY_API_SECRET;
+const cloudinaryCloudName = process.env.CLOUDINARY_CLOUD_NAME;
+const cloudinaryApiKey = process.env.CLOUDINARY_API_KEY;
+const cloudinaryApiSecret = process.env.CLOUDINARY_API_SECRET;
 // configure cloudinary SDK with API credentials
 cloudinary.config({
   cloud_name: cloudinaryCloudName,

@@ -31,6 +31,18 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_WIREFRAME = gql`
+  query wireframe {
+    wireframe {
+      _id
+      projectId
+      title
+      imageURL
+      note
+    }
+  }
+`;
+
 //--------------- ALL Projects ---------------//
 export const GET_ALL_PROJECTS = gql`
   query projects {
@@ -79,30 +91,6 @@ export const GET_PROJECT_BY_ID = gql`
         imageUrl
         note
       }
-    }
-  }
-`;
-
-//--------------- ALL Timelines ---------------//
-export const QUERY_TIMELINE = gql`
-  query timeline {
-    timelines {
-      _id
-      date
-      goal
-    }
-  }
-`;
-
-//--------------- ALL Wireframes ---------------//
-export const QUERY_WIREFRAME = gql`
-  query wireframe {
-    wireframes {
-      _id
-      projectId
-      title
-      imageUrl
-      note
     }
   }
 `;

@@ -1,6 +1,5 @@
 const { GraphQLError } = require("graphql");
 const jwt = require("jsonwebtoken");
-const { AuthenticationError } = require("apollo-server-express");
 
 const secret = "mysecretssshhhhhhh"; // we can change it later
 const expiration = "2h"; // we can change it later
@@ -13,23 +12,25 @@ module.exports = {
   }),
   authMiddleware: function ({ req }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
-  
+
     if (req.headers.authorization) {
       token = token.split(" ").pop().trim();
     }
-  
+    console.log("authmiddleware");
+
     if (!token) {
-      return;
+      return req;
     }
+
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-    } catch (error) {
-      console.error("Invalid token: ", error);
-      throw new AuthenticationError("Invalid token"); // Throw AuthenticationError
+    } catch {
+      console.log("Invalid token");
     }
+
+    return req;
   },
-  
   signToken: function ({ email, _id }) {
     const payload = { email, _id };
 

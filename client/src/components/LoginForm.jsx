@@ -46,17 +46,9 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
-
-      console.log('Token:', data.login.token);
-
-      // Update authentication status after successful login
-      Auth.setAuthStatus(true);
-      console.log('User Authenticated');
-      // Use navigate to redirect to the /home route
-      navigate("/");
-
-    } catch (error) {
-      console.error(error);
+      window.location.assign("/home");
+    } catch (err) {
+      console.error(err);
     }
 
     // clear form values

@@ -1,6 +1,6 @@
 import "../assets/css/AddTimeline.css";
 import { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { ADD_TIMELINE } from "../utils/mutations.js";
 
 const AddTimeline = () => {
@@ -24,6 +24,7 @@ const AddTimeline = () => {
             });
         } catch (error) {
             console.error(error);
+            console.log("Error: " + error);
         }
     };
 
@@ -42,11 +43,11 @@ const AddTimeline = () => {
                 <form className="timeline-form" onSubmit={handleFormSubmit}>
                     <div className="timeline-date">
                         <label htmlFor="timelineDate">Date</label>
-                        <input type="Date" id="date" on onChange={handleChange} />
+                        <input type="Date" name="date" onChange={handleChange} />
                     </div>
                     <div className="timeline-goal">
                         <label htmlFor="timelineGoal">Goal</label>
-                        <input type="text" id="goal" on onChange={handleChange} />
+                        <input type="text" name="goal" onChange={handleChange} />
                     </div>
                     <div className="timeline-button">
                         <button type="submit" value="New">
