@@ -62,8 +62,8 @@ type Wireframe {
     deleteWireframe(projectId: ID!): Project
 
     createTimeline(projectId: ID!, date: String, goal: String): Project
-    updateTimeline(projectId: ID!, date: String, goal: String): Project
-    deleteTimeline(projectId: ID!): Project
+    updateTimeline(timelineId: ID!, date: String, goal: String): Timeline
+    deleteTimeline(projectId: ID!, timelineId: ID!): Project
 
     createInfo(projectId: ID!, repoURL: String, deployedURL: String, description: String): Project
     updateInfo(projectId: ID!, repoURL: String, deployedURL: String, description: String): Project

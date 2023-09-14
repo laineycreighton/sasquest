@@ -1,4 +1,4 @@
-const { User, Project } = require("../models");
+const { User, Project, Timeline } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -270,9 +270,13 @@ const resolvers = {
     // Add Timeline //
     createTimeline: async (parent, args, context) => {
       if (context.user) {
+        console.log(args.date)
+        console.log(args.goal)
+        console.log(args.projectId)
+        const newTimeline = await Timeline.create({date: args.date, goal: args.goal})
         const timeline = await Project.findByIdAndUpdate(
           { _id: args.projectId },
-          { $push: { timelines: args } },
+          {$addToSet: { timelines: newTimeline._id }},
           { new: true, runValidators: true }
         );
         return timeline;
@@ -281,23 +285,26 @@ const resolvers = {
     },
 
     // Update Timeline //
-    // updateTimeline: async (parent, { _id, ...args }) => {
-    //   try {
-    //     const timeline = await Project.findByIdAndUpdate(_id, args, {
-    //       new: true,
-    //     });
-    //     return timeline;
-    //   } catch (error) {
-    //     throw AuthenticationError(`Error updating timeline: ${error.message}`);
-    //   }
-    // },
+    updateTimeline: async (parent, { timelineId, date, goal }) => {
+      try {
+        const timeline = await Timeline.findByIdAndUpdate({_id:timelineId}, {date, goal}, {
+          new: true,
+        });
+        return timeline;
+      } catch (error) {
+        throw AuthenticationError(`Error updating timeline: ${error.message}`);
+      }
+    },
 
     // Remove Timeline //
-    deleteTimeline: async (parent, { projectId, timeLineId }, context) => {
+    deleteTimeline: async (parent, { projectId, timelineId }, context) => {
       if (context.user) {
-        const timeline = await Project.findByIdAndUpdate(
+        const deleteTimeline = await Timeline.findByIdAndRemove(
+          {_id: timelineId}
+        );
+        const timeline = await Project.findOneAndUpdate(
           { _id: projectId },
-          { $pull: { timelines: { timeLineId } } },
+          { $pull: { timelines: { _id: timelineId } } },
           { new: true, runValidators: true }
         );
         return timeline;
