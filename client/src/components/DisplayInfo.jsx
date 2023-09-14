@@ -1,18 +1,5 @@
-//TODO: USE THIS FILE TO DISPLAY THE PROJECT DETAILS
-
-//Include:
-//QUERY:
-//Project Info by ID
-//Repo URL
-//Deployed URL
-//Description
-
 import { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
-import { useMutation } from "@apollo/client";
-import { GET_PROJECT_BY_ID } from "../utils/queries";
-import { UPDATE_PROJECT } from "../utils/mutations";
-// import { useParams } from "react-router-dom";
+import '../assets/css/DisplayInfo.css';
 
 // DisplayProjectInfo component that takes projectID as a prop
 const DisplayInfo = (props) => {
@@ -34,19 +21,18 @@ const DisplayInfo = (props) => {
     setProjectFormData({ ...projectFormData, [name]: value });
   };
 
-  const handleFormSubmit = async (event) => {};
+  const handleFormSubmit = async (event) => { };
 
   // display project info
   return (
     // project info container
     <div className="project-info">
-      <div>
-        <h2>{props.project.title}</h2>
+      <div className="project-name-container">
+        <p className="project-name">{props.project.title}</p>
       </div>
-      <form onSubmit={handleFormSubmit}>
-        <h4>update Project Form</h4>
+      <form className="update-info-form" onSubmit={handleFormSubmit}>
         {/* repo URL */}
-        <div className="form-group">
+        <div className="repo-url">
           <label htmlFor="repoURL">REPO URL</label>
           <input
             type="text"
@@ -61,7 +47,7 @@ const DisplayInfo = (props) => {
           />
         </div>
         {/* deployed URL */}
-        <div className="form-group">
+        <div className="deployed-url">
           <label htmlFor="deployedURL">DEPLOYED URL</label>
           <input
             type="text"
@@ -75,7 +61,7 @@ const DisplayInfo = (props) => {
         </div>
 
         {/* description */}
-        <div className="form-group">
+        <div className="description">
           <label htmlFor="description">DESCRIPTION</label>
           <textarea
             id="description"
@@ -86,13 +72,14 @@ const DisplayInfo = (props) => {
             required
           />
         </div>
-        <button
-          type="submit"
-          className="project-info-save-btn"
-          onClick={handleFormSubmit}
-        >
-          SAVE
-        </button>
+        <div className='info-button-container'>
+          <button
+            type="submit"
+            onClick={handleFormSubmit}
+          >
+            SAVE
+          </button>
+        </div>
       </form>
     </div>
   );
