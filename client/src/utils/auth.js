@@ -27,8 +27,9 @@ class Auth {
     return localStorage.getItem("id_token");
   }
   // logs in a user by adding the jwt idToken to local storage
-  login(idToken) {
-    localStorage.setItem("id_token", idToken);
+  login(token) {
+    console.log(token);
+    localStorage.setItem("id_token", token);
     window.location.assign("/");
   }
   // logs out user by destroying jwt token from local storage

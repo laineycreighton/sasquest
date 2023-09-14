@@ -82,7 +82,7 @@ const AddWireframe = () => {
   return (
     <div className="wireframe-container">
       <h2>WIREFRAME</h2>
-      <form onSubmit={handleFormSubmit}>
+      <form  className='add-wireframe-form' onSubmit={handleFormSubmit}>
         {/* page */}
         <div className="form-group">
           <label htmlFor="page">PAGE</label>

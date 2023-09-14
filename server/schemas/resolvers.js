@@ -16,11 +16,12 @@ const resolvers = {
 
     //----- Get All Projects -----//
     projects: async (parent, args, context) => {
-      if (context.user) {
-        const projects = await Project.find({});
-        return projects;
+      if (!context.user) {
+        throw new AuthenticationError("User not authenticated");
       }
-      throw AuthenticationError;
+    
+      const projects = await Project.find({});
+      return projects;
     },
 
     //----- Get One Project -----//

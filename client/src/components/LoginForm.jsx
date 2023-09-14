@@ -3,16 +3,13 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/LoginForm.css";
 
 const Login = () => {
-  // set initial form state
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
-  // use mutation for login user
   const [login, { error, data }] = useMutation(LOGIN_USER);
-  // set state for form validation
   const [validated, setValidated] = useState(false);
-  // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
@@ -29,6 +26,8 @@ const Login = () => {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+  const navigate = useNavigate();
+
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -39,7 +38,6 @@ const Login = () => {
       event.stopPropagation();
     }
 
-    // validate form
     setValidated(true);
 
     try {
@@ -48,7 +46,15 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
-      window.location.assign("/");
+
+      console.log('Token:', data.login.token);
+
+      // Update authentication status after successful login
+      Auth.setAuthStatus(true);
+      console.log('User Authenticated');
+      // Use navigate to redirect to the /home route
+      navigate("/");
+
     } catch (error) {
       console.error(error);
     }
