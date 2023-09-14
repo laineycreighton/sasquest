@@ -1,0 +1,131 @@
+/*----- COLORS -----*/
+:root {
+    --dark-green: #19270D;
+    --bright-orange: #FF9902;
+    --dark-orange: #9D4E00;
+    --lightgreen: #3B8C54;
+    --accent: #818C3B;
+    --lightbrown: #72601B;
+    --white: #EEEEEE;
+}
+
+/*----- FONTS -----*/
+@font-face {
+    font-family: heading;
+    src: url('../fonts/BungeeInline-Regular.ttf');
+}
+
+@font-face {
+    font-family: subheading;
+    src: url('../fonts/Bungee-Regular.ttf');
+}
+
+@font-face {
+    font-family: tagline;
+    src: url('../fonts/Smooch-Regular.ttf');
+}
+
+@font-face {
+    font-family: body;
+    src: url('../fonts/Cabin.ttf');
+}
+
+:root {
+    --heading: heading;
+    --subheading: subheading;
+    --tagline: tagline;
+    --body: body;
+}
+
+/*----- FORM -----*/
+.project-info {
+    /* outline: red dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-name-container {
+    /* outline: blue dashed 3px; */
+    width: 100%;
+}
+
+.project-name {
+    font-family: var(--heading);
+    font-size: 40px;
+    color: var(--bright-orange);
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.update-info-form {
+    /* outline: purple dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 50%;
+}
+
+.repo-url,
+.deployed-url,
+.description {
+    /* outline: yellow dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    width: 100%;
+}
+
+.repo-url label,
+.deployed-url label,
+.description label {
+    /* outline: yellow dashed 3px; */
+    font-family: var(--subheading);
+    font-size: 20px;
+    color: var(--accent);
+    margin: 5px;
+    width: 100%;
+}
+
+.repo-url input,
+.deployed-url input,
+.description textarea {
+    /* outline: yellow dashed 3px; */
+    background-color: #3A4530;
+    color: var(--white);
+    border: #595959 solid 1px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/*----- BUTTON -----*/
+.info-button-container {
+    /* outline: purple dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.info-button-container button {
+    /* outline: yellow dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--subheading);
+    font-size: 20px;
+    color: var(--accent);
+    background-color: var(--dark-green);
+    border: var(--dark-orange) solid 3px;
+    border-radius: 5px;
+}
