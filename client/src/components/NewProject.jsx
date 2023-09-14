@@ -43,22 +43,23 @@ const NewProject = () => {
   };
 
   return (
-    <div className="new-project-container">
-      <div className="new-project">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="title">Project Name:</label>
-          <input
-            type="text"
-            onChange={handleChange}
-            name="title"
-            value={formState.title}
-          />
-          <button type="submit">Create</button>
-        </form>
+    <>
+      <div className="new-project-container">
+        <div className="new-project">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="title">Project Name:</label>
+            <input
+              type="text"
+              onChange={handleChange}
+              name="title"
+              value={formState.title}
+            />
+            <button type="submit">Create</button>
+          </form>
+        </div>
       </div>
-
       <ProjectDashboard projects={user.projects} />
-    </div>
+    </>
   );
 };
 
