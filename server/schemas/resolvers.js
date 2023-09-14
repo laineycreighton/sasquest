@@ -147,7 +147,7 @@ const resolvers = {
     updateProject: async (parent, { title }, context) => {
       if (context.user) {
         const updatedProject = await Project.findOneAndUpdate(
-          { _id: context.user._id },
+          { _id: projectId },
           { $set: { title } },
           { new: true, runValidators: true }
         );
