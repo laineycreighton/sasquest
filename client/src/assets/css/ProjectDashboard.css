@@ -149,3 +149,79 @@
 .project-icon img {
   width: 75px;
 }
+
+/* ----------------------------------------MEDIA --------------------------------------- */
+/* max width 500 px */
+
+@media (max-width: 500px) {
+  .dashboard {
+    width: 100%;
+    padding-bottom: 50px;
+    /* border: none; */
+  }
+
+  .projects-container {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: none;
+    display: flexbox;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .dashboard-header {
+    order: 1;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+  }
+
+  .your-adventures {
+    font-size: 24px;
+    white-space: normal;
+    transform: none;
+    margin-top: 10px;
+    display: none;
+  }
+
+  .no-projects {
+    width: 100%;
+    height: auto;
+  }
+
+  .uncharted {
+    font-size: 32px;
+    padding: 10px;
+  }
+
+  .start {
+    font-size: 24px;
+  }
+
+  .display-projects {
+    width: 100%;
+    height: auto;
+  }
+
+  .each-project {
+    width: 100%;
+    height: auto;
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .each-project a {
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .each-project a:hover {
+    border: none;
+  }
+
+  .project-icon img {
+    width: 40px;
+  }
+}
