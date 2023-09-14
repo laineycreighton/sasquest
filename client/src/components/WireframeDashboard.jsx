@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import upload from '../assets/images/upload.svg';
 import trash from '../assets/images/trash-2.svg';
-import '../assets/css/AddWireframe.css';
+import '../assets/css/WireframeDashboard.css';
 
 export default function UploadWidget() {
   const [loaded, setLoaded] = useState(false);
@@ -146,4 +146,5 @@ export default function UploadWidget() {
     </div>
 
   );
+
 }

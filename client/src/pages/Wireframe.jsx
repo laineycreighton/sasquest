@@ -12,7 +12,8 @@ const Wireframe = () => {
     <div>
       <AnimatedCursor /> {/* Add AnimatedCursor here */}
       <ProjectNavBar projectId={projectId} />
-      <ProjectHeader />
+      {/* <ProjectHeader /> */}
+      {/* <ProjectHeader /> */}
       <WireframeDashboard />
     </div>
   );

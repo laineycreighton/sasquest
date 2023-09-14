@@ -43,6 +43,17 @@ export const QUERY_WIREFRAME = gql`
   }
 `;
 
+export const QUERY_TIMELINE = gql`
+  query timeline {
+    timeline {
+      _id
+      projectId
+      date
+      goal
+    }
+  }
+`;
+
 //--------------- ALL Projects ---------------//
 export const GET_ALL_PROJECTS = gql`
   query projects {

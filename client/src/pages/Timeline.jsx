@@ -1,5 +1,5 @@
 import ProjectNavBar from "../components/ProjectNavBar.jsx";
-import ProjectHeader from "../components/ProjectHeader.jsx";
+import ViewTimeline from "../components/ViewTimeline.jsx";
 import AddTimeline from "../components/AddTimeline.jsx";
 import React from "react";
 import AnimatedCursor from "react-animated-cursor"; // Import AnimatedCursor
@@ -12,9 +12,8 @@ const Timeline = () => {
     <div>
       <AnimatedCursor /> {/* Add AnimatedCursor here */}
       <ProjectNavBar projectId={projectId} />
-      {/* <ProjectHeader /> */}
       <AddTimeline />
-      {/* <ViewTimeline /> */}
+      <ViewTimeline />
     </div>
   );
 };

@@ -18,7 +18,7 @@ const ViewInfo = () => {
   return (
     <div>
       <AnimatedCursor /> {/* Add AnimatedCursor here */}
-      <ProjectNavBar projectId={projeaddctId} />
+      <ProjectNavBar projectId={projectId} />
       {/* <ProjectHeader /> */}
       <DisplayInfo project={project} />
     </div>
