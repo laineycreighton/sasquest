@@ -25,7 +25,7 @@ export default function ProjectNavBar() {
     <nav className="nav-bar">
       {/*----- Home -----*/}
       <div className="nav-home">
-        <Link to="/">
+        <Link to="/home">
           <img src={sasquatch} alt="sasquatch" />
         </Link>
       </div>
