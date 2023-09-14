@@ -1,18 +1,11 @@
 //TODO: USE THIS FILE TO DISPLAY THE PROJECT DETAILS
 
 //Include:
-    //QUERY:
-        //Project Info by ID
-            //Repo URL
-            //Deployed URL
-            //Description
-
-
-
-
-
-
-
+//QUERY:
+//Project Info by ID
+//Repo URL
+//Deployed URL
+//Description
 
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
@@ -35,83 +28,13 @@ const DisplayInfo = (props) => {
     description: "",
   });
 
-  // state for form validation errors
-  // const [formErrors, setFormErrors] = useState({});
-  // // state for form submission status
-  // const [formSubmitted, setFormSubmitted] = useState(false);
-  // // useQuery hook to make GraphQL query
-  // const { loading, data } = useQuery(GET_PROJECT_BY_ID, {
-  //   variables: { projectID: id },
-  // });
-  // useMutation hook to make GraphQL mutation
-  // const [updateProject] = useMutation(UPDATE_PROJECT);
-
-  // data population
-  // useEffect hook to update state when data is fetched from GraphQL query
-  // useEffect(() => {
-  //   // if data exists, set project state to data.project
-  //   if (data) {
-  //     setProject(data.project);
-  //     setProjectFormData({
-  //       repoURL: data.project.repoURL,
-  //       deployedURL: data.project.deployedURL,
-  //       description: data.project.description,
-  //     });
-  //   }
-  // }, [data]);
-
-  // if the data is still loading, return loading message
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
   // handleInputChange function to update state when user enters data in input field
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setProjectFormData({ ...projectFormData, [name]: value });
   };
 
-  const handleFormSubmit = async (event) => {
-    //   event.preventDefault();
-    //   const form = event.currentTarget;
-    //   if (form.checkValidity() === false) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    //     return;
-    //   }
-    //   const errors = {};
-    //   if (!projectFormData.repoURL) {
-    //     errors.repoURL = "Repo URL is required!";
-    //   }
-    //   if (!projectFormData.deployedURL) {
-    //     errors.deployedURL = "Deployed URL is required!";
-    //   }
-    //   if (!projectFormData.description) {
-    //     errors.description = "Description is required!";
-    //   }
-    //   setFormErrors(errors);
-    //   if (Object.keys(errors).length === 0) {
-    //     try {
-    //       const { data } = await updateProject({
-    //         variables: {
-    //           projectID: id,
-    //           project: { ...projectFormData },
-    //         },
-    //       });
-    //       if (data) {
-    //         setFormSubmitted(true);
-    //       }
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //   }
-  };
-
-  // setProjectFormData({
-  //   repoURL: "",
-  //   deployedURL: "",
-  //   description: "",
-  // });
+  const handleFormSubmit = async (event) => {};
 
   // display project info
   return (
@@ -136,9 +59,6 @@ const DisplayInfo = (props) => {
             onChange={handleInputChange}
             required
           />
-          {/* {formErrors.repoURL && (
-            <div className="alert">Repo URL is required!</div>
-          )} */}
         </div>
         {/* deployed URL */}
         <div className="form-group">
@@ -152,9 +72,6 @@ const DisplayInfo = (props) => {
             onChange={handleInputChange}
             required
           />
-          {/* {formErrors.deployedURL && (
-            <div className="alert">Deployed URL is required!</div>
-          )} */}
         </div>
 
         {/* description */}
@@ -168,9 +85,6 @@ const DisplayInfo = (props) => {
             onChange={handleInputChange}
             required
           />
-          {/* {formErrors.description && (
-            <div className="alert">Description is required!</div>
-          )} */}
         </div>
         <button
           type="submit"
@@ -180,9 +94,6 @@ const DisplayInfo = (props) => {
           SAVE
         </button>
       </form>
-      {/* {formSubmitted && (
-        <div className="success-message">Project info saved!</div>
-      )} */}
     </div>
   );
 };
