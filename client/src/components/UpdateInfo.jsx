@@ -94,6 +94,24 @@ const DisplayProjectInfo = ({ projectID }) => {
       }
     }
   };
+  //----------------------------- Project Delete ---------------------------------------//
+  const handleDeleteClick = async () => {
+    if (
+      window.confirm("Are you sure you want to delete this project?")
+    ) {
+      try {
+        const { data } = await deleteProject({
+          variables: { projectID: id },
+        });
+        if (data) {
+          // redirect to project dashboard ont he home page
+          window.location("/");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
 
   setProjectFormData({
     repoURL: "",
@@ -172,7 +190,7 @@ const DisplayProjectInfo = ({ projectID }) => {
 
       {/* TODO: ADD DELETE PROJECT FUNCTIONALITY */}
       <div>
-        <button>DELETE PROJECT</button>
+        <button onClick={handleDeleteClick}>DELETE PROJECT</button>
       </div>
     </div>
   );
