@@ -1,21 +1,16 @@
-// INCLUDES:
-//          - ProjectNavBar.jsx
-//          - ProjectHeader.jsx
-//          - AddWireframe.jsx
-//          - ViewWireframe.jsx
-//
-//
-//
+import React from "react";
+import ProjectNavBar from "../components/ProjectNavBar";
+import ProjectHeader from "../components/ProjectHeader";
+import WireframeDashboard from "../components/WireframeDashboard";
 
 const Wireframe = () => {
-    return (
-        <div>
-            <ProjectNavBar />
-            <ProjectHeader />
-            <AddWireframe />
-            <ViewWireframe />
-        </div>
-    )
-}
+  return (
+    <div>
+      <ProjectNavBar />
+      {/* <ProjectHeader /> */}
+      <WireframeDashboard />
+    </div>
+  );
+};
 
-export default Wireframe
+export default Wireframe;
