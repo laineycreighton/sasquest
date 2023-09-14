@@ -13,7 +13,7 @@ const Timeline = () => {
       <AnimatedCursor /> {/* Add AnimatedCursor here */}
       <ProjectNavBar projectId={projectId} />
       <AddTimeline />
-      <ViewTimeline />
+      {/* <ViewTimeline /> */}
     </div>
   );
 };

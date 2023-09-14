@@ -5,9 +5,9 @@ import DateStatus from "./DateStatus.jsx";
 
 const ViewTimeline = ({ timelines }) => {
 
-    if (!timelines.length) {
-        return <p>No Timeline Goals Yet</p>;
-      }
+    // if (!timelines.length) {
+    //     return <p>No Timeline Goals Yet</p>;
+    //   }
 
     return (
         <div>
@@ -28,6 +28,21 @@ const ViewTimeline = ({ timelines }) => {
                 </div>
             ))
             }
+
+            <div className="hard-timeline">
+                <div className="hard-date">
+                    <p className="hard-date-title">Date</p>
+                    <p className="hard-actual-date">09/14/2023</p>
+                </div>
+                <div className="hard-goal">
+                    <p className="hard-goal-title">Goal</p>
+                    <p className="hard-actual-goal">Graduate Bootcamp!</p>
+                </div>
+                <div className="hard-status">
+                    <p className="hard-status-title">Status</p>
+                    <div className="status-color"></div>
+                </div>
+            </div>
         </div >
     );
 };

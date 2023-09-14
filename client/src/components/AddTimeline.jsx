@@ -35,27 +35,45 @@ const AddTimeline = () => {
     };
 
     return (
-        <div className="timeline-dashboard">
-            <div className="timeline-container">
-                <div className="timeline-header">
-                    <p>TIMELINE</p>
+        <div>
+            <div className="timeline-dashboard">
+                <div className="timeline-container">
+                    <div className="timeline-header">
+                        <p>TIMELINE</p>
+                    </div>
+                    <form className="timeline-form" onSubmit={handleFormSubmit}>
+                        <div className="timeline-date">
+                            <label htmlFor="timelineDate">Date</label>
+                            <input type="Date" name="date" onChange={handleChange} />
+                        </div>
+                        <div className="timeline-goal">
+                            <label htmlFor="timelineGoal">Goal</label>
+                            <input type="text" name="goal" onChange={handleChange} />
+                        </div>
+                        <div className="timeline-button">
+                            <button type="submit" value="New">
+                                Add
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <form className="timeline-form" onSubmit={handleFormSubmit}>
-                    <div className="timeline-date">
-                        <label htmlFor="timelineDate">Date</label>
-                        <input type="Date" name="date" onChange={handleChange} />
-                    </div>
-                    <div className="timeline-goal">
-                        <label htmlFor="timelineGoal">Goal</label>
-                        <input type="text" name="goal" onChange={handleChange} />
-                    </div>
-                    <div className="timeline-button">
-                        <button type="submit" value="New">
-                            Add
-                        </button>
-                    </div>
-                </form>
+            </div >
+
+            <div className="hard-timeline">
+                <div className="hard-date">
+                    <p className="hard-date-title">Date</p>
+                    <p className="hard-actual-date">09/14/2023</p>
+                </div>
+                <div className="hard-goal">
+                    <p className="hard-goal-title">Goal</p>
+                    <p className="hard-actual-goal">Graduate Bootcamp!</p>
+                </div>
+                <div className="hard-status">
+                    <p className="hard-status-title">Status</p>
+                    <div className="status-color"></div>
+                </div>
             </div>
+
         </div>
     );
 };

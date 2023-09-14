@@ -80,13 +80,13 @@
 }
 
 .timeline-form {
-        /* outline: purple dashed 3px; */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 90%;
-        height: 200px;
+    /* outline: purple dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 200px;
 }
 
 .timeline-date,
@@ -123,11 +123,57 @@
     margin-bottom: 10px;
 }
 
-.timeline-button button{
-font-family: var(--subheading);
-font-size: 15px;
-background-color: #ffffff00;
-color: var(--dark-orange);
-border: var(--dark-orange) solid 3px;
-border-radius: 5px;
+.timeline-button button {
+    font-family: var(--subheading);
+    font-size: 15px;
+    background-color: #ffffff00;
+    color: var(--dark-orange);
+    border: var(--dark-orange) solid 3px;
+    border-radius: 5px;
+}
+
+
+.hard-timeline {
+    /* outline: green dashed 3px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+
+.hard-date,
+.hard-goal,
+.hard-status {
+    /* outline: blue dashed 3px; */
+    width: 50%;
+    margin: 10px;
+}
+
+.hard-date-title,
+.hard-goal-title,
+.hard-status-title {
+    /* outline: red dashed 3px; */
+    font-family: var(--subheading);
+    font-size: 25px;
+    color: var(--lightgreen);
+    width: 100%;
+    margin: 0;
+}
+
+.hard-actual-date,
+.hard-actual-goal {
+    /* outline: green dashed 3px; */
+    font-family: var(--body);
+    font-size: 20px;
+    color: var(--white);
+    margin: 0;
+}
+
+.status-color {
+    /* outline: blue dashed 3px; */
+    border: var(--lightgreen) solid 3px;
+    background-color: red;
+    height: 15px;
+    width: 100%;
 }
