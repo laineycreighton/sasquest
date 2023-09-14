@@ -60,28 +60,28 @@ export const CREATE_WIREFRAME = gql`
 `;
 
 // Update Wireframe
-// export const UPDATE_WIREFRAME = gql`
-//   mutation updateWireframe(
-//     $projectId: ID!
-//     $wireframeId: ID!
-//     $title: String!
-//     $imageURL: String
-//     $note: String
-//   ) {
-//     updateWireframe(
-//       projectId: $projectId
-//       wireframeId: $wireframeId
-//       title: $title
-//       imageURL: $imageURL
-//       note: $note
-//     ) {
-//       _id
-//       projectId
-//       imageURL
-//       note
-//     }
-//   }
-// `;
+export const UPDATE_WIREFRAME = gql`
+  mutation updateWireframe(
+    $projectId: ID!
+    $wireframeId: ID!
+    $title: String!
+    $imageURL: String
+    $note: String
+  ) {
+    updateWireframe(
+      projectId: $projectId
+      wireframeId: $wireframeId
+      title: $title
+      imageURL: $imageURL
+      note: $note
+    ) {
+      _id
+      projectId
+      imageURL
+      note
+    }
+  }
+`;
 
 // Delete Wireframe
 export const DELETE_WIREFRAME = gql`
