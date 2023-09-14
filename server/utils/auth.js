@@ -16,7 +16,7 @@ module.exports = {
     if (req.headers.authorization) {
       token = token.split(" ").pop().trim();
     }
-    console.log(token);
+    // console.log(token);
 
     if (!token) {
       return;
@@ -27,7 +27,7 @@ module.exports = {
       req.user = data;
     } catch (error) {
       console.log("Invalid token: ", error);
-      throw new Error("Invalid token")
+      throw new Error("Invalid token");
     }
 
     // return req;

@@ -1,18 +1,11 @@
 //TODO: USE THIS FILE TO DISPLAY THE PROJECT DETAILS
 
 //Include:
-    //QUERY:
-        //Project Info by ID
-            //Repo URL
-            //Deployed URL
-            //Description
-
-
-
-
-
-
-
+//QUERY:
+//Project Info by ID
+//Repo URL
+//Deployed URL
+//Description
 
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
@@ -71,47 +64,7 @@ const DisplayInfo = (props) => {
     setProjectFormData({ ...projectFormData, [name]: value });
   };
 
-  const handleFormSubmit = async (event) => {
-    //   event.preventDefault();
-    //   const form = event.currentTarget;
-    //   if (form.checkValidity() === false) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    //     return;
-    //   }
-    //   const errors = {};
-    //   if (!projectFormData.repoURL) {
-    //     errors.repoURL = "Repo URL is required!";
-    //   }
-    //   if (!projectFormData.deployedURL) {
-    //     errors.deployedURL = "Deployed URL is required!";
-    //   }
-    //   if (!projectFormData.description) {
-    //     errors.description = "Description is required!";
-    //   }
-    //   setFormErrors(errors);
-    //   if (Object.keys(errors).length === 0) {
-    //     try {
-    //       const { data } = await updateProject({
-    //         variables: {
-    //           projectID: id,
-    //           project: { ...projectFormData },
-    //         },
-    //       });
-    //       if (data) {
-    //         setFormSubmitted(true);
-    //       }
-    //     } catch (err) {
-    //       console.error(err);
-    //     }
-    //   }
-  };
-
-  // setProjectFormData({
-  //   repoURL: "",
-  //   deployedURL: "",
-  //   description: "",
-  // });
+  const handleFormSubmit = async (event) => {};
 
   // display project info
   return (

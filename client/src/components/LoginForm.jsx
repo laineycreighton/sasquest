@@ -47,8 +47,9 @@ const Login = () => {
         variables: { ...userFormData },
       });
 
-      Auth.login(data.login.token);
-      window.location.assign("/");
+      Auth.login(data);
+      console.log(data);
+      // window.location.assign("/");
     } catch (error) {
       console.error(error);
     }
