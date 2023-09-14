@@ -1,14 +1,14 @@
+import React from "react";
 import HomeHeader from "../components/HomeHeader";
-import ProjectDashboard from "../components/ProjectDashboard";
+
 import NewProject from "../components/NewProject";
-import ProjectNavBar from "../components/ProjectNavBar";
+import AnimatedCursor from "react-animated-cursor"; // Import AnimatedCursor
 
 const Home = () => {
   return (
     <div>
-      {/* <ProjectNavBar /> */}
+      <AnimatedCursor /> {/* Add AnimatedCursor here */}
       <HomeHeader />
-      <ProjectDashboard />
       <NewProject />
     </div>
   );

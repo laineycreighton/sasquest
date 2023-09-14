@@ -25,7 +25,7 @@ export default function ProjectNavBar() {
     <nav className="nav-bar">
       {/*----- Home -----*/}
       <div className="nav-home">
-        <Link to="/home">
+        <Link to="/">
           <img src={sasquatch} alt="sasquatch" />
         </Link>
       </div>
@@ -51,10 +51,9 @@ export default function ProjectNavBar() {
         <p>Wireframe</p>
       </div>
       {/*----- Log Out -----*/}
-
-      <button type="button" className="logout" onClick={() => Auth.logout()}>
-        logout
-      </button>
+        <button type="button" className="nav-logout" onClick={() => Auth.logout()}>
+          logout
+        </button>
     </nav>
   );
 }

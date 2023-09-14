@@ -1,3 +1,19 @@
+//TODO: USE THIS FILE TO DISPLAY THE PROJECT DETAILS
+
+//Include:
+    //QUERY:
+        //Project Info by ID
+            //Repo URL
+            //Deployed URL
+            //Description
+
+
+
+
+
+
+
+
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
@@ -6,7 +22,7 @@ import { UPDATE_PROJECT } from "../utils/mutations";
 // import { useParams } from "react-router-dom";
 
 // DisplayProjectInfo component that takes projectID as a prop
-const DisplayProjectInfo = (props) => {
+const DisplayInfo = (props) => {
   // get projectID from useParams hook
   // const { id } = useParams();
   console.log(props);
@@ -171,4 +187,4 @@ const DisplayProjectInfo = (props) => {
   );
 };
 
-export default DisplayProjectInfo;
+export default DisplayInfo;

@@ -3,16 +3,13 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
-import '../assets/css/LoginForm.css'
+import { useNavigate } from "react-router-dom";
+import "../assets/css/LoginForm.css";
 
 const Login = () => {
-  // set initial form state
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
-  // use mutation for login user
   const [login, { error, data }] = useMutation(LOGIN_USER);
-  // set state for form validation
   const [validated, setValidated] = useState(false);
-  // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
@@ -29,6 +26,8 @@ const Login = () => {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+  const navigate = useNavigate();
+
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -39,7 +38,6 @@ const Login = () => {
       event.stopPropagation();
     }
 
-    // validate form
     setValidated(true);
 
     try {
@@ -62,7 +60,7 @@ const Login = () => {
 
   return (
     <div className="login-form-container">
-      <form className='login-form' onSubmit={handleFormSubmit} noValidate>
+      <form className="login-form" onSubmit={handleFormSubmit} noValidate>
         {/* email */}
         <div className="login-email">
           <label htmlFor="email">email</label>
@@ -73,7 +71,7 @@ const Login = () => {
             onChange={handleInputChange}
             required
           />
-          {validated && !userFormData.firstName && (
+          {validated && !userFormData.email && (
             <div className="alert">Email address is required!</div>
           )}
         </div>
@@ -87,7 +85,7 @@ const Login = () => {
             onChange={handleInputChange}
             required
           />
-          {validated && !userFormData.firstName && (
+          {validated && !userFormData.password && (
             <div className="alert">Password is required!</div>
           )}
         </div>
@@ -96,7 +94,9 @@ const Login = () => {
           <button type="submit">LOGIN</button>
         </div>
         <div>
-          <Link to="/signup" className="signup-link">sign up</Link>
+          <Link to="/signup" className="signup-link">
+            sign up
+          </Link>
         </div>
       </form>
       {/* alert */}

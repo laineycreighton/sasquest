@@ -1,26 +1,18 @@
-// INCLUDES:
-//          - ProjectNavBar.jsx
-//          - ProjectHeader.jsx
-//          - AddTimeLine.jsx
-//          - ViewTimeline.jsx
-//
-//
-//
-//
-import { GET_ALL_PROJECTS } from "../utils/queries";
-import { useQuery } from "@apollo/client";
+import ProjectNavBar from "../components/ProjectNavBar.jsx";
+import ProjectHeader from "../components/ProjectHeader.jsx";
+import AddTimeline from "../components/AddTimeline.jsx";
+import React from "react";
+import AnimatedCursor from "react-animated-cursor"; // Import AnimatedCursor
 
 const Timeline = () => {
-  const { loading, data } = useQuery(GET_ALL_PROJECTS);
-  if (!loading) {
-    console.log(data);
-  }
+
   return (
     <div>
-      {/* <ProjectNavBar />
-      <ProjectHeader />
+      <AnimatedCursor /> {/* Add AnimatedCursor here */}
+      <ProjectNavBar />
+      {/* <ProjectHeader /> */}
       <AddTimeline />
-      <ViewTimeline /> */}
+      {/* <ViewTimeline /> */}
     </div>
   );
 };

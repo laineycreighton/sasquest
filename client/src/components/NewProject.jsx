@@ -1,9 +1,11 @@
 import "../assets/css/NewProject.css";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_PROJECT } from "../utils/mutations";
-import { QUERY_USER } from "../utils/queries";
+import { ADD_PROJECT } from "../utils/mutations.js";
+import { QUERY_USER } from "../utils/queries.js";
+import ProjectDashboard from "./ProjectDashboard";
 // import gql from 'graphql-tag'
+import Auth from "../utils/auth";
 
 const NewProject = () => {
   const [formState, setFormState] = useState({ title: "" });
@@ -13,10 +15,17 @@ const NewProject = () => {
 
   const user = data?.user || {};
 
-  console.log(user);
+  console.log(data);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     console.log(formState);
 
     const { data } = await createProject({
@@ -34,28 +43,7 @@ const NewProject = () => {
   };
 
   return (
-    <div className="home-placeholder">
-      <div className="projects-placeholder">
-        <div className="adventures-placeholder">
-          <p>your adventures</p>
-        </div>
-        <div
-          className="display-placeholder"
-          style={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            paddingLeft: "10%",
-            flexDirection: "column",
-          }}
-        >
-          {user.projects?.map((project) => (
-            <a href={`/projects/${project._id}/info`} key={project._id}>
-              {" "}
-              {project.title}
-            </a>
-          ))}
-        </div>
-      </div>
+    <div className="new-project-container">
       <div className="new-project">
         <form onSubmit={handleSubmit}>
           <label htmlFor="title">Project Name:</label>
@@ -68,6 +56,8 @@ const NewProject = () => {
           <button type="submit">Create</button>
         </form>
       </div>
+
+      <ProjectDashboard projects={user.projects} />
     </div>
   );
 };

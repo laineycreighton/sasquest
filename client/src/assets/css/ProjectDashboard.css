@@ -34,6 +34,7 @@
 }
 /* /----- MAIN -----/  */
 
+/*----- MAIN -----*/
 .dashboard {
   /* outline: aquamarine dashed 3px; */
   display: flex;
@@ -41,6 +42,7 @@
   align-items: center;
   width: 100%;
 }
+
 .projects-container {
   /* outline: red dashed 3px; */
   border: var(--accent) solid 3px;
@@ -51,6 +53,7 @@
   height: 500px;
   margin-top: 20px;
 }
+
 .dashboard-header {
   /* outline: blue dashed 3px; */
   border-right: var(--accent) solid 3px;
@@ -62,6 +65,7 @@
   height: 500px;
   margin: 0;
 }
+
 .your-adventures {
   /* outline: aqua dashed 3px; */
   font-family: var(--subheading);
@@ -71,7 +75,8 @@
   transform: rotate(-90deg);
   white-space: nowrap;
 }
-/* /----- NO PROJECTS -----/  */
+
+/*----- NO PROJECTS -----*/
 .no-projects {
   /* outline: green dashed 3px; */
   display: flex;
@@ -81,6 +86,7 @@
   width: 90%;
   height: 500px;
 }
+
 .uncharted {
   /* outline: orange dashed 3px; */
   font-family: var(--subheading);
@@ -90,14 +96,15 @@
   border: #ff6a17 solid 5px;
   padding: 5px 20px 5px 20px;
 }
+
 .start {
   /* outline: orange dashed 3px; */
   font-family: var(--subheading);
   font-size: 35px;
   color: #ff6a17;
 }
-/* /----- DISPLAY PROJECTS -----/  */
 
+/*----- DISPLAY PROJECTS -----*/
 .display-projects {
   /* outline: purple dashed 3px; */
   display: grid;
@@ -105,6 +112,7 @@
   width: 90%;
   height: 500px;
 }
+
 .each-project {
   /* outline: blue dashed 3px; */
   display: flex;
@@ -115,6 +123,7 @@
   margin: 25px;
   overflow: scroll;
 }
+
 .each-project a {
   display: flex;
   flex-direction: column;
@@ -125,14 +134,17 @@
   color: var(--accent);
   text-decoration: none;
 }
+
 .each-project a:hover {
   border: var(--accent) solid 3px;
   border-radius: 10px;
   padding: 10px;
 }
+
 .each-project-title {
   margin: 0;
 }
+
 .project-icon img {
   width: 75px;
 }
