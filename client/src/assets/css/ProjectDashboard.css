@@ -69,7 +69,7 @@
     margin: 0;
 }
 
-h3 {
+.your-adventures {
     /* outline: aqua dashed 3px; */
     font-family: var(--subheading);
     font-size: 40px;
@@ -86,7 +86,7 @@ h3 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 90%;
     height: 500px;
 }
 

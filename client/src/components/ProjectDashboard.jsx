@@ -69,8 +69,8 @@ const ProjectDashboard = () => {
                     ))}
                 </div>
             </div>
-        </div>
-    );
+     </div>
+  );
 };
 
 export default ProjectDashboard;
