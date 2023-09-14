@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import upload from '../assets/images/upload.svg';
+import trash from '../assets/images/trash-2.svg';
+import '../assets/css/AddWireframe.css';
 
 export default function UploadWidget() {
   const [loaded, setLoaded] = useState(false);
@@ -75,70 +78,72 @@ export default function UploadWidget() {
   };
 
   return (
-    <div>
-      <h3 className="font-medium">WIREFRAME</h3>
-      <form className="w-full" onSubmit={handleFormSubmit}>
-        {/* page */}
-        <div className="md:flex md:items-center">
-          <div className="md:w-1/3">
-            <label className="block" htmlFor="cloudName">
-              PAGE
-            </label>
-          </div>
-          <div className="md:w-2/3">
-            <input
-              className="whatever"
-              id="cloudName"
-              name="cloudName"
-              type="text"
-              value={cloudName}
-              onChange={handleInputChange}
-            />
-          </div>
+    <div className="wireframe-dashboard">
+      <div className="wireframe-container">
+
+        <div className="wireframe-header">
+          <p>WIREFRAME</p>
         </div>
-        {/* notes */}
-        <div className="whatever">
-          <div className="whatever">
-            <label className="whatever" htmlFor="inline-unsigned-preset">
-              NOTES
-            </label>
+
+        {/*----- ADD WIREFRAME FORM -----*/}
+        <form className="wireframe-form" onSubmit={handleFormSubmit}>
+
+          {/* TITLE */}
+          <div className="wireframe-title">
+            <label htmlFor="cloudName">Title</label>
+            <input id="cloudName" name="cloudName" type="text" value={cloudName} onChange={handleInputChange} />
           </div>
-          <div className="whatever">
-            <input
-              className="whatever"
-              id="inline-unsigned-preset"
-              name="unsignedPreset"
-              type="text"
-              value={unsignedPreset}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-        {/* Upload button */}
-        <div className="whatever">
-          <div className="whatever"></div>
-          <div className="whatever">
-            <button className="whatever" type="button" onClick={uploadWidget}>
-              Upload
+
+          {/* IMAGE */}
+          <div className="wireframe-image">
+            <label htmlFor="upload-image">Image</label>
+            <button id="upload-image" type="button" onClick={uploadWidget}>
+              <img src={upload} alt="upload" />
             </button>
-            {uploadedImage && (
-              <div>
-                <img
-                  src={uploadedImage}
-                  alt="uploaded using the upload widget"
-                />
-                <button
-                  className="whatever"
-                  type="button"
-                  onClick={handleDeleteImage}
-                >
-                  Delete Image
-                </button>
-              </div>
-            )}
           </div>
-        </div>
-      </form>
+
+          {/* NOTES */}
+          <div className="wireframe-notes">
+            <label htmlFor="inline-unsigned-preset">Notes</label>
+            <textarea id="inline-unsigned-preset" name="unsignedPreset" type="text" value={unsignedPreset} onChange={handleInputChange} />
+          </div>
+
+          {/* BUTTON */}
+          <div className="wireframe-button">
+            <button>
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
+
+
+      {/*----- VIEW WIREFRAMES -----*/}
+      <div className="view-wireframes">
+
+        {/* EVERY IMAGE */}
+        {uploadedImage && (
+
+          <div className="each-wireframe-container">
+
+            {/* DELETE */}
+            <button className="wireframe-trash" type="button" onClick={handleDeleteImage}>
+              <img src={trash} alt="delete trash can" />
+            </button>
+
+            {/* IMAGE */}
+            <div className="each-wireframe-image">
+              <img src={uploadedImage} alt="wireframe image" />
+            </div>
+
+          </div>
+
+        )}
+      </div>
+
+
+
     </div>
+
   );
 }

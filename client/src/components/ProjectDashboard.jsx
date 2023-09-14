@@ -21,6 +21,8 @@ const ProjectDashboard = () => {
 
   console.log(user);
 
+  console.log(user.projects);
+
   if (!user.projects) {
     return (
       <div className="dashboard">
