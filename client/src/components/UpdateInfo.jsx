@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
-import { UPDATE_PROJECT } from "../utils/mutations";
+import { UPDATE_PROJECT, DELETE_PROJECT } from "../utils/mutations";
 import { useParams } from "react-router-dom";
 
 
@@ -30,6 +30,7 @@ const DisplayProjectInfo = ({ projectID }) => {
   });
   // useMutation hook to make GraphQL mutation
   const [updateProject] = useMutation(UPDATE_PROJECT);
+  const [deleteProject] = useMutation(DELETE_PROJECT);
 
   // data population
   // useEffect hook to update state when data is fetched from GraphQL query
@@ -188,7 +189,7 @@ const DisplayProjectInfo = ({ projectID }) => {
         <div className="success-message">Project info edit!</div>
       )}
 
-      {/* TODO: ADD DELETE PROJECT FUNCTIONALITY */}
+      {/* delete functionality */}
       <div>
         <button onClick={handleDeleteClick}>DELETE PROJECT</button>
       </div>
