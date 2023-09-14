@@ -1,154 +1,196 @@
 /*----- COLORS -----*/
 :root {
-    --dark-green: #19270D;
-    --bright-orange: #FF9902;
-    --dark-orange: #9D4E00;
-    --lightgreen: #3B8C54;
-    --accent: #818C3B;
-    --lightbrown: #72601B;
-    --white: #EEEEEE;
+  --dark-green: #19270d;
+  --bright-orange: #ff9902;
+  --dark-orange: #9d4e00;
+  --lightgreen: #3b8c54;
+  --accent: #818c3b;
+  --lightbrown: #72601b;
+  --white: #eeeeee;
 }
 
 /*----- FONTS -----*/
 @font-face {
-    font-family: heading;
-    src: url('../fonts/BungeeInline-Regular.ttf');
+  font-family: heading;
+  src: url("../fonts/BungeeInline-Regular.ttf");
 }
 
 @font-face {
-    font-family: subheading;
-    src: url('../fonts/Bungee-Regular.ttf');
+  font-family: subheading;
+  src: url("../fonts/Bungee-Regular.ttf");
 }
 
 @font-face {
-    font-family: tagline;
-    src: url('../fonts/Smooch-Regular.ttf');
+  font-family: tagline;
+  src: url("../fonts/Smooch-Regular.ttf");
 }
 
 @font-face {
-    font-family: body;
-    src: url('../fonts/Cabin.ttf');
+  font-family: body;
+  src: url("../fonts/Cabin.ttf");
 }
 
 :root {
-    --heading: heading;
-    --subheading: subheading;
-    --tagline: tagline;
-    --body: body;
+  --heading: heading;
+  --subheading: subheading;
+  --tagline: tagline;
+  --body: body;
 }
 
 /*---------- MAIN ----------*/
 .full-home-header {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .home-header {
-    /* outline: red dashed 3px; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-bottom: 0;
-    width: 100%;
-    z-index: 50;
+  /* outline: red dashed 3px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 0;
+  width: 100%;
+  z-index: 50;
 }
 
 /*----- SASQUATCH -----*/
 .home-mascot {
-    /* outline: red dashed 3px; */
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: auto;
-    padding: 30px;
-    overflow: hidden;
+  /* outline: red dashed 3px; */
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: auto;
+  padding: 30px;
+  overflow: hidden;
 }
 
 .home-mascot img {
-    /* outline: blue dashed 3px; */
-    transform: rotate(-20deg);
-    margin-top: 200px;
-    margin-right: -195px;
-    width: 300px;
-    height: auto;
+  /* outline: blue dashed 3px; */
+  transform: rotate(-20deg);
+  margin-top: 200px;
+  margin-right: -195px;
+  width: 300px;
+  height: auto;
 }
 
 /*----- ABOUT -----*/
 .redirect-logout {
-    /* outline: blue dashed 3px; */
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    z-index: 1000;
+  /* outline: blue dashed 3px; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  z-index: 1000;
 }
 
 .logout {
-    font-family: var(--subheading);
-    font-size: 25px;
-    color: var(--lightgreen);
-    background-color: #ffffff00;
-    border: none;
-    margin: 25px 50px 0 0;
-    text-align: left;
-    text-decoration: none;
-    z-index: 1000;
+  font-family: var(--subheading);
+  font-size: 25px;
+  color: var(--lightgreen);
+  background-color: #ffffff00;
+  border: none;
+  margin: 25px 50px 0 0;
+  text-align: left;
+  text-decoration: none;
+  z-index: 1000;
 }
 
 /*----- LOGO -----*/
 .home-sasquest {
-    /* outline: greenyellow dashed 3px; */
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: -35px;
-    width: 100%;
+  /* outline: greenyellow dashed 3px; */
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -35px;
+  width: 100%;
 }
 
 .home-lg-letters {
-    /* outline: orange dashed 3px; */
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
+  /* outline: orange dashed 3px; */
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .homeLg {
-    /* outline: blue dashed 3px; */
-    font-family: var(--heading);
-    font-size: 75px;
-    color: var(--bright-orange);
-    text-shadow: 0 7px 1px var(--dark-orange);
-    text-align: center;
-    margin-top: -5px;
-    margin-left: 0;
-    margin-right: 0;
+  /* outline: blue dashed 3px; */
+  font-family: var(--heading);
+  font-size: 75px;
+  color: var(--bright-orange);
+  text-shadow: 0 7px 1px var(--dark-orange);
+  text-align: center;
+  margin-top: -5px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .logo-middle {
-    /* outline: purple dashed 3px; */
-    margin-top: 0;
-    margin-bottom: 0;
+  /* outline: purple dashed 3px; */
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .homeMiddle {
-    /* outline: rgb(255, 0, 128) dashed 3px; */
-    font-family: var(--heading);
-    font-size: 50px;
-    color: var(--bright-orange);
-    text-shadow: 0 7px 1px var(--dark-orange);
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 0;
+  /* outline: rgb(255, 0, 128) dashed 3px; */
+  font-family: var(--heading);
+  font-size: 50px;
+  color: var(--bright-orange);
+  text-shadow: 0 7px 1px var(--dark-orange);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /*----- TAGLINE -----*/
 .home-tagline {
-    /* outline: red dashed 3px; */
-    font-family: var(--tagline);
-    color: var(--dark-orange);
+  /* outline: red dashed 3px; */
+  font-family: var(--tagline);
+  color: var(--dark-orange);
+  font-size: 30px;
+  text-align: center;
+  margin-top: -5px;
+}
+
+@media (max-width: 508px) {
+  .home-mascot {
+    display: none;
+    /* z-index: 0; */
+  }
+
+  .redirect-logout {
+    justify-content: flex-end;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    padding: 10px;
+  }
+
+  .logout {
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-right: 25px;
+  }
+
+  /*----- LOGO -----*/
+  .home-sasquest {
+    margin-top: -10px;
+    padding: 10px 10px;
+  }
+
+  .homeLg {
+    font-size: 40px;
+    margin-top: 5px;
+  }
+
+  .homeMiddle {
     font-size: 30px;
-    text-align: center;
-    margin-top: -5px;
+  }
+
+  /*----- TAGLINE -----*/
+  .home-tagline {
+    font-size: 20px;
+    margin-top: 0;
+  }
 }

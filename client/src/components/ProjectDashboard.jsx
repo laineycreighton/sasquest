@@ -50,7 +50,7 @@ const ProjectDashboard = () => {
         <div className="display-projects">
           {/*----- For Each Project -----*/}
           {user.projects?.map((project) => (
-            <div className="each-project">
+            <div className="each-project" key={project._id}>
               <a href={`/projects/${project._id}/info`} key={project._id}>
                 {/*----- Backpack Icon -----*/}
                 <div className="project-icon">

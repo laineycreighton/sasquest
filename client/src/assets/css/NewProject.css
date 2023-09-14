@@ -77,11 +77,35 @@
 
 /*----- BUTTON -----*/
 .new-project button {
-  /* outline: red dashed 3px; */
   font-family: var(--subheading);
   font-size: 20px;
   color: var(--dark-orange);
   background-color: var(--dark-green);
   border: var(--dark-orange) solid 3px;
   border-radius: 5px;
+}
+
+@media (max-width: 500px) {
+  /*----- FORM -----*/
+  .new-project-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .new-project {
+    width: 100%;
+  }
+
+  .new-project input {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .new-project button {
+    font-size: 18px;
+  }
 }
