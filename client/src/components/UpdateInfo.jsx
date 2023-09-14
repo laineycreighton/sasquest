@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "../utils/queries";
-import { UPDATE_PROJECT } from "../utils/mutations";
+import { UPDATE_PROJECT, DELETE_PROJECT } from "../utils/mutations";
 import { useParams } from "react-router-dom";
-
 
 // DisplayProjectInfo component that takes projectID as a prop
 const DisplayProjectInfo = ({ projectID }) => {
@@ -95,13 +94,34 @@ const DisplayProjectInfo = ({ projectID }) => {
     }
   };
 
+  // ---------------------------------------- HANDLE DELETE PROJECT ---------------------------------------- //
+
+  const handleDeleteClick = async (event) => {
+    if (window.confirm("Are you sure you want to delete this project?")) {
+      try {
+        const { data } = await deleteProject({
+          variables: {
+            projectID: id,
+          },
+        });
+        if (data) {
+          // redirect to home page after deleting project
+          window.location.assign("/home");
+          setFormSubmitted(true);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   setProjectFormData({
     repoURL: "",
     deployedURL: "",
     description: "",
   });
 
-  // display project info
+  // ---------------------------------------- DISPLAY EDIT PROJECT INFO ---------------------------------------- //
   return (
     // project info container
     <div className="project-info">
@@ -165,15 +185,24 @@ const DisplayProjectInfo = ({ projectID }) => {
         >
           EDIT
         </button>
-      </form>
-      {formSubmitted && (
-        <div className="success-message">Project info edit!</div>
-      )}
+        {formSubmitted && (
+          <div className="success-message">Project info edit!</div>
+        )}
 
-      {/* TODO: ADD DELETE PROJECT FUNCTIONALITY */}
-      <div>
-        <button>DELETE PROJECT</button>
-      </div>
+        {/* TODO: ADD DELETE PROJECT FUNCTIONALITY */}
+        <div>
+          <button
+            type="button"
+            onClick={handleDeleteClick}
+            className="delete-button"
+          >
+            DELETE PROJECT
+          </button>
+          {formSubmitted && (
+            <div className="success-message">Project info edit!</div>
+          )}
+        </div>
+      </form>
     </div>
   );
 };
