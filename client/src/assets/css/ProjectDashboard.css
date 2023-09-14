@@ -50,7 +50,7 @@
     /* outline: red dashed 3px; */
     border: var(--accent) solid 3px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 75%;
     height: 500px;
@@ -114,6 +114,7 @@
     grid-template-columns: auto auto auto;
     width: 90%;
     height: 500px;
+    overflow: scroll;
 }
 
 .each-project {
@@ -136,6 +137,7 @@
     font-size: 15px;
     color: var(--accent);
     text-decoration: none;
+    text-align: center;
 }
 
 .each-project a:hover {
