@@ -11,6 +11,7 @@ const DisplayInfo = (props) => {
     //   console.log(props.project.timelines);
     // console.log("new function");
     // console.log(props.project.timelines);
+    console.log(props);
     const timelines = props.project.timelines
     console.log(timelines);
     

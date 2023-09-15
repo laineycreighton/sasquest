@@ -7,6 +7,7 @@ import { QUERY_USER } from "../utils/queries.js";
 import { DELETE_PROJECT } from "../utils/mutations.js";
 //----- Icons -----//
 import backpack from "../assets/images/backpack.png";
+import deleteProjectIcon from '../assets/images/delete-project.svg'
 //----- CSS -----//
 import "../assets/css/ProjectDashboard.css";
 //-------------------- EXPORT --------------------//
@@ -63,8 +64,14 @@ const ProjectDashboard = () => {
           {user.projects?.map((project) => (
             <div className="each-project" key={project._id}>
               <div className="project-content">
+                <button
+                  className="delete-button"
+                  onClick={() => handleDeleteProject(project._id)}
+                >
+                  <img src={deleteProjectIcon} />
+                </button>
                 <a href={`/projects/${project._id}/info`} key={project._id}>
-                  <div className="project-info">
+                  <div className="project-icon">
                     <img
                       src={backpack}
                       alt="backpack"
@@ -73,12 +80,6 @@ const ProjectDashboard = () => {
                     <p className="each-project-title">{project.title}</p>
                   </div>
                 </a>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDeleteProject(project._id)}
-                >
-                  Delete Project
-                </button>
               </div>
             </div>
           ))}

@@ -1,6 +1,5 @@
 import React from "react";
 import ProjectNavBar from '../components/ProjectNavBar';
-import ProjectHeader from '../components/ProjectHeader';
 import UpdateInfo from '../components/UpdateInfo';
 import AnimatedCursor from "react-animated-cursor"; // Import the AnimatedCursor component
 
@@ -20,7 +19,6 @@ export default function EditInfo() {
     <div>
       <AnimatedCursor /> {/* Add AnimatedCursor here */}
       <ProjectNavBar />
-      {/* <ProjectHeader /> */}
       <UpdateInfo />
     </div>
   );

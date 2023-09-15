@@ -70,6 +70,7 @@ Fear not, Sasquest will be your trusty companion on this exhilarating journey! W
 | Technology Used | Resource URL                                                      |
 | --------------- | ----------------------------------------------------------------- |
 | Coudinary Upload | [https://cloudinary.com/documentation/image_video_and_file_upload](https://cloudinary.com/documentation/image_video_and_file_upload) |
+| React Animated Cursor | [https://www.npmjs.com/package/react-animated-cursor](https://www.npmjs.com/package/react-animated-cursor) |
 
 <br>
 
@@ -84,7 +85,7 @@ Fear not, Sasquest will be your trusty companion on this exhilarating journey! W
 
 Website URL: [Sasquest](https://sasquest-52c8b076a68a.herokuapp.com/)
 
-![alt text](gif-of-website)
+![alt text](./client/src/assets/images/sasquest-home.png)
 
 <br>
 
@@ -92,10 +93,10 @@ Website URL: [Sasquest](https://sasquest-52c8b076a68a.herokuapp.com/)
 
 ### *__Elena Gurchinskaia__*
 ---
-[![Email](./client/src/assets/images/mail%20(1).svg)](mailto:dev.lainey@gmail.com) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![LinkedIn](./client/src/assets/images/linkedin%20(1).svg)](https://www.linkedin.com/in/lainey-creighton/) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![Portfolio](./client/src/assets/images/globe.svg)](https://laineycreighton.netlify.app/) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![GitHub](./client/src/assets/images/github%20(1).svg)](https://github.com/laineycreighton)
+[![Email](./client/src/assets/images/mail%20(1).svg)]() &nbsp;&nbsp;&nbsp;&nbsp; 
+[![LinkedIn](./client/src/assets/images/linkedin%20(1).svg)](https://www.linkedin.com/in/elena-gurchinskaia/) &nbsp;&nbsp;&nbsp;&nbsp; 
+[![Portfolio](./client/src/assets/images/globe.svg)](https://main--benevolent-hummingbird-60f64b.netlify.app/) &nbsp;&nbsp;&nbsp;&nbsp; 
+[![GitHub](./client/src/assets/images/github%20(1).svg)](https://github.com/elenagurchinskaia)
 
 <br>
 
@@ -120,9 +121,9 @@ Website URL: [Sasquest](https://sasquest-52c8b076a68a.herokuapp.com/)
 ### *__Luke Harriman__*
 ---
 [![Email](./client/src/assets/images/mail%20(1).svg)](mailto:dev.lainey@gmail.com) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![LinkedIn](./client/src/assets/images/linkedin%20(1).svg)](https://www.linkedin.com/in/lainey-creighton/) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![Portfolio](./client/src/assets/images/globe.svg)](https://laineycreighton.netlify.app/) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![GitHub](./client/src/assets/images/github%20(1).svg)](https://github.com/laineycreighton)
+[![LinkedIn](./client/src/assets/images/linkedin%20(1).svg)](https://www.linkedin.com/in/luke-harriman-12901a280/) &nbsp;&nbsp;&nbsp;&nbsp; 
+[![Portfolio](./client/src/assets/images/globe.svg)]() &nbsp;&nbsp;&nbsp;&nbsp; 
+[![GitHub](./client/src/assets/images/github%20(1).svg)](https://github.com/lth1013)
 
 <br>
 

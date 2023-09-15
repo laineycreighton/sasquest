@@ -108,7 +108,7 @@
 .display-projects {
   /* outline: purple dashed 3px; */
   display: grid;
-  gap: 5px 5px;
+  gap: 25px;
   grid-template-columns: auto auto auto;
   width: 90%;
   height: 500px;
@@ -116,11 +116,17 @@
 }
 
 .each-project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-content {
   /* outline: blue dashed 3px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 175px;
   height: 150px;
 }
 
@@ -148,6 +154,11 @@
 
 .project-icon img {
   width: 75px;
+}
+
+.delete-button {
+  background-color: #ffffff00;
+  border: none;
 }
 
 /* ----------------------------------------MEDIA --------------------------------------- */
