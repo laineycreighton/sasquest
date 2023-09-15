@@ -270,9 +270,9 @@ const resolvers = {
     // Add Timeline //
     createTimeline: async (parent, args, context) => {
       if (context.user) {
-        // console.log(args.date)
-        // console.log(args.goal)
-        // console.log(args.projectId)
+        console.log(args.date)
+        console.log(args.goal)
+        console.log(args.projectId)
         const newTimeline = await Timeline.create({ date: args.date, goal: args.goal })
         const timeline = await Project.findByIdAndUpdate(
           { _id: args.projectId },
