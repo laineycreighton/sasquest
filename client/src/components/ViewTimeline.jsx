@@ -1,21 +1,19 @@
 import { useQuery } from "@apollo/client";
 import TimelineDashboard from "../components/TimelineDashboard";
-import { QUERY_TIMELINE } from "../utils/queries";
 import { useParams } from "react-router-dom";
+import { GET_PROJECT_BY_ID } from "../utils/queries";
 
 const ViewTimeline = () => {
   const { projectId } = useParams();
-  console.log(projectId);
-  const { loading, data } = useQuery(QUERY_TIMELINE);
-  const timelines = data?.timeline || [];
+  const { data } = useQuery(GET_PROJECT_BY_ID, {
+    variables: { projectId: projectId },
+  });
+
+  const project = data?.project || {};
 
   return (
     <div>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <TimelineDashboard timelines={timelines} />
-      )}
+        <TimelineDashboard project={project} />
     </div>
   );
 };

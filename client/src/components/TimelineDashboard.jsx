@@ -2,8 +2,24 @@ import { useQuery } from "@apollo/client";
 import { QUERY_TIMELINE } from "../utils/queries.js";
 import DateStatus from "./DateStatus.jsx";
 
+import { useMutation } from "@apollo/client";
+//----- Queries -----//
+import { GET_PROJECT_BY_ID } from "../utils/queries.js";
 
-const ViewTimeline = ({ timelines }) => {
+import { useMutation } from "@apollo/client";
+//----- Queries -----//
+import { GET_PROJECT_BY_ID } from "../utils/queries.js";
+
+
+const ViewTimeline = () => {
+
+    // const { data } = useQuery(GET_PROJECT_BY_ID);
+
+    // const project = data?.project || {};
+    // const [deleteProject, { error: deleteError }] = useMutation(DELETE_PROJECT);
+    // console.log("project");
+    // console.log(props);
+
 
     // if (!timelines.length) {
     //     return <p>No Timeline Goals Yet</p>;
@@ -11,41 +27,28 @@ const ViewTimeline = ({ timelines }) => {
 
     return (
         <div>
-            {timelines && timelines.map((timeline, index) => (
-                <div key={`timeline-${index}`} className="each-timeline">
-                    {/*----- Date -----*/}
-                    <div className="project-icon">
-                        <p>{timeline.date}</p>
-                    </div>
-                    {/*----- Goal -----*/}
-                    <div className="project-icon">
-                        <p>{timeline.goal}</p>
-                    </div>
-                    {/*----- Status -----*/}
-                    <div className="project-icon">
-                        <DateStatus />
-                    </div>
-                </div>
-            ))
-            }
-
-            <div className="hard-timeline">
-                <div className="hard-date">
-                    <p className="hard-date-title">Date</p>
-                    <p className="hard-actual-date">09/14/2023</p>
-                </div>
-                <div className="hard-goal">
-                    <p className="hard-goal-title">Goal</p>
-                    <p className="hard-actual-goal">Graduate Bootcamp!</p>
-                </div>
-                <div className="hard-status">
-                    <p className="hard-status-title">Status</p>
-                    <div className="status-color"></div>
-                </div>
-            </div>
+          
         </div >
     );
 };
 
 
 export default ViewTimeline;
+
+// {timelines && timelines.map((timeline, index) => (
+//     <div key={`timeline-${index}`} className="each-timeline">
+//         {/*----- Date -----*/}
+//         <div className="project-icon">
+//             <p>{timeline.date}</p>
+//         </div>
+//         {/*----- Goal -----*/}
+//         <div className="project-icon">
+//             <p>{timeline.goal}</p>
+//         </div>
+//         {/*----- Status -----*/}
+//         <div className="project-icon">
+//             <DateStatus />
+//         </div>
+//     </div>
+// ))
+// }
