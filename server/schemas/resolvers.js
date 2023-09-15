@@ -1,4 +1,4 @@
-const { User, Project, Timeline } = require("../models");
+const { User, Project, Timeline, Wireframe } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -270,13 +270,13 @@ const resolvers = {
     // Add Timeline //
     createTimeline: async (parent, args, context) => {
       if (context.user) {
-        console.log(args.date)
-        console.log(args.goal)
-        console.log(args.projectId)
-        const newTimeline = await Timeline.create({date: args.date, goal: args.goal})
+        // console.log(args.date)
+        // console.log(args.goal)
+        // console.log(args.projectId)
+        const newTimeline = await Timeline.create({ date: args.date, goal: args.goal })
         const timeline = await Project.findByIdAndUpdate(
           { _id: args.projectId },
-          {$addToSet: { timelines: newTimeline._id }},
+          { $addToSet: { timelines: newTimeline._id } },
           { new: true, runValidators: true }
         );
         return timeline;
@@ -287,7 +287,7 @@ const resolvers = {
     // Update Timeline //
     updateTimeline: async (parent, { timelineId, date, goal }) => {
       try {
-        const timeline = await Timeline.findByIdAndUpdate({_id:timelineId}, {date, goal}, {
+        const timeline = await Timeline.findByIdAndUpdate({ _id: timelineId }, { date, goal }, {
           new: true,
         });
         return timeline;
@@ -300,12 +300,12 @@ const resolvers = {
     deleteTimeline: async (parent, { projectId, timelineId }, context) => {
       if (context.user) {
         const deleteTimeline = await Timeline.findByIdAndRemove(
-          {_id: timelineId}
+          { _id: timelineId }
         );
         const timeline = await Project.findOneAndUpdate(
           { _id: projectId },
-          { $pull: { timelines: { _id: timelineId } } },
-          { new: true, runValidators: true }
+          { $pull: { timelines: timelineId } },
+          { new: true }
         );
         return timeline;
       }
@@ -317,9 +317,10 @@ const resolvers = {
     // Add Wireframe //
     createWireframe: async (parent, args, context) => {
       if (context.user) {
+        const newWireframe = await Wireframe.create({ title: args.title, imageURL: args.imageURL, note: args.note })
         const wireframe = await Project.findByIdAndUpdate(
           { _id: args.projectId },
-          { $push: { wireframes: args } },
+          { $addToSet: { wireframes: newWireframe._id } },
           { new: true, runValidators: true }
         );
         return wireframe;
@@ -340,14 +341,18 @@ const resolvers = {
     // },
 
     // Remove Wireframe //
-    deleteWireframe: async (parent, { projectId, wireFrameId }, context) => {
+    deleteWireframe: async (parent, { projectId, wireframeId }, context) => {
       if (context.user) {
-        const timeline = await Project.findByIdAndUpdate(
-          { _id: projectId },
-          { $pull: { wireframes: { wireFrameId } } },
-          { new: true, runValidators: true }
+        const deleteWireframe = await Wireframe.findByIdAndRemove(
+          { _id: wireframeId }
         );
-        return timeline;
+        const wireframe = await Project.findOneAndUpdate(
+          { _id: projectId },
+          { $pull: { wireframes: wireframeId } },
+          { new: true }
+
+        );
+        return wireframe;
       }
       throw AuthenticationError;
     },
