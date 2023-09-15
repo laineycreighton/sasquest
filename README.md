@@ -108,9 +108,9 @@ Website URL: [Sasquest](deployed url)
 ### *__Stephanie Lenorovitz__*
 ---
 [![Email](./client/src/assets/images/mail%20(1).svg)](mailto:dev.slenorovitz@gmail.com) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![LinkedIn](./client/src/assets/images/linkedin%20(1).svg)](https://www.linkedin.com/in/lainey-creighton/) &nbsp;&nbsp;&nbsp;&nbsp; 
+[![LinkedIn](./client/src/assets/images/linkedin%20(1).svg)](https://www.linkedin.com/in/goodux/) &nbsp;&nbsp;&nbsp;&nbsp; 
 [![Portfolio](./client/src/assets/images/globe.svg)](https://laineycreighton.netlify.app/) &nbsp;&nbsp;&nbsp;&nbsp; 
-[![GitHub](./client/src/assets/images/github%20(1).svg)](https://github.com/laineycreighton)
+[![GitHub](./client/src/assets/images/github%20(1).svg)](https://github.com/GypsyBoho)
 
 <br>
 
