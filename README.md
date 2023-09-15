@@ -64,13 +64,7 @@ Fear not, Sasquest will be your trusty companion on this exhilarating journey! W
 **Deployment**
 <br>
 
-![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white) &nbsp;&nbsp;&nbsp;&nbsp; ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
-<br>
-
-**Testing**
-<br>
-
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white) &nbsp;&nbsp;&nbsp;&nbsp; ![Insomnia](https://img.shields.io/badge/Insomnia-black?style=for-the-badge&logo=insomnia&logoColor=5849BE)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 <br>
 
 | Technology Used | Resource URL                                                      |
@@ -88,7 +82,7 @@ Fear not, Sasquest will be your trusty companion on this exhilarating journey! W
 
 ## Deployment
 
-Website URL: [Sasquest](deployed url)
+Website URL: [Sasquest](https://sasquest-52c8b076a68a.herokuapp.com/)
 
 ![alt text](gif-of-website)
 

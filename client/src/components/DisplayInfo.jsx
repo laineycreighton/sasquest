@@ -5,6 +5,7 @@ import "../assets/css/DisplayInfo.css";
 const DisplayInfo = (props) => {
   // get projectID from useParams hook
   // const { id } = useParams();
+  console.log('display info props');
   console.log(props);
   // useState hook to set project state
   // this will be used to populate the data

@@ -86,36 +86,5 @@ const ProjectDashboard = () => {
       </div>
     </div>
   );
-
-  //   <div className="dashboard">
-  //     {/* //----- Projects Container -----// */}
-  //     <div className="projects-container">
-  //       {/*----- Container Header -----*/}
-  //       <div className="dashboard-header">
-  //         <h3 className="your-adventures">YOUR ADVENTURES</h3>
-  //       </div>
-
-  //       {/*----- Display Projects -----*/}
-  //       <div className="display-projects">
-  //         {/*----- For Each Project -----*/}
-  //         {user.projects?.map((project) => (
-  //           <div className="each-project" key={project._id}>
-  //             <a href={`/projects/${project._id}/info`} key={project._id}>
-  //               <button onClick={() => handleDeleteProject(project._id)}>
-  //                 Delete Project
-  //               </button>
-  //               {/*----- Backpack Icon -----*/}
-  //               <div className="project-icon">
-  //                 <img src={backpack} alt="backpack" />
-  //               </div>
-  //               {/*----- Project Title -----*/}
-  //               <p className="each-project-title">{project.title}</p>
-  //             </a>
-  //           </div>
-  //         ))}
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
 export default ProjectDashboard;

@@ -42,10 +42,10 @@ export const QUERY_WIREFRAME = gql`
     }
   }
 `;
-
+//--------------- All Timeline ---------------//
 export const QUERY_TIMELINE = gql`
   query timeline {
-    timeline {
+    timelines {
       _id
       projectId
       date
@@ -54,8 +54,9 @@ export const QUERY_TIMELINE = gql`
   }
 `;
 
+
 //--------------- ALL Projects ---------------//
-export const GET_ALL_PROJECTS = gql`
+export const QUERY_PROJECTS = gql`
   query projects {
     projects {
       _id
