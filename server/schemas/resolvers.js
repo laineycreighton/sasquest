@@ -270,16 +270,16 @@ const resolvers = {
     // Add Timeline //
     createTimeline: async (parent, args, context) => {
       if (context.user) {
-        console.log(args.date)
-        console.log(args.goal)
-        console.log(args.projectId)
+        // console.log(args.date)
+        // console.log(args.goal)
+        // console.log(args.projectId)
         const newTimeline = await Timeline.create({ date: args.date, goal: args.goal })
         const timeline = await Project.findByIdAndUpdate(
           { _id: args.projectId },
           { $addToSet: { timelines: newTimeline._id } },
           { new: true, runValidators: true }
         );
-        return timeline;
+        return newTimeline;
       }
       throw AuthenticationError;
     },
@@ -323,22 +323,22 @@ const resolvers = {
           { $addToSet: { wireframes: newWireframe._id } },
           { new: true, runValidators: true }
         );
-        return wireframe;
+        return newWireframe;
       }
       throw AuthenticationError;
     },
 
     // Update Wireframe //
-    // updateWireframe: async (parent, { _id, ...args }) => {
-    //   try {
-    //     const wireframe = await Project.findByIdAndUpdate(_id, args, {
-    //       new: true,
-    //     });
-    //     return wireframe;
-    //   } catch (error) {
-    //     throw AuthenticationError(`Error updating wireframe: ${error.message}`);
-    //   }
-    // },
+    updateWireframe: async (parent, { wireframeId, title, imageURL, note  }) => {
+      try {
+        const wireframe = await Wireframe.findByIdAndUpdate({_id: wireframeId}, {title, imageURL, note}, {
+          new: true,
+        });
+        return wireframe;
+      } catch (error) {
+        throw AuthenticationError(`Error updating wireframe: ${error.message}`);
+      }
+    },
 
     // Remove Wireframe //
     deleteWireframe: async (parent, { projectId, wireframeId }, context) => {

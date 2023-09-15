@@ -297,15 +297,19 @@ export const DELETE_PROJECT = gql`
 `;
 
 //-------------------- TIMELINE --------------------//
+// mutation CreateTimeline($projectId: ID!, $date: String!, $goal: String!) {
+//   createTimeline(projectId: $projectId, date: $date, goal: $goal) {
+//     date
+//     goal
+//   }
+// }
+
 
 export const ADD_TIMELINE = gql`
   mutation createTimeline($projectId: ID!, $date: String!, $goal: String!) {
     createTimeline(projectId: $projectId, date: $date, goal: $goal) {
-      timeline {
-        _id
-        date
-        goal
-      }
+      date
+      goal
     }
   }
 `;
