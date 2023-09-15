@@ -1,9 +1,9 @@
 import "../assets/css/AddTimeline.css";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_TIMELINE } from "../utils/mutations.js";
+import { ADD_TIMELINE } from "../utils/mutations";
 
-const AddTimeline = ({projectId}) => {
+const AddTimeline = ({ projectId }) => {
     const [formState, setFormState] = useState({
         projectId: projectId,
         date: '',
@@ -13,19 +13,20 @@ const AddTimeline = ({projectId}) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log("button is clicked");
+        // console.log("button is clicked");
         console.log(formState);
+
         try {
             const { data } = await createTimeline({
-                variables: { ...formState },
+                variables: { ...formState }
             });
-
-            setFormState({
-                date: '',
-                goal: ''
-            });
+            console.log(data);
+            // setFormState({
+            //     date: '',
+            //     goal: ''
+            // });
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             console.log("Error: " + error);
         }
     };

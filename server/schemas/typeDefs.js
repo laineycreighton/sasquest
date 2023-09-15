@@ -44,6 +44,7 @@ type Wireframe {
     user: User
     projects: [Project]!
     project(projectId: ID!): Project
+    wireframes: [Wireframe]
     timelines: [Timeline]!
    
   }
@@ -57,11 +58,11 @@ type Wireframe {
     updateProject(projectId: ID!, title: String!): Project
     deleteProject(projectId: ID!): User
 
-    createWireframe(projectId: ID!, title: String!, imageUrl: String, note: String): Project
+    createWireframe(projectId: ID!, title: String!, imageUrl: String, note: String): Wireframe
     updateWireframe(wireframeId: ID!, title: String!, imageUrl: String, note: String): Wireframe
     deleteWireframe(projectId: ID!, wireframeId: ID!): Project
 
-    createTimeline(projectId: ID!, date: String, goal: String): Project
+    createTimeline(projectId: ID!, date: String!, goal: String!): Timeline
     updateTimeline(timelineId: ID!, date: String, goal: String): Timeline
     deleteTimeline(projectId: ID!, timelineId: ID!): Project
 
