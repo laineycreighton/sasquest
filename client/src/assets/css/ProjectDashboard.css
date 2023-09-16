@@ -156,6 +156,11 @@
   width: 75px;
 }
 
+.delete-button {
+  background-color: #ffffff00;
+  border: none;
+}
+
 /* ----------------------------------------MEDIA --------------------------------------- */
 /* max width 500 px */
 
