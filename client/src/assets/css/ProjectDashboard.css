@@ -32,7 +32,7 @@
   --tagline: tagline;
   --body: body;
 }
-/* /----- MAIN -----/  */
+
 
 /*----- MAIN -----*/
 .dashboard {
@@ -116,6 +116,12 @@
 }
 
 .each-project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-content {
   /* outline: blue dashed 3px; */
   display: flex;
   justify-content: center;
