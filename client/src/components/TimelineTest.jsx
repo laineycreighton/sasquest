@@ -13,6 +13,7 @@ const DisplayInfo = (props) => {
     // console.log(props.project.timelines);
     const timelines = props.project.timelines
     console.log(timelines);
+    console.log("just for shits and giggles");
     
     return (
         <div className="project-info">
