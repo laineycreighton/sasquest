@@ -84,7 +84,7 @@ Fear not, Sasquest will be your trusty companion on this exhilarating journey! W
 
 Website URL: [Sasquest](https://sasquest-52c8b076a68a.herokuapp.com/)
 
-![alt text](gif-of-website)
+![alt text](client/src/assets/images/Sasquest-demo-video.gif)
 
 <br>
 
